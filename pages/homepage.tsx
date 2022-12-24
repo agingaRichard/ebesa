@@ -1,10 +1,9 @@
-import Homepage from "./homepage";
-import App from "./_app.tsx";
-
-export default function Home() {
+import PostCard from "../components/PostCard";
+import Carousel from "../components/Carousel";
+export default function Homepage() {
   return (
-    <div class="w-full h-full">
-      <Homepage />
+    <div>
+      <Carousel />
     </div>
   );
 }
