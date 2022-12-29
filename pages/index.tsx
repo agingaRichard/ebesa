@@ -1,5 +1,6 @@
 import Homepage from "./homepage";
 import App from "./_app.tsx";
+import backend from "../server/index";
 
 export default function Home() {
   return (
@@ -19,6 +20,8 @@ export async function getServerSideProps(ctx) {
   // extract the data
   let data = await response.json();
 
+  //get initial UnityShop server
+  //backend();
   return {
     props: {
       posts: data["message"],

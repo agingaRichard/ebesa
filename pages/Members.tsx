@@ -1,3 +1,5 @@
+async function getMembers() {}
+
 const Members = () => {
   return (
     <div
@@ -11,13 +13,18 @@ const Members = () => {
           src="/docs/images/people/profile-picture-1.jpg"
           alt="Jese Leos image"
         />
+
         <div class="ml-3 text-sm font-normal">
           <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
             Jese Leos
           </span>
           <div class="mb-2 text-sm font-normal">
+            {/*{membersList.map((member) => {
+              <p>member.firstName</p>;
+            })}*/}
             Hi Neil, thanks for sharing your thoughts regarding Flowbite.
           </div>
+
           <a
             href="#"
             class="inline-flex px-2.5 py-1.5 text-xs font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"

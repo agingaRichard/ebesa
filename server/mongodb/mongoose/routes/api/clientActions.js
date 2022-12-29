@@ -1,11 +1,11 @@
 //CRUD operations for users
 const router = require("express").Router();
 const db = require("../../connector");
-ProductModel = require("../../models/product.js");
-CartModel = require("../../models/cart.js");
-BrandModel = require("../../models/brand.js");
-UserModel = require("../../models/user.js");
-ArticleModel = require("../../models/article.js");
+const ProductModel = require("../../models/product.js");
+const CartModel = require("../../models/cart.js");
+const BrandModel = require("../../models/brand.js");
+const UserModel = require("../../models/user.js");
+const ArticleModel = require("../../models/article.js");
 const jwt = require("jsonwebtoken");
 
 //Importing dependendlcies
@@ -135,14 +135,14 @@ router.get("/articles", async (req, res) => {
 //Surf through all the users
 router.get("/members", async (req, res) => {
   const members = await UserModel.find({});
-  
+
   res.send(members);
 });
 
 //View a specific article
 router.get("/articles/:id", async (req, res) => {
   const article = await ArticleModel.findById(req.params.id);
-  
+
   res.send(article);
 });
 
