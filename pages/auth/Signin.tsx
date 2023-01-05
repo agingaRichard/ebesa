@@ -1,9 +1,27 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 
-import pb from "../api/pocketbase.js";
 import { UserContext } from "../../context/user-context.js";
+
+const login = async (data) => {
+  const res = await fetch(
+    "http://127.0.0.1:8090/api/collections/users/auth-with-password",
+    {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
 
 const Signin = () => {
   const [state, dispatch] = useContext(UserContext);
@@ -39,7 +57,7 @@ const Signin = () => {
   });
 
   return (
-    <div class="space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div>
       <form onSubmit={formik.handleSubmit}>
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Sign in
@@ -82,28 +100,14 @@ const Signin = () => {
           />
         </div>
         <div class="flex items-start">
-          <div class="flex items-start">
-            <div class="flex items-center h-5">
-              <input
-                id="remember"
-                type="checkbox"
-                value=""
-                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-              />
-            </div>
-            <label
-              for="remember"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          <div class="flex items-start pb-5">
+            <a
+              href="#"
+              class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500 pt-5"
             >
-              Remember me
-            </label>
+              Lost Password?
+            </a>
           </div>
-          <a
-            href="#"
-            class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-          >
-            Lost Password?
-          </a>
         </div>
         <button
           type="submit"

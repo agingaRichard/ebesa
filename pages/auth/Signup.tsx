@@ -1,20 +1,27 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 
-//import pb from "../api/pocketbase.js";
-import register from "../api/pocketbase";
 import { UserContext } from "../../context/user-context.js";
 
-/*const register = (data) => {
-  pb.Users.create(data)
-    .then((result) => {
-      console.log("Result:", result);
+const register = async (data) => {
+  const res = await fetch(
+    "http://127.0.0.1:8090/api/collections/users/records",
+    {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
     })
     .catch((error) => {
-      console.log("Error:", error);
+      console.error("Error:", error);
     });
-};*/
+};
 
 const Signup = () => {
   //Managing state
@@ -27,25 +34,29 @@ const Signup = () => {
       lastName: "",
       email: "",
       password: "",
+      passwordConfirm: "",
     },
 
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const profile = await JSON.stringify(values);
-      alert(profile);
-      await register(values);
+      try {
+        const profile = await JSON.stringify(values);
+        alert(profile);
+        await register(values);
 
-      //Set user context
-      /*await dispatch({
-        type: "SET_USER",
-        payload: {
-          id: profile.id,
-          firstName: profile.firstName,
-          lastName: profile.lastName,
-          email: profile.email,
-        },
-      });*/
-
+        //Set user context
+        await dispatch({
+          type: "SET_USER",
+          payload: {
+            id: profile.id,
+            firstName: profile.firstName,
+            lastName: profile.lastName,
+            email: profile.email,
+          },
+        });
+      } catch {
+        alert("Account creation failed.");
+      }
       //navigate("/");
       return;
     },
@@ -125,6 +136,25 @@ const Signup = () => {
             placeholder="••••••••"
             onChange={formik.handleChange}
             value={formik.values.password}
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="passwordConfirm"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            id="passwordConfirm"
+            label="passwordConfirm"
+            placeholder="••••••••"
+            onChange={formik.handleChange}
+            value={formik.values.passwordConfirm}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
           />
