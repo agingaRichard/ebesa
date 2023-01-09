@@ -1,4 +1,6 @@
-const Card = ({ props }) => {
+const Card = (props) => {
+  let title = props.item.title;
+  let text = props.item.text;
   return (
     <div>
       <a href="#">
@@ -7,12 +9,11 @@ const Card = ({ props }) => {
       <div class="p-5">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-            Noteworthy technology acquisitions 2021
+            {title}
           </h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-black">
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
+          {text.slice(0, 180)}...
         </p>
         <a
           href="#"

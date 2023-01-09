@@ -1,4 +1,4 @@
-import PostCard from "../components/PostCard";
+import Card from "../components/Card";
 import Carousel from "../components/Carousel";
 import pb from "./api/pocketbase";
 import { RSC_MODULE_TYPES } from "next/dist/shared/lib/constants";
@@ -18,7 +18,6 @@ export default function Homepage() {
         return res.json();
       })
       .then((data) => {
-        console.log(typeof data.items);
         setArticles(data.items);
       });
   };
@@ -47,32 +46,18 @@ export default function Homepage() {
         Articles
       </h3>
       <div>
-        {articles?.map((arts) => (
-          <p>{arts.title}</p>
+        {articles?.map((article) => (
+          <Card item={{ title: article.title, text: article.body }} />
         ))}
       </div>
       <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
         Projects
       </h3>
       <div>
-        {projects?.map((projs) => (
-          <p>{projs.title}</p>
+        {projects?.map((project) => (
+          <Card item={{ title: project.title, text: project.text }} />
         ))}
       </div>
     </div>
   );
 }
-
-/*export async function getServerSideProps() {
-  // get the current environment
-  // request posts from api
-  // extract the data
-  //const articles = await connect.collection("articles").find({})
-  //articles
-
-  //list = JSON.stringify(articles);
-
-  return {
-    props: {},
-  };
-}*/
