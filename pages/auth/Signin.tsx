@@ -1,27 +1,7 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
-
+import pb from "../api/pocketbase";
 import { UserContext } from "../../context/user-context.js";
-
-const login = async (data) => {
-  const res = await fetch(
-    "http://127.0.0.1:8090/api/collections/users/auth-with-password",
-    {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
 
 const Signin = () => {
   const [state, dispatch] = useContext(UserContext);
@@ -32,27 +12,32 @@ const Signin = () => {
       email: "",
       password: "",
     },
+
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const profile = await JSON.stringify(values);
-      alert(JSON.stringify(profile));
-      /*const authData = await pb
+      const authData = await pb
         .collection("users")
-        .authWithPassword(profile.email, profile.password);
+        .authWithPassword(values.email, values.password);
 
-      //Set user context
-      /*await dispatch({
-        type: "SET_USER",
-        payload: {
-          id: profile.id,
-          firstName: profile.firstName,
-          lastName: profile.lastName,
-          email: profile.email,
-        },
-      });*/
+      // console.log(pb.authStore.token);
+      // console.log(pb.authStore.model.id);
+
+      if (pb.authStore.isValid) {
+        await dispatch({
+          type: "SET_USER",
+          payload: {
+            id: authData.record.id,
+            firstName: authData.record.firstName,
+            lastName: authData.record.lastName,
+            email: authData.record.email,
+          },
+        });
+      } else {
+        alert("Authentication failed.");
+      }
 
       //navigate("/");
-      return;
+      //return;
     },
   });
 

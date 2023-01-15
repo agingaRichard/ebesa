@@ -4,7 +4,15 @@ import pb from "./api/pocketbase";
 import { RSC_MODULE_TYPES } from "next/dist/shared/lib/constants";
 import createMapper from "map-factory";
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+
+// export const dynamic = "auto",
+//   dynamicparams = true,
+//   revalidate = 0,
+//   fetchCache = auto,
+//   runtime = "nodejs",
+//   preferredRegion = "auto";
 
 export default function Homepage() {
   const [articles, setArticles] = useState();
@@ -47,7 +55,9 @@ export default function Homepage() {
       </h3>
       <div>
         {articles?.map((article) => (
-          <Card item={{ title: article.title, text: article.body }} />
+          <Link href={`/articles/Viewpost/${article.id}`}>
+            <Card item={{ title: article.title, text: article.body }} />
+          </Link>
         ))}
       </div>
       <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
@@ -55,7 +65,9 @@ export default function Homepage() {
       </h3>
       <div>
         {projects?.map((project) => (
-          <Card item={{ title: project.title, text: project.text }} />
+          <Link href={`/projects/Viewpost/${project.id}`}>
+            <Card item={{ title: project.title, text: project.text }} />
+          </Link>
         ))}
       </div>
     </div>

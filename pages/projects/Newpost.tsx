@@ -1,7 +1,8 @@
 import ImageUpload from "../../components/ImageUpload";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import PocketBase from "pocketbase";
+import { UserContext } from "../../context/user-context";
 
 const Newpost = () => {
   const [files, setFiles] = useState<FileList | null>(null);
@@ -67,7 +68,7 @@ const Newpost = () => {
             required
           ></textarea>
 
-          <input
+          {/*<input
             id="images"
             name="images"
             //onChange={formik.handleChange}
@@ -83,6 +84,13 @@ const Newpost = () => {
             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             multiple
+          />*/}
+          <input
+            type="file"
+            name="avatar"
+            onChange={(event) => {
+              formik.setFieldValue("avatar", event.currentTarget.files[0]);
+            }}
           />
         </div>
         <img src="files" />

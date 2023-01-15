@@ -1,27 +1,7 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
-
+import pb from "../api/pocketbase";
 import { UserContext } from "../../context/user-context.js";
-
-const register = async (data) => {
-  const res = await fetch(
-    "http://127.0.0.1:8090/api/collections/users/records",
-    {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
 
 const Signup = () => {
   //Managing state
@@ -35,23 +15,24 @@ const Signup = () => {
       email: "",
       password: "",
       passwordConfirm: "",
+      avatar: "",
     },
 
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const profile = await JSON.stringify(values);
-        alert(profile);
-        await register(values);
+        alert(JSON.stringify(values.avatar));
+        const record = await pb.collection("users").create(values);
 
         //Set user context
         await dispatch({
           type: "SET_USER",
           payload: {
-            id: profile.id,
-            firstName: profile.firstName,
-            lastName: profile.lastName,
-            email: profile.email,
+            id: record.id,
+            firstName: record.firstName,
+            lastName: record.lastName,
+            email: record.email,
+            avatar: record.avatar,
           },
         });
       } catch {
@@ -157,6 +138,26 @@ const Signup = () => {
             value={formik.values.passwordConfirm}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
+          />
+        </div>
+        <div>
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            for="file_input"
+          >
+            Upload photo
+          </label>
+          <input
+            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            id="file_input"
+            type="file"
+            value={formik.values.avatar}
+            onChange={formik.handleChange}
+            // onChange={(event) => {
+            //   formik.handleChange;
+            //   alert(JSON.stringify(event.currentTarget.files[0]));
+            //   formik.setFieldValue("avatar", event.currentTarget.files[0]);
+            // }}
           />
         </div>
         <button

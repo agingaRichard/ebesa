@@ -1,9 +1,13 @@
 import ImageUpload from "../../components/ImageUpload";
-import { useFormik } from "formik";
-import { useState } from "react";
-import PocketBase from "pocketbase";
+import FileInput, { useFormik } from "formik";
+import { useState, useContext } from "react";
+import pb from "../api/pocketbase";
+import { UserContext } from "../../context/user-context";
+import { useRouter } from "next/router";
 
 const Newpost = () => {
+  const [state, dispatch] = useContext(UserContext);
+  const router = useRouter();
   const [files, setFiles] = useState<FileList | null>(null);
   const updateState = (variable) => {
     setFiles(variable);
@@ -13,7 +17,8 @@ const Newpost = () => {
     initialValues: {
       title: "",
       text: "",
-      images: File[],
+      images: [],
+      author: state.user,
     },
 
     //validationSchema: validationSchema,
@@ -21,8 +26,7 @@ const Newpost = () => {
       try {
         const newPost = await JSON.stringify(values);
         alert(newPost);
-        const pb = new PocketBase("http://127.0.0.1:8090");
-        await pb.collection("projects").create(newPost);
+        await pb.collection("articles").create(newPost);
 
         //await create(values);
       } catch (err) {
@@ -67,31 +71,33 @@ const Newpost = () => {
             required
           ></textarea>
 
-          <input
+          {/*<input
             id="images"
             name="images"
-            //onChange={formik.handleChange}
+            onChange={formik.handleChange}
             value={formik.values.images}
             accept="image/*"
-            onChange={(e) => {
-              formik.handleChange;
-              let uploads = e.target.files;
-              let myFiles = Array.from(uploads);
-              //updateState(myFiles);
-              //formik.setFieldValue("images", uploads);
-            }}
             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             multiple
+  />*/}
+
+          <input
+            id="images"
+            name="images"
+            type="file"
+            onChange={(event) => {
+              //formik.setFieldValue("images", event.currentTarget.files[0]);
+              formik.values.images.push(event.currentTarget.files[0]);
+            }}
           />
         </div>
-        <img src="files" />
-        <button
+        <img
+          src="files"
           type="submit"
           class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-        >
-          Publish
-        </button>
+        />
+        <button>Publish</button>
       </form>
     </div>
   );
