@@ -21,8 +21,17 @@ const Signup = () => {
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        alert(JSON.stringify(values.avatar));
-        const record = await pb.collection("users").create(values);
+        //Create the form with the users data
+        const formData = new FormData();
+        formData.append("firstName", values.firstName);
+        formData.append("lastName", values.lastName);
+        formData.append("email", values.email);
+        formData.append("password", values.password);
+        formData.append("passwordConfirm", values.passwordConfirm);
+        formData.append("avatar", document.getElementById("avatar").files[0]);
+
+        //Save the user on the server
+        const record = await pb.collection("users").create(formData);
 
         //Set user context
         await dispatch({
@@ -38,7 +47,7 @@ const Signup = () => {
       } catch {
         alert("Account creation failed.");
       }
-      //navigate("/");
+      // navigate("/");
       return;
     },
   });
@@ -149,15 +158,9 @@ const Signup = () => {
           </label>
           <input
             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            id="file_input"
+            id="avatar"
+            name="avatar"
             type="file"
-            value={formik.values.avatar}
-            onChange={formik.handleChange}
-            // onChange={(event) => {
-            //   formik.handleChange;
-            //   alert(JSON.stringify(event.currentTarget.files[0]));
-            //   formik.setFieldValue("avatar", event.currentTarget.files[0]);
-            // }}
           />
         </div>
         <button

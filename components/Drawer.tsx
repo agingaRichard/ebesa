@@ -36,7 +36,7 @@ export default function Drawer() {
           </Link>
         </div>
         <div class="relative ">
-          {state.user.email ? (
+          {pb.authStore.isValid ? (
             <ul class="space-y-2">
               <li>
                 <Link
@@ -131,7 +131,7 @@ export default function Drawer() {
         </div>
         <hr />
         <div class="absolute inset-x-0 bottom-0">
-          {state.user.email ? (
+          {pb.authStore.isValid ? (
             <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <li>
                 <Link

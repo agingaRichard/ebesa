@@ -1,4 +1,5 @@
 import ImageUpload from "../../components/ImageUpload";
+import Image from "next/image";
 import FileInput, { useFormik } from "formik";
 import { useState, useContext } from "react";
 import pb from "../api/pocketbase";
@@ -8,7 +9,8 @@ import { useRouter } from "next/router";
 const Newpost = () => {
   const [state, dispatch] = useContext(UserContext);
   const router = useRouter();
-  const [files, setFiles] = useState<FileList | null>(null);
+  //const [files, setFiles] = useState<FileList | null>(null);
+  const [files, setFiles] = useState([]);
   const updateState = (variable) => {
     setFiles(variable);
   };
@@ -16,33 +18,27 @@ const Newpost = () => {
   const formik = useFormik({
     initialValues: {
       title: "",
-      text: "",
-      images: [],
+      body: "",
+      images: {},
       author: state.user,
     },
 
-    //validationSchema: validationSchema,
     onSubmit: async (values) => {
+      const formData = new FormData();
+      formData.append("title", values.title);
+      formData.append("body", values.body);
+      formData.append("images", document.getElementById("images").files[0]);
       try {
-        const newPost = await JSON.stringify(values);
-        alert(newPost);
-        await pb.collection("articles").create(newPost);
-
-        //await create(values);
+        const newPost = await JSON.stringify(formData);
+        console.log(values);
+        await pb.collection("articles").create(formData);
       } catch (err) {
-        alert(err);
+        alert("Formik error: " + err);
       }
       //navigate("/");
       return;
     },
   });
-
-  const updateFormik = (mydata) => {
-    let initfiles = formik.values.files;
-    return formik.setFieldValue("files", mydata);
-  };
-
-  const fileList = files ? [...files] : [];
 
   return (
     <div>
@@ -60,44 +56,50 @@ const Newpost = () => {
           />
 
           <textarea
-            id="editor"
-            name="text"
+            id="body"
+            name="body"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.text}
+            value={formik.values.body}
             rows="12"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write an article..."
             required
           ></textarea>
 
-          {/*<input
-            id="images"
-            name="images"
-            onChange={formik.handleChange}
-            value={formik.values.images}
-            accept="image/*"
-            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            type="file"
-            multiple
-  />*/}
-
           <input
             id="images"
             name="images"
             type="file"
-            onChange={(event) => {
-              //formik.setFieldValue("images", event.currentTarget.files[0]);
-              formik.values.images.push(event.currentTarget.files[0]);
+            // value={formik.values.images}
+            // onChange={formik.handleChange}
+            onChange={(e) => {
+              console.log(e.currentTarget.files[0]);
+              // setFiles(files.push(e.currentTarget.files[0]));
             }}
           />
+          <textarea
+            id="caption"
+            name="caption"
+            type="text"
+            // onChange={formik.handleChange}
+            // value={formik.values.body}
+            rows="3"
+            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            placeholder="Write a caption..."
+          ></textarea>
         </div>
-        <img
-          src="files"
+        <Image
+          class="rounded-full w-10 h-10"
+          width={60}
+          height={60}
+          src={files[0]}
           type="submit"
-          class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+          // alt="my"
         />
-        <button>Publish</button>
+        <button class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+          Publish
+        </button>
       </form>
     </div>
   );

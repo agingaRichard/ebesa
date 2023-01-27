@@ -10,7 +10,7 @@ import pb from "../../api/pocketbase";
 function ViewPost({ article }) {
   const [state, dispatch] = useContext(UserContext);
 
-  console.log(article);
+  console.log(article.author);
 
   return (
     <div>
@@ -28,11 +28,14 @@ function ViewPost({ article }) {
               {article.title}
             </h5>
           </Link>
+
+          <p>
+            by {article.author.firstName} {article.author.lastName}
+          </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
           </p>
-          <p></p>
-          {/* {state.user.id == article.author.id ? (
+          {state.user.id == article.author.id ? (
             <ul>
               <li>
                 <Link>Edit Article</Link>
@@ -43,7 +46,7 @@ function ViewPost({ article }) {
             </ul>
           ) : (
             <div></div>
-          )} */}
+          )}
         </div>
       </div>
     </div>
@@ -61,6 +64,7 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
+      console.log(data);
       return data;
     })
     .catch((err) => {

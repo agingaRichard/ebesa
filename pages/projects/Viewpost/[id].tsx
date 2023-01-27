@@ -10,8 +10,6 @@ import pb from "../../api/pocketbase";
 function ViewPost({ project }) {
   const [state, dispatch] = useContext(UserContext);
 
-  console.log(project);
-
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -61,7 +59,6 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      console.log(data);
       return data;
     })
     .catch((err) => {

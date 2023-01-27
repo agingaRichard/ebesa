@@ -38,7 +38,6 @@ export default function Homepage() {
         return res.json();
       })
       .then((data) => {
-        console.log(typeof data.items);
         setProjects(data.items);
       });
   };

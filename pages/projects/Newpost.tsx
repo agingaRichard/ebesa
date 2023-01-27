@@ -6,6 +6,7 @@ import { UserContext } from "../../context/user-context";
 
 const Newpost = () => {
   const [files, setFiles] = useState<FileList | null>(null);
+  const [state, dispatch] = useContext(UserContext);
   const updateState = (variable) => {
     setFiles(variable);
   };
@@ -15,15 +16,33 @@ const Newpost = () => {
       title: "",
       text: "",
       images: [],
+      author: state.user,
     },
 
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const newPost = await JSON.stringify(values);
-        alert(newPost);
-        const pb = new PocketBase("http://127.0.0.1:8090");
-        await pb.collection("projects").create(newPost);
+        //OPTION 1
+        console.log(JSON.stringify(values));
+        const res = await fetch(
+          "http://127.0.0.1:8090/api/collections/projects/records",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            body: values,
+          }
+        ).then((res) => {
+          alert(JSON.stringify(res));
+          // return res.json();
+        });
+
+        //OPTION 2
+        // const newPost = await JSON.stringify(values);
+        // alert(newPost);
+        // const pb = new PocketBase("http://127.0.0.1:8090");
+        // await pb.collection("projects").create(newPost);
 
         //await create(values);
       } catch (err) {
@@ -86,11 +105,11 @@ const Newpost = () => {
             multiple
           />*/}
           <input
+            id="images"
+            name="images"
             type="file"
-            name="avatar"
-            onChange={(event) => {
-              formik.setFieldValue("avatar", event.currentTarget.files[0]);
-            }}
+            value={formik.values.images}
+            onChange={formik.handleChange}
           />
         </div>
         <img src="files" />
