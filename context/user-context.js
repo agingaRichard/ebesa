@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import pb from "../pages/api/pocketbase";
 export const UserContext = createContext();
-//userData = null;
+
 const initialState = {
   user: {},
   loading: false,

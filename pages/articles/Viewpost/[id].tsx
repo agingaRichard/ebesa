@@ -1,16 +1,17 @@
-"use client";
-
+import { Button } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
-import { UserContext } from "../../../context/user-context";
 import pb from "../../api/pocketbase";
 
-function ViewPost({ article }) {
-  const [state, dispatch] = useContext(UserContext);
+// const delete = (x)=>{
+//   await pb.collection('articles').delete(x.id);
+// }
 
+function ViewPost({ article }) {
   console.log(article.author);
+  // console.log{pb.authStore}
 
   return (
     <div>
@@ -29,19 +30,21 @@ function ViewPost({ article }) {
             </h5>
           </Link>
 
-          <p>
-            by {article.author.firstName} {article.author.lastName}
+          <p class="text-xs text-gray-900 dark:text-whit">
+            by {article.author?.firstName} {article.author?.lastName}
           </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
           </p>
-          {state.user.id == article.author.id ? (
+          {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
             <ul>
               <li>
-                <Link>Edit Article</Link>
+                <Link href={`/articles/Editpost/${article.id}`}>
+                  Edit Article
+                </Link>
               </li>
               <li>
-                <Link>Delete Article</Link>
+                <Button>Delete Article</Button>
               </li>
             </ul>
           ) : (

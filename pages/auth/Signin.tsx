@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import pb from "../api/pocketbase";
-import { UserContext } from "../../context/user-context.js";
+import { useRouter } from "next/router";
 
 const Signin = () => {
-  const [state, dispatch] = useContext(UserContext);
+  const router = useRouter();
 
   //Managing form data
   const formik = useFormik({
@@ -23,21 +23,11 @@ const Signin = () => {
       // console.log(pb.authStore.model.id);
 
       if (pb.authStore.isValid) {
-        await dispatch({
-          type: "SET_USER",
-          payload: {
-            id: authData.record.id,
-            firstName: authData.record.firstName,
-            lastName: authData.record.lastName,
-            email: authData.record.email,
-          },
-        });
+        await alert("Welcome!");
+        router.push("/");
       } else {
         alert("Authentication failed.");
       }
-
-      //navigate("/");
-      //return;
     },
   });
 
@@ -84,13 +74,14 @@ const Signin = () => {
             required
           />
         </div>
-        <div class="flex items-start">
-          <div class="flex items-start pb-5">
+        <div class="flex items-start p-5">
+          <div class="text-sm">
+            New user?
             <a
-              href="#"
-              class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500 pt-5"
+              href="/auth/Signup"
+              class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500 pl-2"
             >
-              Lost Password?
+              Sign up here
             </a>
           </div>
         </div>

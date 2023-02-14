@@ -1,44 +1,30 @@
 import Card from "../components/Card";
 import Carousel from "../components/Carousel";
 import pb from "./api/pocketbase";
-import { RSC_MODULE_TYPES } from "next/dist/shared/lib/constants";
-import createMapper from "map-factory";
-import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-// export const dynamic = "auto",
-//   dynamicparams = true,
-//   revalidate = 0,
-//   fetchCache = auto,
-//   runtime = "nodejs",
-//   preferredRegion = "auto";
 
 export default function Homepage() {
   const [articles, setArticles] = useState();
   const [projects, setProjects] = useState();
 
-  const getarticles = async () => {
-    const res = await fetch(
-      "http://127.0.0.1:8090/api/collections/articles/records"
-    )
-      .then((res) => {
-        return res.json();
+  const getarticles = () => {
+    pb.collection("articles")
+      .getFullList(200 /* batch size */, {
+        sort: "-created",
       })
-      .then((data) => {
-        setArticles(data.items);
+      .then((res) => {
+        setArticles(res);
       });
   };
 
-  const getprojects = async () => {
-    const res = await fetch(
-      "http://127.0.0.1:8090/api/collections/projects/records"
-    )
-      .then((res) => {
-        return res.json();
+  const getprojects = () => {
+    pb.collection("projects")
+      .getFullList(200 /* batch size */, {
+        sort: "-created",
       })
-      .then((data) => {
-        setProjects(data.items);
+      .then((res) => {
+        setProjects(res);
       });
   };
 

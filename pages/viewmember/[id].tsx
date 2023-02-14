@@ -1,47 +1,64 @@
-"use client";
-
+import pb from "../api/pocketbase";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState, useContext, useEffect } from "react";
-import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
-import { UserContext } from "../../context/user-context";
-import pb from "../../pages/api/pocketbase";
+import Card from "../../components/Card";
 
-function ViewPost({ member }) {
-  const [state, dispatch] = useContext(UserContext);
+const Profile = () => {
+  const userModel = pb.authStore.model;
+  const myProjects = pb.collection("projects").getList(1, 50, {
+    filter: author.id == userModel?.id /*&& someFiled1 != someField2*/,
+  });
+  const myArticles = pb.collection("articles").getList(1, 50, {
+    filter: author.id == userModel?.id /*&& someFiled1 != someField2*/,
+  });
 
   return (
     <div>
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <Link href="#">
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex flex-col items-center pb-10">
           <img
-            class="rounded-t-lg"
-            src="/docs/images/blog/image-1.jpg"
-            alt=""
+            class="w-24 h-24 mb-3 rounded-full shadow-lg"
+            src={userModel?.avatar}
+            alt="Bonnie image"
           />
-        </Link>
-        <div class="p-5">
-          <Link href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {member.firstName}
-            </h5>
-          </Link>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {member.lastName}
-          </p>
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+            {userModel?.firstName} {userModel?.lastName}
+          </h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400">
+            {userModel?.email}
+          </span>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+            <h3 class="">Projects</h3>
+            <ul>
+              {myProjects.map((proj) => {
+                <li>
+                  <Link href={`/projects/Viewpost/${proj.id}`}>
+                    <Card item={{ title: proj.title, text: proj.text }} />
+                  </Link>
+                </li>;
+              })}
+            </ul>
+            <h3 class="">Articles</h3>
+            <ul>
+              {myArticles.map((art) => {
+                <li>
+                  <Link href={`/articles/Viewpost/${art.id}`}>
+                    <Card item={{ title: art.title, text: art.text }} />
+                  </Link>
+                </li>;
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export async function getServerSideProps(context) {
-  const memberId = await context.query.id?.toString();
-  const member = await pb
+  const myMembers = await pb
     .collection("users")
-    .getOne(memberId, {
-      expand: "relField1,relField2.subRelField",
-      $autoCancel: false,
+    .getOne(200, {
+      sort: "-created",
     })
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
@@ -52,9 +69,7 @@ export async function getServerSideProps(context) {
       console.log("Pocketbase error: " + err);
     });
 
-const memberArticles = await pb.collection("articles").
-
-  return { props: { member } };
+  return { props: { myMembers } };
 }
 
-export default ViewPost;
+export default Profile;

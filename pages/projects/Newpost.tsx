@@ -1,64 +1,32 @@
-import ImageUpload from "../../components/ImageUpload";
 import { useFormik } from "formik";
-import { useState, useContext } from "react";
-import PocketBase from "pocketbase";
-import { UserContext } from "../../context/user-context";
+import pb from "../api/pocketbase";
 
 const Newpost = () => {
-  const [files, setFiles] = useState<FileList | null>(null);
-  const [state, dispatch] = useContext(UserContext);
-  const updateState = (variable) => {
-    setFiles(variable);
-  };
-
+  const userModel = pb.authStore.model;
   const formik = useFormik({
     initialValues: {
       title: "",
       text: "",
-      images: [],
-      author: state.user,
+      images: {},
+      author: userModel.id,
     },
 
-    //validationSchema: validationSchema,
     onSubmit: async (values) => {
+      const formData = new FormData();
+      formData.append("title", values.title);
+      formData.append("text", values.text);
+      formData.append("images", document.getElementById("images").files[0]);
+      formData.append("author", values.author);
       try {
-        //OPTION 1
-        console.log(JSON.stringify(values));
-        const res = await fetch(
-          "http://127.0.0.1:8090/api/collections/projects/records",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            body: values,
-          }
-        ).then((res) => {
-          alert(JSON.stringify(res));
-          // return res.json();
-        });
-
-        //OPTION 2
-        // const newPost = await JSON.stringify(values);
-        // alert(newPost);
-        // const pb = new PocketBase("http://127.0.0.1:8090");
-        // await pb.collection("projects").create(newPost);
-
-        //await create(values);
+        await pb.collection("projects").create(formData);
+        await alert("Project posted.");
       } catch (err) {
-        alert(err);
+        alert("Formik error: " + err);
       }
       //navigate("/");
       return;
     },
   });
-
-  const updateFormik = (mydata) => {
-    let initfiles = formik.values.files;
-    return formik.setFieldValue("files", mydata);
-  };
-
-  const fileList = files ? [...files] : [];
 
   return (
     <div>
@@ -76,43 +44,28 @@ const Newpost = () => {
           />
 
           <textarea
-            id="editor"
+            id="text"
             name="text"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.text}
             rows="12"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-            placeholder="Write an article..."
+            placeholder="Write a project..."
             required
           ></textarea>
 
-          {/*<input
-            id="images"
-            name="images"
-            //onChange={formik.handleChange}
-            value={formik.values.images}
-            accept="image/*"
-            onChange={(e) => {
-              formik.handleChange;
-              let uploads = e.target.files;
-              let myFiles = Array.from(uploads);
-              //updateState(myFiles);
-              //formik.setFieldValue("images", uploads);
-            }}
-            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            type="file"
-            multiple
-          />*/}
-          <input
-            id="images"
-            name="images"
-            type="file"
-            value={formik.values.images}
-            onChange={formik.handleChange}
-          />
+          <input id="images" name="images" type="file" />
+
+          <textarea
+            id="caption"
+            name="caption"
+            type="text"
+            rows="3"
+            class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            placeholder="Write a caption..."
+          ></textarea>
         </div>
-        <img src="files" />
         <button
           type="submit"
           class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"

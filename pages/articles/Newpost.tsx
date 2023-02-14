@@ -1,26 +1,15 @@
-import ImageUpload from "../../components/ImageUpload";
-import Image from "next/image";
-import FileInput, { useFormik } from "formik";
-import { useState, useContext } from "react";
+import { useFormik } from "formik";
 import pb from "../api/pocketbase";
-import { UserContext } from "../../context/user-context";
-import { useRouter } from "next/router";
+// import userModel from "../api/pocketbase";
 
 const Newpost = () => {
-  const [state, dispatch] = useContext(UserContext);
-  const router = useRouter();
-  //const [files, setFiles] = useState<FileList | null>(null);
-  const [files, setFiles] = useState([]);
-  const updateState = (variable) => {
-    setFiles(variable);
-  };
-
+  const userModel = pb.authStore.model;
   const formik = useFormik({
     initialValues: {
       title: "",
       body: "",
       images: {},
-      author: state.user,
+      author: userModel.id,
     },
 
     onSubmit: async (values) => {
@@ -28,10 +17,10 @@ const Newpost = () => {
       formData.append("title", values.title);
       formData.append("body", values.body);
       formData.append("images", document.getElementById("images").files[0]);
+      formData.append("author", values.author);
       try {
-        const newPost = await JSON.stringify(formData);
-        console.log(values);
         await pb.collection("articles").create(formData);
+        await alert("Article posted.");
       } catch (err) {
         alert("Formik error: " + err);
       }
@@ -67,36 +56,17 @@ const Newpost = () => {
             required
           ></textarea>
 
-          <input
-            id="images"
-            name="images"
-            type="file"
-            // value={formik.values.images}
-            // onChange={formik.handleChange}
-            onChange={(e) => {
-              console.log(e.currentTarget.files[0]);
-              // setFiles(files.push(e.currentTarget.files[0]));
-            }}
-          />
+          <input id="images" name="images" type="file" />
+
           <textarea
             id="caption"
             name="caption"
             type="text"
-            // onChange={formik.handleChange}
-            // value={formik.values.body}
             rows="3"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a caption..."
           ></textarea>
         </div>
-        <Image
-          class="rounded-full w-10 h-10"
-          width={60}
-          height={60}
-          src={files[0]}
-          type="submit"
-          // alt="my"
-        />
         <button class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
           Publish
         </button>

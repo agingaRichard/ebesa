@@ -1,14 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
-import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
-import { UserContext } from "../../../context/user-context";
 import pb from "../../api/pocketbase";
 
 function ViewPost({ project }) {
-  const [state, dispatch] = useContext(UserContext);
+  const userModel = pb.authStore.model;
 
   return (
     <div>
@@ -30,7 +26,7 @@ function ViewPost({ project }) {
             {project.text}
           </p>
           <p></p>
-          {/* {state.user.id == project.author.id ? (
+          {/* {userModel.id != null && userModel.id == project.author.id ? (
             <ul>
               <li>
                 <Link>Edit project</Link>
