@@ -1,4 +1,5 @@
-import Card from "../components/Card";
+import ProjectCard from "../components/ProjectCard";
+import ArticleCard from "../components/ArticleCard";
 import Carousel from "../components/Carousel";
 import pb from "./api/pocketbase";
 import Link from "next/link";
@@ -41,7 +42,7 @@ export default function Homepage() {
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {articles?.map((article) => (
           <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-            <Card
+            <ArticleCard
               item={{
                 title: article.title,
                 text: article.body,
@@ -58,7 +59,7 @@ export default function Homepage() {
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {projects?.map((project) => (
           <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-            <Card
+            <ProjectCard
               item={{
                 title: project.title,
                 text: project.text,

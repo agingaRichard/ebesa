@@ -1,6 +1,6 @@
 import pb from "../api/pocketbase";
 import Link from "next/link";
-import Card from "../../components/Card";
+import Card from "../../components/ArticleCard";
 
 const Profile = () => {
   const userModel = pb.authStore.model;

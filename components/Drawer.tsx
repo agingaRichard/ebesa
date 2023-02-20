@@ -4,19 +4,21 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import pb from "../pages/api/pocketbase";
 
-const userModel = pb.authStore.model;
+// const userModel = pb.authStore.model;
 
-export default function Drawer({ userModel }): JSX.Element {
-  const [userData, setUserData] = useState();
+export default function Drawer(): JSX.Element {
+  // const [userData, setUserData] = useState({});
   const router = useRouter();
+  const userModel = pb.authStore.model;
 
   async function logout() {
     await pb.authStore.clear();
     router.push("/");
   }
-  useEffect(() => {
-    setUserData(pb.authStore.model);
-  });
+  // useEffect(() => {
+  //   setUserData(pb.authStore.model);
+  //   alert(pb.authStore.model.firstName);
+  // }, []);
 
   return (
     <aside
@@ -31,7 +33,7 @@ export default function Drawer({ userModel }): JSX.Element {
               class="w-full h-auto"
               width={500}
               height={500}
-              alt="Ebesa icon"
+              alt="home"
             />
           </Link>
         </div>
@@ -43,11 +45,11 @@ export default function Drawer({ userModel }): JSX.Element {
                   href="/Profile"
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  <Image
+                  <img
                     class="w-10 h-10 rounded-full"
                     width={50}
                     height={50}
-                    // src={userData.avatar}
+                    src={userModel?.avatar}
                     alt="avatar"
                   />
                   <span class="flex-1 ml-3 whitespace-nowrap">
