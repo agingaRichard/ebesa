@@ -1,40 +1,41 @@
+import Link from "next/link";
+
 const Card = (props) => {
+  let id = props.item.id;
   let title = props.item.title;
   let text = props.item.text;
+  let images = props.item.images;
+
   return (
-    <div>
-      <a href="#">
-        <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-      </a>
-      <div class="p-5">
-        <a href="#">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-            {title}
-          </h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-black">
-          {text.slice(0, 180)}...
-        </p>
-        <a
-          href="#"
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Read more
-          <svg
-            aria-hidden="true"
-            class="w-4 h-4 ml-2 -mr-1"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </a>
+    <div class="max-w-sm flex flex-col rounded-lg overflow-hidden bg-white shadow">
+      {/* <!-- card cover --> */}
+      <img
+        class="h-56 w-full object-cover"
+        src="https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=384"
+        // src={images}
+        alt="Card Cover"
+      />
+      {/* <!-- end card cover --> */}
+
+      {/* <!-- card content --> */}
+      <div class="flex-1 px-6 py-4">
+        <div class="font-bold text-xl mb-2">{title}</div>
+        <p class="text-gray-700 text-base">{text?.slice(0, 80)}...</p>
       </div>
+      {/* <!-- end card content --> */}
+
+      {/* <!-- card footer --> */}
+      <div class="px-6 py-4 bg-gray-100">
+        <Link href={`/articles/Viewpost/${id}`}>
+          <button
+            type="button"
+            class="bg-blue-600 hover:bg-blue-700 py-2 px-4 text-sm font-medium text-white border border-transparent rounded-lg focus:outline-none"
+          >
+            Read more...
+          </button>
+        </Link>
+      </div>
+      {/* <!-- end card footer --> */}
     </div>
   );
 };

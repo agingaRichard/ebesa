@@ -1,5 +1,6 @@
 import pb from "../api/pocketbase";
 import { useFormik } from "formik";
+// import DateSelector from "../../components/Dateselector";
 
 const newEvent = () => {
   const userModel = pb.authStore.model;
@@ -8,7 +9,7 @@ const newEvent = () => {
       title: "",
       text: "",
       images: {},
-      author: userModel,
+      author: userModel?.id,
     },
 
     onSubmit: async (values) => {
@@ -16,10 +17,11 @@ const newEvent = () => {
       formData.append("title", values.title);
       formData.append("text", values.text);
       formData.append("images", document.getElementById("images").files[0]);
-      // formData.append("author", values.author);
+      formData.append("starttime", document.getElementById("starttime"));
+      formData.append("endtime", document.getElementById("endtime"));
       try {
-        await pb.collection("events").create(formData);
-        await alert("Project posted.");
+        // await pb.collection("events").create(formData);
+        await alert(formData.values);
       } catch (err) {
         alert("Formik error: " + err);
       }
@@ -27,6 +29,10 @@ const newEvent = () => {
       return;
     },
   });
+
+  const checkDate = () => {
+    console.log(document.getElementById("startdate").value);
+  };
 
   return (
     <div>
@@ -43,28 +49,51 @@ const newEvent = () => {
             required
           />
 
+          <div class="relative max-w-sm">
+            <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
+              <h4>From:</h4>
+              <input
+                class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                type="datetime-local"
+                id="starttime"
+                name="starttime"
+                onChange={checkDate}
+              />
+              {/* <DateSelector /> */}
+            </div>
+            <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
+              <h4>To:</h4>
+              <input
+                class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                type="datetime-local"
+                id="endtime"
+                name="endtime"
+              />
+              {/* <DateSelector /> */}
+            </div>
+          </div>
           <textarea
             id="text"
             name="text"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            rows="12"
+            rows="8"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-            placeholder="Write a project..."
+            placeholder="Write a description..."
             required
           ></textarea>
 
           <input id="images" name="images" type="file" />
 
-          <textarea
+          {/* <textarea
             id="caption"
             name="caption"
             type="text"
             rows="3"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a caption..."
-          ></textarea>
+          ></textarea> */}
         </div>
         <button
           type="submit"

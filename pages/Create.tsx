@@ -3,7 +3,7 @@ import Link from "next/link";
 const Create = () => {
   return (
     <div class="justify-center">
-      <h3 class="text-5xl font-extrabold dark:text-white w-full">
+      <h3 class="text-2xl font-extrabold dark:text-white w-full">
         Create something new...
       </h3>
       <ul class="w-auto">
@@ -50,7 +50,7 @@ const Create = () => {
               />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap">Write a Project</span>
+            <span class="flex-1 ml-3 whitespace-nowrap">Write a project</span>
           </Link>
         </li>
         <li>

@@ -6,7 +6,7 @@ import Card from "../components/Card";
 const Profile = () => {
   const userModel = pb.authStore.model;
 
-  const userImg = pb.collection("users").getOne(userModel?.id).then();
+  // const userImg = pb.collection("users").getOne(userModel?.id).then((res)=>{return(res.avatar)});
 
   //Get projects
   const myProjects = pb

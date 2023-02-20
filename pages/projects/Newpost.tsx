@@ -8,7 +8,7 @@ const Newpost = () => {
       title: "",
       text: "",
       images: {},
-      author: userModel.id,
+      author: userModel?.id,
     },
 
     onSubmit: async (values) => {
@@ -55,7 +55,7 @@ const Newpost = () => {
             required
           ></textarea>
 
-          <input id="images" name="images" type="file" />
+          <input id="images" name="images" type="file" multiple />
 
           <textarea
             id="caption"

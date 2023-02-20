@@ -8,7 +8,7 @@ const newGallery = () => {
       title: "",
       text: "",
       images: {},
-      author: userModel,
+      author: userModel?.id,
     },
 
     onSubmit: async (values) => {
@@ -16,7 +16,7 @@ const newGallery = () => {
       formData.append("title", values.title);
       formData.append("text", values.text);
       formData.append("images", document.getElementById("images").files[0]);
-      // formData.append("author", values.author);
+      formData.append("author", values.author);
       try {
         await pb.collection("gallery").create(formData);
         await alert("Project posted.");
@@ -49,22 +49,22 @@ const newGallery = () => {
             type="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            rows="12"
+            rows="4"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-            placeholder="Write a project..."
+            placeholder="Write a description..."
             required
           ></textarea>
 
-          <input id="images" name="images" type="file" />
+          <input id="images" name="images" type="file" multiple/>
 
-          <textarea
+          {/* <textarea
             id="caption"
             name="caption"
             type="text"
             rows="3"
             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a caption..."
-          ></textarea>
+          ></textarea> */}
         </div>
         <button
           type="submit"

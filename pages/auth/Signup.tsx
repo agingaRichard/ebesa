@@ -1,11 +1,14 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { useFormik } from "formik";
 import pb from "../api/pocketbase";
-import { UserContext } from "../../context/user-context.js";
+import { useRouter } from "next/router";
+// import { UserContext } from "../../context/user-context.js";
+
 
 const Signup = () => {
+  const router = useRouter()
   //Managing state
-  const [state, dispatch] = useContext(UserContext);
+  // const [state, dispatch] = useContext(UserContext);
 
   //Managing form data
   const formik = useFormik({
@@ -15,7 +18,7 @@ const Signup = () => {
       email: "",
       password: "",
       passwordConfirm: "",
-      avatar: "",
+      // avatar: "",
     },
 
     //validationSchema: validationSchema,
@@ -32,18 +35,19 @@ const Signup = () => {
 
         //Save the user on the server
         const record = await pb.collection("users").create(formData);
-
+alert('Account created.')
+await router.push('/auth/Signin')
         //Set user context
-        await dispatch({
-          type: "SET_USER",
-          payload: {
-            id: record.id,
-            firstName: record.firstName,
-            lastName: record.lastName,
-            email: record.email,
-            avatar: record.avatar,
-          },
-        });
+        // await dispatch({
+        //   type: "SET_USER",
+        //   payload: {
+        //     id: record.id,
+        //     firstName: record.firstName,
+        //     lastName: record.lastName,
+        //     email: record.email,
+        //     avatar: record.avatar,
+        //   },
+        // });
       } catch {
         alert("Account creation failed.");
       }
