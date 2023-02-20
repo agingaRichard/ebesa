@@ -9,7 +9,7 @@ const Newpost = () => {
       title: "",
       body: "",
       images: {},
-      author: userModel.id,
+      author: userModel?.id,
     },
 
     onSubmit: async (values) => {
