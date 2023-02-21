@@ -4,10 +4,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import pb from "../pages/api/pocketbase";
 
-// const userModel = pb.authStore.model;
-
 export default function Drawer(): JSX.Element {
-  // const [userData, setUserData] = useState({});
   const router = useRouter();
   const userModel = pb.authStore.model;
 
@@ -45,11 +42,11 @@ export default function Drawer(): JSX.Element {
                   href="/Profile"
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  <img
+                  <Image
                     class="w-10 h-10 rounded-full"
                     width={50}
                     height={50}
-                    src={userModel?.avatar}
+                    // src={userModel?.avatar}
                     alt="avatar"
                   />
                   <span class="flex-1 ml-3 whitespace-nowrap">

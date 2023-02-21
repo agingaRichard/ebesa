@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Slider = () => {
   return (
     <div id="default-carousel" class="relative" data-carousel="static">
@@ -8,16 +10,20 @@ const Slider = () => {
           <span class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800">
             First Slide
           </span>
-          <img
+          <Image
             src="/images/ebesa.jpg"
+            width={40}
+            height={40}
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
         </div>
         {/*<!-- Item 2 -->*/}
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img
+          <Image
             src="/images/mobilelogo.jpg"
+            width={40}
+            height={40}
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />

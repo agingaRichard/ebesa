@@ -1,6 +1,6 @@
 import pb from "../api/pocketbase";
 import { useFormik } from "formik";
-// import DateSelector from "../../components/Dateselector";
+import DateSelector from "../../components/Dateselector";
 
 const newEvent = () => {
   const userModel = pb.authStore.model;
@@ -31,7 +31,8 @@ const newEvent = () => {
   });
 
   const checkDate = () => {
-    console.log(document.getElementById("startdate").value);
+    console.log(document.getElementById("startdate")?.dataset);
+    alert(document.getElementById("startdate").date);
   };
 
   return (

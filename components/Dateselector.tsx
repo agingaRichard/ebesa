@@ -9,7 +9,7 @@ const options = {
   maxDate: new Date("2099-01-01"),
   minDate: new Date("1950-01-01"),
   theme: {
-    background: "bg-gray-700 dark:bg-gray-800",
+    background: "",
     todayBtn: "",
     clearBtn: "",
     icons: "",

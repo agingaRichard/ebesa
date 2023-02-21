@@ -1,8 +1,8 @@
 import ProjectCard from "../components/ProjectCard";
 import ArticleCard from "../components/ArticleCard";
-import Carousel from "../components/Carousel";
+// import Carousel from "../components/Carousel";
 import pb from "./api/pocketbase";
-import Link from "next/link";
+// import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Homepage() {
@@ -64,6 +64,7 @@ export default function Homepage() {
                 title: project.title,
                 text: project.text,
                 id: project.id,
+                images: project.images[0],
               }}
             />
           </div>

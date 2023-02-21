@@ -16,8 +16,8 @@ const Newpost = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("body", values.body);
-      formData.append("images", document.getElementById("images").files[0]);
-      formData.append("author", values.author);
+      formData.append("images", document.getElementById("images")?.files[0]);
+      formData.append("author", userModel?.author);
       try {
         await pb.collection("articles").create(formData);
         await alert("Article posted.");

@@ -16,8 +16,8 @@ const TopNav = () => {
       </a>
       {pb.authStore.isValid ? (
         <a href="/Profile">
-          <img
-            src={userModel?.avatar}
+          <Image
+            // src={userModel?.avatar}
             width={40}
             height={40}
             class="w-10 h-10 rounded-full"

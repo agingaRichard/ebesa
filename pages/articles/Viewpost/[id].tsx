@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
@@ -17,9 +18,11 @@ function ViewPost({ article }) {
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <Link href="#">
-          <img
+          <Image
             class="rounded-t-lg"
             src="/docs/images/blog/image-1.jpg"
+            width={40}
+            height={40}
             alt=""
           />
         </Link>

@@ -26,9 +26,9 @@ const Profile = () => {
     filter: `author != null && author == ${userModel?.id}`,
   });
 
-  const myloader = () => {
-    return userModel.avatar;
-  };
+  // const myloader = () => {
+  //   return userModel.avatar;
+  // };
 
   // console.log(JSON.stringify(myProjects));
   console.log(userModel);
@@ -70,10 +70,10 @@ const Profile = () => {
           </div> */}
         </div>
         <div class="flex flex-col items-center pb-10">
-          <img
+          <Image
             class="w-24 h-24 mb-3 rounded-full shadow-lg"
-            src={userModel?.avatar}
-            loader={myloader}
+            // src={userModel?.avatar}
+            // loader={myloader}
             height={50}
             width={50}
             alt="userimage"
