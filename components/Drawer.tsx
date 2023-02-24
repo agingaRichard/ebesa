@@ -7,6 +7,8 @@ import pb from "../pages/api/pocketbase";
 export default function Drawer(): JSX.Element {
   const router = useRouter();
   const userModel = pb.authStore.model;
+  const myAvatar = userModel?.avatar;
+  const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
 
   async function logout() {
     await pb.authStore.clear();
@@ -42,11 +44,11 @@ export default function Drawer(): JSX.Element {
                   href="/Profile"
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  <Image
+                  <img
                     class="w-10 h-10 rounded-full"
                     width={50}
                     height={50}
-                    // src={userModel?.avatar}
+                    src={mysrc}
                     alt="avatar"
                   />
                   <span class="flex-1 ml-3 whitespace-nowrap">
@@ -299,7 +301,7 @@ export default function Drawer(): JSX.Element {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const articleId = await context.query.id?.toString();
   const article = await pb
     .collection("articles")

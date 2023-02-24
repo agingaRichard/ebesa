@@ -1,4 +1,4 @@
-import Card from "../../components/ArticleCard";
+import Card from "../../components/EventCard";
 // import Carousel from "../../components/Carousel";
 import pb from "../api/pocketbase";
 // import Link from "next/link";

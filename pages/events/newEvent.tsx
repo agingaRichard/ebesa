@@ -17,10 +17,10 @@ const newEvent = () => {
       formData.append("title", values.title);
       formData.append("text", values.text);
       formData.append("images", document.getElementById("images").files[0]);
-      formData.append("starttime", document.getElementById("starttime"));
-      formData.append("endtime", document.getElementById("endtime"));
+      formData.append("starttime", document.getElementById("starttime").value);
+      formData.append("endtime", document.getElementById("endtime").value);
       try {
-        // await pb.collection("events").create(formData);
+        await pb.collection("events").create(formData);
         await alert(formData.values);
       } catch (err) {
         alert("Formik error: " + err);
@@ -31,8 +31,8 @@ const newEvent = () => {
   });
 
   const checkDate = () => {
-    console.log(document.getElementById("startdate")?.dataset);
-    alert(document.getElementById("startdate").date);
+    console.log(document.getElementById("starttime").date);
+    // alert(document.getElementById("startdate").date);
   };
 
   return (

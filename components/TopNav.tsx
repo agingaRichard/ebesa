@@ -3,7 +3,8 @@ import pb from "../pages/api/pocketbase";
 
 const TopNav = () => {
   const userModel = pb.authStore.model;
-
+  const myAvatar = userModel?.avatar;
+  const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
   return (
     <div class="p-4 flex justify-between bg-white">
       <a href="/" class="">
@@ -16,12 +17,13 @@ const TopNav = () => {
       </a>
       {pb.authStore.isValid ? (
         <a href="/Profile">
-          <Image
-            // src={userModel?.avatar}
+          <img
+            src={mysrc}
             width={40}
             height={40}
             class="w-10 h-10 rounded-full"
           />
+          {/* <embed src={myAvatar} width="300" height="300"></embed> */}
         </a>
       ) : (
         <a href="/auth/Signin">

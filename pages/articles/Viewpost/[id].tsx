@@ -11,30 +11,28 @@ import pb from "../../api/pocketbase";
 // }
 
 function ViewPost({ article }) {
-  console.log(article.author);
   // console.log{pb.authStore}
+  // const images = "http://127.0.0.1:8090/api/collections/articles/records/${article.id}/images";
 
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <Link href="#">
-          <Image
+        {/* <img
             class="rounded-t-lg"
-            src="/docs/images/blog/image-1.jpg"
+            src={article.images}
             width={40}
             height={40}
             alt=""
-          />
-        </Link>
+          /> */}
+        <div class="bg-[avatar.images]"></div>
+
         <div class="p-5">
-          <Link href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {article.title}
-            </h5>
-          </Link>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {article.title}
+          </h5>
 
           <p class="text-xs text-gray-900 dark:text-whit">
-            by {article.author?.firstName} {article.author?.lastName}
+            {/* by {myAuthor?.firstName} {myAuthor?.lastName} */}
           </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
@@ -70,13 +68,26 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      console.log(data);
+      // console.log(data);
       return data;
     })
     .catch((err) => {
       console.log("Pocketbase error: " + err);
     });
 
+  const myAuthor = pb
+    .collection("users")
+    .getOne(article.author, {
+      expand: "relField1,relField2.subRelField",
+    })
+    .then(async (res) => {
+      const myres = JSON.stringify(res);
+      const mydata = await JSON.parse(myres);
+      console.log(myres);
+      return myres;
+    });
+  // article.assign(myAuthor, myAuthor);
+  // article["myAuthor"] = myAuthor;
   return { props: { article } };
 }
 

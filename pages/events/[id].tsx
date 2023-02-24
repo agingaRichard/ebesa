@@ -17,27 +17,18 @@ function ViewPost({ event }) {
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <Link href="#">
-          <Image
-            class="rounded-t-lg"
-            src="/docs/images/blog/image-1.jpg"
-            width={40}
-            height={40}
-            alt=""
-          />
-        </Link>
+        <img class="rounded-t-lg" src={event.images} alt="" />
+
         <div class="p-5">
-          <Link href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {event.title}
-            </h5>
-          </Link>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {event.title}
+          </h5>
 
           <p class="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {event.body}
+            {event.text}
           </p>
           {pb.authStore.id != null && pb.authStore?.id == event.author?.id ? (
             <ul>
