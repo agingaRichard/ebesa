@@ -13,17 +13,20 @@ import pb from "../api/pocketbase";
 function ViewPost({ event }) {
   console.log(event.author);
   // console.log{pb.authStore}
+  // const userModel = pb.authStore.model;
+  const mypic = event.images;
+  const myCollectionId = pb.collection("events").collectionIdOrName;
+  const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/${mypic}`;
 
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <img class="rounded-t-lg" src={event.images} alt="" />
-
         <div class="p-5">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {event.title}
           </h5>
 
+          <img class="rounded-t-lg" src={mysrc} alt="Event poster" />
           <p class="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>
@@ -48,7 +51,7 @@ function ViewPost({ event }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const eventId = await context.query.id?.toString();
   const event = await pb
     .collection("events")
@@ -57,9 +60,10 @@ export async function getServerSideProps(context) {
       $autoCancel: false,
     })
     .then(async (res) => {
+      await console.log("Hello!");
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      console.log(data);
+      console.log(data.images);
       return data;
     })
     .catch((err) => {

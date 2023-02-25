@@ -11,19 +11,33 @@ import pb from "../../api/pocketbase";
 // }
 
 function ViewPost({ article }) {
-  // console.log{pb.authStore}
-  // const images = "http://127.0.0.1:8090/api/collections/articles/records/${article.id}/images";
+  //Generate links to images
+  const mypic = article.images;
+  const myCollectionId = pb.collection("articles").collectionIdOrName;
+  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
+
+  //Create an array of links to images
+
+  const mysrcs = mypic.map((x: string) => {
+    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${article.id}/`;
+    return mysrc + x;
+  });
+  // console.log(mysrcs);
 
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        {/* <img
-            class="rounded-t-lg"
-            src={article.images}
-            width={40}
-            height={40}
-            alt=""
-          /> */}
+        {mysrcs.map((i: string) => {
+          return (
+            <img
+              // width={500}
+              // height={500}
+              class="rounded-t-lg"
+              src={i}
+              alt=""
+            />
+          );
+        })}
         <div class="bg-[avatar.images]"></div>
 
         <div class="p-5">
@@ -75,7 +89,7 @@ export async function getServerSideProps(context) {
       console.log("Pocketbase error: " + err);
     });
 
-  const myAuthor = pb
+  const myAuthor = await pb
     .collection("users")
     .getOne(article.author, {
       expand: "relField1,relField2.subRelField",
@@ -83,7 +97,7 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myres = JSON.stringify(res);
       const mydata = await JSON.parse(myres);
-      console.log(myres);
+      // console.log(myres);
       return myres;
     });
   // article.assign(myAuthor, myAuthor);

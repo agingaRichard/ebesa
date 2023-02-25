@@ -5,6 +5,8 @@ import Card from "../components/ArticleCard";
 
 const Profile = () => {
   const userModel = pb.authStore.model;
+  const myAvatar = userModel?.avatar;
+  const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
 
   // const userImg = pb.collection("users").getOne(userModel?.id).then((res)=>{return(res.avatar)});
 
@@ -22,16 +24,24 @@ const Profile = () => {
     });
 
   //Get articles
-  const myArticles = pb.collection("articles").getList(1, 50, {
-    filter: `author != null && author == ${userModel?.id}`,
-  });
+  const myArticles = pb
+    .collection("articles")
+    .getList(1, 50, {
+      filter: `author != null && author == ${userModel?.id}`,
+    })
+    .then((res) => {
+      return res;
+    })
+    .then((data) => {
+      console.log(data.items);
+    });
 
   // const myloader = () => {
   //   return userModel.avatar;
   // };
 
   // console.log(JSON.stringify(myProjects));
-  console.log(userModel);
+
   return (
     <div>
       <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -70,10 +80,9 @@ const Profile = () => {
           </div> */}
         </div>
         <div class="flex flex-col items-center pb-10">
-          <Image
+          <img
             class="w-24 h-24 mb-3 rounded-full shadow-lg"
-            // src={userModel?.avatar}
-            // loader={myloader}
+            src={mysrc}
             height={50}
             width={50}
             alt="userimage"

@@ -1,4 +1,4 @@
-import Card from "../../components/ArticleCard";
+import GalleryCard from "../../components/GalleryCard";
 import Carousel from "../../components/Carousel";
 import pb from "../api/pocketbase";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export default function Galleries() {
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {galleries?.map((gallery) => (
           <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-            <Card
+            <GalleryCard
               item={{
                 title: gallery.title,
                 text: gallery.body,
