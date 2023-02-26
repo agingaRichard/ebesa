@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import pb from "../pages/api/pocketbase";
 
 const ProjectCard = (props) => {
   let id = props.item.id;
@@ -7,13 +8,18 @@ const ProjectCard = (props) => {
   let text = props.item.text;
   let images = props.item.images;
 
+  //Generate links to images
+  const myCollectionId = pb.collection("projects").collectionIdOrName;
+  const mysrc =
+    `http://127.0.0.1:8090/api/files/${myCollectionId}/${id}/` + images;
+
   return (
     <div class="max-w-sm flex flex-col rounded-lg overflow-hidden bg-white shadow">
       {/* <!-- card cover --> */}
       <img
         class="h-56 w-full object-cover"
-        src="https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=384"
-        // src={images}
+        // src="https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=384"
+        src={mysrc}
         width={40}
         height={40}
         alt="Card Cover"
