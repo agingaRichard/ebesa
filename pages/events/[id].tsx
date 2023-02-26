@@ -14,9 +14,24 @@ function ViewPost({ event }) {
   console.log(event.author);
   // console.log{pb.authStore}
   // const userModel = pb.authStore.model;
+
+  //Generate a list of
+  // const mypic = event.images;
+  // const myCollectionId = pb.collection("events").collectionIdOrName;
+  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/${mypic}`;
+
+  //Generate links to images
   const mypic = event.images;
   const myCollectionId = pb.collection("events").collectionIdOrName;
-  const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/${mypic}`;
+  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
+
+  //Create an array of links to images
+  const mysrcs = mypic.map((x: string) => {
+    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/`;
+    return mysrc + x;
+  });
+
+  alert(mysrcs);
 
   return (
     <div>
@@ -26,7 +41,18 @@ function ViewPost({ event }) {
             {event.title}
           </h5>
 
-          <img class="rounded-t-lg" src={mysrc} alt="Event poster" />
+          {/* <img class="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
+          {mysrcs.map((i: string) => {
+            return (
+              <img
+                // width={500}
+                // height={500}
+                class="rounded-t-lg"
+                src={i}
+                alt="Carousel img"
+              />
+            );
+          })}
           <p class="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>
@@ -60,10 +86,9 @@ export async function getServerSideProps(context: any) {
       $autoCancel: false,
     })
     .then(async (res) => {
-      await console.log("Hello!");
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      console.log(data.images);
+      // console.log(data.images);
       return data;
     })
     .catch((err) => {

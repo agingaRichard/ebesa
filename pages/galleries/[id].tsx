@@ -21,7 +21,6 @@ function ViewPost({ gallery }) {
     const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
     return mysrc + x;
   });
-  // console.log(mysrcs);
 
   return (
     <div>
