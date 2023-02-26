@@ -1,14 +1,9 @@
-// import { useContext } from "react";
 import { useFormik } from "formik";
 import pb from "../api/pocketbase";
 import { useRouter } from "next/router";
-// import { UserContext } from "../../context/user-context.js";
-
 
 const Signup = () => {
-  const router = useRouter()
-  //Managing state
-  // const [state, dispatch] = useContext(UserContext);
+  const router = useRouter();
 
   //Managing form data
   const formik = useFormik({
@@ -16,6 +11,7 @@ const Signup = () => {
       firstName: "",
       lastName: "",
       email: "",
+      noun: "",
       password: "",
       passwordConfirm: "",
       // avatar: "",
@@ -24,32 +20,23 @@ const Signup = () => {
     //validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        //Create the form with the users data
+        //Create a form with the user's data
         const formData = new FormData();
         formData.append("firstName", values.firstName);
         formData.append("lastName", values.lastName);
         formData.append("email", values.email);
+        formData.append("noun", values.noun);
         formData.append("password", values.password);
         formData.append("passwordConfirm", values.passwordConfirm);
         formData.append("avatar", document.getElementById("avatar").files[0]);
 
         //Save the user on the server
         const record = await pb.collection("users").create(formData);
-alert('Account created.')
-await router.push('/auth/Signin')
-        //Set user context
-        // await dispatch({
-        //   type: "SET_USER",
-        //   payload: {
-        //     id: record.id,
-        //     firstName: record.firstName,
-        //     lastName: record.lastName,
-        //     email: record.email,
-        //     avatar: record.avatar,
-        //   },
-        // });
+        alert("Account created.");
+        await router.push("/auth/Signin");
       } catch {
-        alert("Account creation failed.");
+        alert(JSON.stringify(values));
+        // alert("Account creation failed.");
       }
       // navigate("/");
       return;
@@ -115,6 +102,26 @@ await router.push('/auth/Signin')
             required
           />
         </div>
+
+        <div>
+          <label
+            for="noun"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Role/noun
+          </label>
+          <input
+            type="name"
+            name="noun"
+            id="noun"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            placeholder="e.g LECTURER, STUDENT, ALUMNUS, etc..."
+            onChange={formik.handleChange}
+            value={formik.values.noun}
+            required
+          />
+        </div>
+
         <div>
           <label
             for="password"
