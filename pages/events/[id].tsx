@@ -11,15 +11,6 @@ import pb from "../api/pocketbase";
 // }
 
 function ViewPost({ event }) {
-  console.log(event.author);
-  // console.log{pb.authStore}
-  // const userModel = pb.authStore.model;
-
-  //Generate a list of
-  // const mypic = event.images;
-  // const myCollectionId = pb.collection("events").collectionIdOrName;
-  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/${mypic}`;
-
   //Generate links to images
   const mypic = event.images;
   const myCollectionId = pb.collection("events").collectionIdOrName;
@@ -30,8 +21,6 @@ function ViewPost({ event }) {
     const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/`;
     return mysrc + x;
   });
-
-  alert(mysrcs);
 
   return (
     <div>

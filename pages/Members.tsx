@@ -2,18 +2,38 @@ import Link from "next/link";
 import pb from "./api/pocketbase";
 
 const Members = ({ myMembers }) => {
+  // const myCollectionId = pb.collection("users").collectionIdOrName;
+  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${myMembers.id}/`;
+
+  //Generate  an array that stores user data and maps it onto a list
+  const membersList = myMembers.map((myMembers: Array<string>) => {
+    const myCollectionId = pb.collection("users").collectionIdOrName;
+
+    return {
+      avatarsrc:
+        `http://127.0.0.1:8090/api/files/${myCollectionId}/${myMembers.id}/` +
+        myMembers.avatar,
+      id: myMembers.id,
+      firstName: myMembers.firstName,
+      lastName: myMembers.lastName,
+      email: myMembers.email,
+      noun: myMembers.noun,
+    };
+  });
+
+  console.log(membersList);
   return (
     <div>
       <h2>EBESA members</h2>
       <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-        {myMembers?.map((member) => (
+        {membersList?.map((member) => (
           <li class="pb-3 sm:pb-4">
             <div class="flex items-center space-x-4">
               <div class="flex-shrink-0">
                 <img
                   class="w-8 h-8 rounded-full"
-                  src="/docs/images/people/profile-picture-1.jpg"
-                  alt="Neil image"
+                  src={member.avatarsrc}
+                  alt="avatar"
                 />
               </div>
               <Link href={`/viewmember/${member.id}`}>
@@ -46,6 +66,7 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
+      console.log(data);
       return data;
     })
     .catch((err) => {
