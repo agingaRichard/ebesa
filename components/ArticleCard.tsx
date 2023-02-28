@@ -7,7 +7,6 @@ const ArticleCard = (props) => {
   let title = props.item.title;
   let text = props.item.text;
   let images = props.item.images;
-  console.log(typeof images);
 
   //Generate links to images
   const myCollectionId = pb.collection("articles").collectionIdOrName;
@@ -19,7 +18,6 @@ const ArticleCard = (props) => {
       {/* <!-- card cover --> */}
       <img
         class="h-56 w-full object-cover"
-        // src={"https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=384"}
         src={mysrc}
         width={40}
         height={40}

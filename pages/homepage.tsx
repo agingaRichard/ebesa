@@ -35,7 +35,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div>
+    <div class="bg-opacity-0">
       <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
         Articles
       </h3>

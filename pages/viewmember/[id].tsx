@@ -2,14 +2,8 @@ import pb from "../api/pocketbase";
 import Link from "next/link";
 import Card from "../../components/ArticleCard";
 
-const Profile = () => {
+const Profile = ({ memberPosts }) => {
   const userModel = pb.authStore.model;
-  const myProjects = pb.collection("projects").getList(1, 50, {
-    filter: author.id == userModel?.id /*&& someFiled1 != someField2*/,
-  });
-  const myArticles = pb.collection("articles").getList(1, 50, {
-    filter: author.id == userModel?.id /*&& someFiled1 != someField2*/,
-  });
 
   return (
     <div>
@@ -18,7 +12,7 @@ const Profile = () => {
           <img
             class="w-24 h-24 mb-3 rounded-full shadow-lg"
             src={userModel?.avatar}
-            alt="Bonnie image"
+            alt="avatar"
           />
           <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
             {userModel?.firstName} {userModel?.lastName}
@@ -55,10 +49,46 @@ const Profile = () => {
 };
 
 export async function getServerSideProps(context) {
-  const myMembers = await pb
+  const memberId = await context.query.id?.toString();
+
+  //Fetch user profile
+  const myProfile = await pb
     .collection("users")
-    .getOne(200, {
-      sort: "-created",
+    .getOne(memberId, {
+      expand: "relField1,relField2.subRelField",
+    })
+    .then(async (res) => {
+      const myResponse = await JSON.stringify(res);
+      const data = await JSON.parse(myResponse);
+      // console.log(myResponse);
+      return myResponse;
+    })
+    .catch((err) => {
+      console.log("Pocketbase error: " + err);
+    });
+  // console.log(myProfile);
+
+  //Fetch Projects and Articles
+  const myProjects = pb
+    .collection("projects")
+    .getList(1, 50, {
+      filter: `author == ${memberId}`,
+    })
+    .then(async (res) => {
+      const myResponse = await JSON.stringify(res);
+      const data = await JSON.parse(myResponse);
+      console.log(res);
+      return myResponse;
+    })
+    .catch((err) => {
+      console.log("Pocketbase error: " + err);
+    });
+  console.log("projects..." + myProjects);
+
+  const myArticles = pb
+    .collection("articles")
+    .getList(1, 50, {
+      filter: `author == ${memberId}` /*&& someFiled1 != someField2*/,
     })
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
@@ -69,7 +99,15 @@ export async function getServerSideProps(context) {
       console.log("Pocketbase error: " + err);
     });
 
-  return { props: { myMembers } };
+  const memberPosts = JSON.stringify({
+    profile: myProfile,
+    articles: myArticles,
+    projects: myProjects,
+  });
+
+  // console.log(memberPosts);
+
+  return { props: { memberPosts } };
 }
 
 export default Profile;

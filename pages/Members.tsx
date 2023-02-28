@@ -21,10 +21,9 @@ const Members = ({ myMembers }) => {
     };
   });
 
-  console.log(membersList);
   return (
     <div>
-      <h2>EBESA members</h2>
+      <h2 class="">EBESA members</h2>
       <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         {membersList?.map((member) => (
           <li class="pb-3 sm:pb-4">
@@ -46,9 +45,13 @@ const Members = ({ myMembers }) => {
                   </p>
                 </div>
               </Link>
-              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              {/* <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                 {member.noun}
-              </div>
+              </div> */}
+
+              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 float-right">
+                {member.noun}
+              </span>
             </div>
           </li>
         ))}
@@ -66,7 +69,7 @@ export async function getServerSideProps(context) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      console.log(data);
+      // console.log(data);
       return data;
     })
     .catch((err) => {
