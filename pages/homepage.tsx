@@ -1,5 +1,6 @@
 import ProjectCard from "../components/ProjectCard";
 import ArticleCard from "../components/ArticleCard";
+import Landing from "../components/landing";
 // import Carousel from "../components/Carousel";
 import pb from "./api/pocketbase";
 // import Link from "next/link";
@@ -36,6 +37,7 @@ export default function Homepage() {
 
   return (
     <div class="bg-opacity-0">
+      <Landing class="w-100 h-120 flex justify-center" />
       <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
         Articles
       </h3>

@@ -2,10 +2,49 @@ import pb from "../api/pocketbase";
 import Link from "next/link";
 import Card from "../../components/ArticleCard";
 
-const Profile = ({ memberPosts }) => {
+import Homepage from "../homepage";
+import { useEffect, useState } from "react";
+// const myData = (Homepage) => {
+//   let allArticles = Homepage.getArticles;
+//   let allProjects = Homepage.getProjects;
+//   const userArticles = [];
+//   for (i in allArticles) {
+//     if (i.id == memberId) {
+//       userArticles.push(i);
+//     }
+//   }
+//   for (j in allProjects) {
+//     if (j.id == memberId) {
+//       userProjects.push(j);
+//     }
+//   }
+// };
+
+const Profile = ({ memberPosts }, context: any) => {
   const userModel = pb.authStore.model;
-  const myProjects = memberPosts.projects;
+  const memberId = context.query.id.toString();
+  // const myProjects = memberPosts.projects;
   // const myArticles = memberPosts.articles;
+  const [myData, setMyData] = useState({});
+
+  useEffect(() => {
+    let allArticles: Array<Object> = Homepage.getArticles;
+    let allProjects: Array<Object> = Homepage.getProjects;
+    const userArticles = [];
+    for (i in allArticles) {
+      if (i.id == memberId) {
+        userArticles.push(i);
+      }
+    }
+    const userProjects = [];
+    for (j in allProjects) {
+      if (j.id == memberId) {
+        userProjects.push(j);
+      }
+    }
+    const myData = { myProjects: userProjects, myArticles: userArticles };
+    return myData;
+  }, []);
 
   return (
     <div>
@@ -25,13 +64,13 @@ const Profile = ({ memberPosts }) => {
           <div class="flex mt-4 space-x-3 md:mt-6">
             <h3 class="">Projects</h3>
             <ul>
-              {myProjects.map((proj) => {
+              {/* {myProjects.map((proj) => {
                 <li>
                   <Link href={`/projects/Viewpost/${proj.id}`}>
                     <Card item={{ title: proj.title, text: proj.text }} />
                   </Link>
                 </li>;
-              })}
+              })} */}
             </ul>
             <h3 class="">Articles</h3>
             <ul>
@@ -69,24 +108,25 @@ export async function getServerSideProps(context) {
       console.log("Pocketbase error: " + err);
     });
   // console.log(myProfile);... works.
+
   const sampletitle = "Effect of water on oil";
   //Fetch Projects and Articles
-  const myProjects = pb
-    .collection("projects")
-    .getList(1, 50, {
-      filter: "author == lsyrj63wlnekfc7",
-    })
-    .then(async (res) => {
-      const myRes = res.items;
-      const myResponse = await JSON.stringify(myRes);
-      const data = await JSON.parse(myResponse);
-      // console.log(res);
-      return myResponse;
-    })
-    .catch((err) => {
-      console.log("Pocketbase error: " + err);
-    });
-  console.log("projects..." + myProjects);
+  // const myProjects = pb
+  //   .collection("projects")
+  //   .getList(1, 50, {
+  //     filter: "author == lsyrj63wlnekfc7",
+  //   })
+  //   .then(async (res) => {
+  //     const myRes = res.items;
+  //     const myResponse = await JSON.stringify(myRes);
+  //     const data = await JSON.parse(myResponse);
+  //     // console.log(res);
+  //     return myResponse;
+  //   })
+  //   .catch((err) => {
+  //     console.log("Pocketbase error: " + err);
+  //   });
+  // console.log("projects..." + myProjects);
 
   // const myArticles = pb
   //   .collection("articles")

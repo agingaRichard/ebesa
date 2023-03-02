@@ -1,37 +1,50 @@
-import React from "react";
+import { Button } from "flowbite-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useTheme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-import { useMediaQuery } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-  },
-  logo: {
-    marginTop: theme.spacing(4),
-  },
-}));
-
-export default function Index() {
-  const classes = useStyles();
-  const router = useRouter();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+const Landing = () => {
   return (
-    <Grid container className={classes.container}>
-      <Grid item xs={12}>
-        <Typography variant={isMobile ? "h4" : "h2"}>
-          Welcome to my site!
-        </Typography>
-      </Grid>
-      <Grid item xs={12} className={classes.logo}>
-        <img src="/images/ebesa-transparent.png" alt="site logo" />
-      </Grid>
-    </Grid>
+    <div class="flex justify-center">
+      <ul>
+        <li>
+          <div>
+            <ul class="flex flex-wrap mb-4 justify-center">
+              <li>
+                <Link href="/Articlespage" class="px-2">
+                  Articles
+                </Link>
+              </li>
+              <li>
+                <Link href="/Projectspage" class="px-2">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/galleries/Galleries" class="px-2">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link href="events/Events" class="px-2">
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link href="events/Events" class="px-2">
+                  Contacts
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <img src="/images/ebesa-transparent.png" alt="My Logo" />
+        </li>
+        <li className="flex justify-center">
+          <h3>Forward unto dawn</h3>
+        </li>
+      </ul>
+    </div>
   );
-}
+};
+
+export default Landing;
