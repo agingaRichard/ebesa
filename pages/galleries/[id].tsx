@@ -5,6 +5,7 @@ import Image from "next/image";
 // import { useState, useContext, useEffect } from "react";
 // import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 import pb from "../api/pocketbase";
+import Carousel from "nuka-carousel";
 
 // const delete = (x)=>{
 //   await pb.collection('articles').delete(x.id);
@@ -35,34 +36,22 @@ function ViewPost({ gallery }) {
           <p class="text-xs text-gray-900 dark:text-whit">
             by {gallery.author?.firstName} {gallery.author?.lastName}
           </p>
-          {mysrcs.map((i: string) => {
-            return (
-              <img
-                // width={500}
-                // height={500}
-                class="rounded-t-lg"
-                src={i}
-                alt=""
-              />
-            );
-          })}
+          <Carousel>
+            {mysrcs.map((i: string) => {
+              return (
+                <img
+                  // width={500}
+                  // height={500}
+                  class="rounded-t-lg"
+                  src={i}
+                  alt=""
+                />
+              );
+            })}
+          </Carousel>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {gallery.text}
           </p>
-          {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
-            <ul>
-              <li>
-                <Link href={`/articles/Editpost/${gallery.id}`}>
-                  Edit Article
-                </Link>
-              </li>
-              <li>
-                <Button>Delete Article</Button>
-              </li>
-            </ul>
-          ) : (
-            <div></div>
-          )}
         </div>
       </div>
     </div>

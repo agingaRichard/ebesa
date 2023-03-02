@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 import pb from "../api/pocketbase";
+import Carousel from "nuka-carousel/lib/carousel";
 
 // const delete = (x)=>{
 //   await pb.collection('events').delete(x.id);
@@ -31,17 +32,19 @@ function ViewPost({ event }) {
           </h5>
 
           {/* <img class="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
-          {mysrcs.map((i: string) => {
-            return (
-              <img
-                // width={500}
-                // height={500}
-                class="rounded-t-lg"
-                src={i}
-                alt="Carousel img"
-              />
-            );
-          })}
+          <Carousel>
+            {mysrcs.map((i: string) => {
+              return (
+                <img
+                  // width={500}
+                  // height={500}
+                  class="rounded-t-lg"
+                  src={i}
+                  alt="Carousel img"
+                />
+              );
+            })}
+          </Carousel>
           <p class="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>

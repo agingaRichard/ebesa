@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 import pb from "../../api/pocketbase";
+import Carousel from "nuka-carousel/lib/carousel";
 
 // const delete = (x)=>{
 //   await pb.collection('articles').delete(x.id);
@@ -27,17 +28,19 @@ function ViewPost({ article }) {
   return (
     <div>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        {mysrcs.map((i: string) => {
-          return (
-            <img
-              // width={500}
-              // height={500}
-              class="rounded-t-lg"
-              src={i}
-              alt=""
-            />
-          );
-        })}
+        <Carousel>
+          {mysrcs.map((i: string) => {
+            return (
+              <img
+                // width={500}
+                // height={500}
+                class="rounded-t-lg"
+                src={i}
+                alt=""
+              />
+            );
+          })}
+        </Carousel>
         <div class="bg-[avatar.images]"></div>
 
         <div class="p-5">
