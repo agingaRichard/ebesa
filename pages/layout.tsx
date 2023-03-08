@@ -1,7 +1,4 @@
-import Homepage from "../pages/homepage";
 import TopNav from "../components/TopNav";
-import Postcard from "../components/Postcard";
-import Drawer from "../components/Drawer";
 import BottomNav from "../components/BottomNav";
 
 import styles from "../styles/layout.module.css";
@@ -18,7 +15,7 @@ export default function Layout({ children }) {
         </div> */}
         <div class="w-full h-auto overflow-auto grid place-content-center pt-20 pb-20 md:pt-0 md:pb-0">
           <div class="justify-center p-6 overflow-auto">
-            <div class="block p-6 bg-white bg-opacity-50 border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div class="block p-6 bg-stone-800 bg-opacity-50 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
               {children}
             </div>
           </div>

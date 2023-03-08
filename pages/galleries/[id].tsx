@@ -14,12 +14,12 @@ import Carousel from "nuka-carousel";
 function ViewPost({ gallery }) {
   //Generate links to images
   const mypic = gallery.images;
-  const myCollectionId = pb.collection("gallery").collectionIdOrName;
+  // const myCollectionId = pb.collection("gallery").collectionIdOrName;
   // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
 
   //Create an array of links to images
   const mysrcs = mypic.map((x: string) => {
-    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
+    const mysrc = `http://127.0.0.1:8090/api/files/${gallery.collectionName}/${gallery.id}/`;
     return mysrc + x;
   });
 

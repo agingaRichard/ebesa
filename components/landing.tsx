@@ -8,29 +8,34 @@ const Landing = () => {
       <ul>
         <li>
           <div>
-            <ul class="flex flex-wrap mb-4 justify-center">
-              <li>
-                <Link href="/Articlespage" class="px-2">
+            <ul class="md:flex flex-wrap mb-4 justify-center text-white hidden md:visible">
+              {/* <li>
+                <Link href="/Articlespage" class="px-2 text-white">
                   Articles
                 </Link>
               </li>
               <li>
-                <Link href="/Projectspage" class="px-2">
+                <Link href="/Projectspage" class="px-2 text-white">
                   Projects
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link href="/galleries/Galleries" class="px-2">
+                <Link href="/galleries/Galleries" class="px-2 text-white">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="events/Events" class="px-2">
+                <Link href="events/Events" class="px-2 text-white">
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/Contacts" class="px-2">
+                <Link href="/Members" class="px-2 text-white">
+                  Members
+                </Link>
+              </li>
+              <li>
+                <Link href="/Contacts" class="px-2 text-white">
                   Contacts
                 </Link>
               </li>
@@ -40,13 +45,13 @@ const Landing = () => {
         <li>
           <img src="/images/ebesa-transparent.png" alt="My Logo" />
         </li>
-        <li className="flex justify-center">
+        <li className="flex justify-center text-white">
           <h3>Forward unto dawn</h3>
         </li>
         <li>
           <div class="flex flex-wrap mb-4 justify-center">
             {pb.authStore.isValid ? (
-              <div>Welcome!</div>
+              <div class="text-white">Welcome!</div>
             ) : (
               <ul>
                 <li>

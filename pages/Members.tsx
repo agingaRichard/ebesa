@@ -35,7 +35,7 @@ const Members = ({ myMembers }) => {
                   alt="avatar"
                 />
               </div>
-              <Link href={`/viewmember/${member.id}`}>
+              <Link href={`/${member.id}`}>
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                     {member.firstName} {member.lastName}
