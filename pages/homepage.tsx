@@ -38,7 +38,7 @@ export default function Homepage() {
   return (
     <div class="bg-opacity-0">
       <Landing class="w-100 h-120 flex justify-center" />
-      <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
+      <h3 class="flex items-center text-5xl font-extrabold dark:text-white pb-3">
         Articles
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
@@ -55,7 +55,7 @@ export default function Homepage() {
           </div>
         ))}
       </div>
-      <h3 class="flex items-center text-5xl font-extrabold dark:text-white">
+      <h3 class="flex items-center text-5xl font-extrabold dark:text-white pb-3">
         Projects
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
