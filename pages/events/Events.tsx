@@ -14,19 +14,32 @@ export default function Events() {
         sort: "-created",
       })
       .then((res) => {
-        setEvents(res);
+        //Enabling admin to see unapproved posts
+        if (pb.authStore.isValid == true) {
+          setEvents(res);
+        } else {
+          //Creating a list of approved posts for non-admins to see
+          const customRes = [];
+          for (let i in res) {
+            if (i.approval == true) {
+              customRes.push(i);
+            }
+          }
+          console.log(customRes);
+          setEvents(customRes);
+        }
+
+        // })
+        // .then((res) => {
+        //   setProjects(res);
+        // });
       });
   };
 
-  //   const getprojects = () => {
-  //     pb.collection("projects")
-  //       .getFullList(200 /* batch size */, {
-  //         sort: "-created",
-  //       })
-  //       .then((res) => {
-  //         setProjects(res);
-  //       });
-  //   };
+  //     .then((res) => {
+  //       setEvents(res);
+  //     });
+  // };
 
   useEffect(() => {
     getevents();
@@ -40,7 +53,7 @@ export default function Events() {
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {events?.map((event) => (
-          <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+          <div class="w-full mb-4 px-2">
             <Card
               item={{
                 title: event.title,
