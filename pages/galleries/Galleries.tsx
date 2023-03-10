@@ -14,23 +14,25 @@ export default function Galleries() {
         sort: "-created",
       })
       .then((res) => {
-        setGalleries(res);
+        //Enabling admin to see unapproved posts
+        if (pb.authStore.isValid == true) {
+          setGalleries(res);
+        } else {
+          //Creating a list of approved posts for non-admins to see
+          const customRes = [];
+          for (let i in res) {
+            if (i.approval == true) {
+              customRes.push(i);
+            }
+          }
+          console.log(customRes);
+          setGalleries(customRes);
+        }
       });
   };
 
-  //   const getprojects = () => {
-  //     pb.collection("projects")
-  //       .getFullList(200 /* batch size */, {
-  //         sort: "-created",
-  //       })
-  //       .then((res) => {
-  //         setProjects(res);
-  //       });
-  //   };
-
   useEffect(() => {
     getgalleries();
-    // getprojects();
   }, []);
 
   return (
@@ -40,7 +42,7 @@ export default function Galleries() {
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {galleries?.map((gallery) => (
-          <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+          <div class="w-full mb-4 px-2">
             <GalleryCard
               item={{
                 title: gallery.title,

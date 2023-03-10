@@ -18,7 +18,7 @@ export default function Homepage() {
       .then((res) => {
         //Enabling admin to see unapproved posts
         if (pb.authStore.isValid == true) {
-          setProjects(res);
+          setArticles(res);
         } else {
           //Creating a list of approved posts for non-admins to see
           const customRes = [];
@@ -28,13 +28,8 @@ export default function Homepage() {
             }
           }
           console.log(customRes);
-          setProjects(customRes);
+          setArticles(customRes);
         }
-
-        // })
-        // .then((res) => {
-        //   setProjects(res);
-        // });
       });
   };
 
@@ -58,11 +53,6 @@ export default function Homepage() {
           console.log(customRes);
           setProjects(customRes);
         }
-
-        // })
-        // .then((res) => {
-        //   setProjects(res);
-        // });
       });
   };
 

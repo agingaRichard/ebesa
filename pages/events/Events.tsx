@@ -28,22 +28,11 @@ export default function Events() {
           console.log(customRes);
           setEvents(customRes);
         }
-
-        // })
-        // .then((res) => {
-        //   setProjects(res);
-        // });
       });
   };
 
-  //     .then((res) => {
-  //       setEvents(res);
-  //     });
-  // };
-
   useEffect(() => {
     getevents();
-    // getprojects();
   }, []);
 
   return (
