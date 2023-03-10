@@ -48,6 +48,7 @@ export default function Galleries() {
                 title: gallery.title,
                 text: gallery.body,
                 id: gallery.id,
+                approval: gallery.approval,
                 images: gallery.images,
               }}
             />

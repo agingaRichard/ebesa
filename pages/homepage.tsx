@@ -18,6 +18,7 @@ export default function Homepage() {
       .then((res) => {
         //Enabling admin to see unapproved posts
         if (pb.authStore.isValid == true) {
+          console.log(res);
           setArticles(res);
         } else {
           //Creating a list of approved posts for non-admins to see
@@ -75,6 +76,7 @@ export default function Homepage() {
                 title: article.title,
                 text: article.body,
                 id: article.id,
+                approval: article.approval,
                 images: article.images[0],
               }}
             />
@@ -92,6 +94,7 @@ export default function Homepage() {
                 title: project.title,
                 text: project.text,
                 id: project.id,
+                approval: project.approval,
                 images: project.images[0],
               }}
             />

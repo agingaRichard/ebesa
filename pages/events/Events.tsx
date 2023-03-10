@@ -48,6 +48,7 @@ export default function Events() {
                 title: event.title,
                 text: event.body,
                 id: event.id,
+                approval: event.approval,
                 images: event.images,
               }}
             />
