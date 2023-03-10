@@ -26,7 +26,25 @@ export default function Homepage() {
         sort: "-created",
       })
       .then((res) => {
-        setProjects(res);
+        //Enabling admin to see unapproved posts
+        if (pb.authStore.isValid == true) {
+          setProjects(res);
+        } else {
+          //Creating a list of approved posts for non-admins to see
+          const customRes = [];
+          for (let i in res) {
+            if (i.approval == true) {
+              customRes.push(i);
+            }
+          }
+          console.log(customRes);
+          setProjects(customRes);
+        }
+
+        // })
+        // .then((res) => {
+        //   setProjects(res);
+        // });
       });
   };
 

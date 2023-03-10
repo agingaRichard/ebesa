@@ -26,27 +26,7 @@ function openCity(evt, cityName) {
 const samplecomponent = () => {
   return (
     
-            <h3 class="">Projects</h3>
-            <ul>
-              {/* {myArticles.map((art) => {
-                <li>
-                  <Card item={{ title: art.title, text: art.text }} />
-                </li>;
-              })} */}
-
-              {myArticles?.map((article) => (
-                <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-                  <ArticleCard
-                    item={{
-                      title: article.title,
-                      text: article.body,
-                      id: article.id,
-                      images: article.images[0],
-                    }}
-                  />
-                </div>
-              ))}
-            </ul>
+            
             {/* <ul>
               {myProjects?.map((proj: any) => {
                 if (proj.author == myProfile.id) {
@@ -62,18 +42,7 @@ const samplecomponent = () => {
               Projects
             </h3>
             <div class="flex flex-wrap justify-center -mb-4 -mx-2">
-              {myProjects?.map((project) => (
-                <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-                  <ProjectCard
-                    item={{
-                      title: project.title,
-                      text: project.text,
-                      id: project.id,
-                      images: project.images[0],
-                    }}
-                  />
-                </div>
-              ))}
+              
             </div>
   );
 };

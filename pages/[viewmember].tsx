@@ -16,6 +16,14 @@ const Profile = ({ myProfile }) => {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
+      //   .then((res) => {
+      //     for (let i = 0; i < res.length; i++) {
+      //       const element = res[i];
+      //       if (element.author != myProfile.id) {
+      //         res.pop(element);
+      //       }
+      //     }
+      //   })
       .then((res) => {
         setArticles(res);
         return;
@@ -27,22 +35,39 @@ const Profile = ({ myProfile }) => {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
+      //   .then((res) => {
+      //     for (let i = 0; i < res.length; i++) {
+      //       const element = res[i];
+      //       if (element.author != myProfile.id) {
+      //         res.pop(element);
+      //       }
+      //     }
+      //   })
       .then((res) => {
         setProjects(res);
         return;
       });
   };
 
-  function filterMyArticles(article: Array<Object>, user: Object) {
-    for (let index = 0; index < article.length; index++) {
-      const element = article[index];
-      if (element.author != myProfile.id) {
-        article.pop(element);
+  const myArticles = (articles: Array<Object>) => {
+    const mine = [];
+    for (let i in articles) {
+      if (i.author == myProfile.id) {
+        mine.push(i);
       }
+      return mine;
     }
-    setArticles(article);
-  }
+  };
 
+  const myProjects = (projects: Array<Object>) => {
+    const mine = [];
+    for (let i in projects) {
+      if (i.author == myProfile.id) {
+        mine.push(i);
+      }
+      return mine;
+    }
+  };
   useEffect(() => {
     getArticles();
     getProjects();
@@ -64,9 +89,9 @@ const Profile = ({ myProfile }) => {
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {myProfile?.firstName} {myProfile?.lastName}
         </h5>
-        <span class="text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
           {myProfile?.email}
-        </span>
+        </p>
         <div class="flex mt-4 space-x-3 md:mt-6">
           <Tabs>
             <TabList>
@@ -76,7 +101,7 @@ const Profile = ({ myProfile }) => {
             <TabPanel>
               <ul>
                 {articles?.map((article) => {
-                  <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+                  <div class="w-full mb-4 px-2">
                     <ArticleCard
                       item={{
                         title: article.title,
@@ -91,7 +116,7 @@ const Profile = ({ myProfile }) => {
             </TabPanel>
             <TabPanel>
               {projects?.map((project) => (
-                <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+                <div class="w-full mb-4 px-2">
                   <ProjectCard
                     item={{
                       title: project.title,
