@@ -1,5 +1,11 @@
+import MyCarousel from "../components/Carousel";
+
 const samplecomponent = () => {
-  return <div>Enter</div>;
+  return (
+    <div>
+      <MyCarousel />
+    </div>
+  );
 };
 
 export default samplecomponent;

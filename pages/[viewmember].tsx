@@ -35,14 +35,6 @@ const Profile = ({ myProfile }) => {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      //   .then((res) => {
-      //     for (let i = 0; i < res.length; i++) {
-      //       const element = res[i];
-      //       if (element.author != myProfile.id) {
-      //         res.pop(element);
-      //       }
-      //     }
-      //   })
       .then((res) => {
         setProjects(res);
         return;
@@ -71,10 +63,8 @@ const Profile = ({ myProfile }) => {
   useEffect(() => {
     getArticles();
     getProjects();
-    // filterMyArticles(articles, myProfile);
   }, []);
 
-  // console.log(myProfile);
   //Getting source for user's avatar...
   const avatarString = `http://127.0.0.1:8090/api/files/${myProfile.collectionName}/${myProfile.id}/${myProfile.avatar}`;
 
@@ -89,9 +79,9 @@ const Profile = ({ myProfile }) => {
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {myProfile?.firstName} {myProfile?.lastName}
         </h5>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <h6 class="text-sm text-gray-500 dark:text-gray-400">
           {myProfile?.email}
-        </p>
+        </h6>
         <div class="flex mt-4 space-x-3 md:mt-6">
           <Tabs>
             <TabList>
@@ -107,6 +97,7 @@ const Profile = ({ myProfile }) => {
                         title: article.title,
                         text: article.body,
                         id: article.id,
+                        approval: article.approval,
                         images: article.images[0],
                       }}
                     />
@@ -122,6 +113,7 @@ const Profile = ({ myProfile }) => {
                       title: project.title,
                       text: project.text,
                       id: project.id,
+                      approval: project.approval,
                       images: project.images[0],
                     }}
                   />

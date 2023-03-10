@@ -43,15 +43,15 @@ export default function Homepage() {
         if (pb.authStore.isValid == true) {
           setProjects(res);
         } else {
-          //Creating a list of approved posts for non-admins to see
+          //Making unapproved posts invisible to non admins
           const customRes = [];
           for (let i in res) {
-            if (i.approval == true) {
-              customRes.push(i);
+            if (i.approval == false) {
+              res.pop(i);
             }
           }
           console.log(customRes);
-          setProjects(customRes);
+          setProjects(res);
         }
       });
   };

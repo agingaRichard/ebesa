@@ -7,6 +7,7 @@ const EventCard = (props) => {
   let title = props.item.title;
   let text = props.item.text;
   let images = props.item.images;
+  let approval = props.item.approval;
 
   //Generate links to images
   const myCollectionId = pb.collection("events").collectionIdOrName;
@@ -29,6 +30,19 @@ const EventCard = (props) => {
       {/* <!-- card content --> */}
       <div class="flex-1 px-6 py-4">
         <div class="font-bold text-xl mb-2">{title}</div>
+        {pb.authStore.isValid ? (
+          approval ? (
+            <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+              Approved
+            </span>
+          ) : (
+            <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+              Not Approved
+            </span>
+          )
+        ) : (
+          <></>
+        )}
       </div>
       {/* <!-- end card content --> */}
 
