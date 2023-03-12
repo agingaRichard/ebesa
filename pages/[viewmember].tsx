@@ -52,9 +52,10 @@ const Profile = ({ myProfile }) => {
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {myProfile?.firstName} {myProfile?.lastName}
         </h5>
-        <h6 class="text-sm text-gray-500 dark:text-gray-400">
+        {/* <h6 class="text-sm text-gray-500 dark:text-gray-400">
           {myProfile?.email}
-        </h6>
+          Note: This did not work because email visibility is disabled on PocketBase.
+        </h6> */}
         <div class="flex mt-4 space-x-3 md:mt-6">
           <Tabs>
             <TabList>
