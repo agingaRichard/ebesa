@@ -16,22 +16,25 @@ export default function Homepage() {
         sort: "-created",
       })
       .then((res) => {
-        //Enabling admin to see unapproved posts
-        if (pb.authStore.isValid == true) {
-          // console.log(res);
-          setArticles(res);
-        } else {
-          //Creating a list of approved posts for non-admins to see
-          const customRes = [];
-          for (let i in res) {
-            if (i.approval == true) {
-              customRes.push(i);
-            }
-          }
-          console.log(customRes);
-          setArticles(customRes);
-        }
+        setArticles(res);
       });
+    // .then((res) => {
+    //   //Enabling admin to see unapproved posts
+    //   if (pb.authStore.isValid == true) {
+    //     // console.log(res);
+    //     setArticles(res);
+    //   } else {
+    //     //Creating a list of approved posts for non-admins to see
+    //     const customRes = [];
+    //     for (let i in res) {
+    //       if (i.approval == true) {
+    //         customRes.push(i);
+    //       }
+    //     }
+    //     console.log(customRes);
+    //     setArticles(customRes);
+    //   }
+    // });
   };
 
   const getprojects = () => {
@@ -71,19 +74,23 @@ export default function Homepage() {
         Articles
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
-        {articles?.map((article) => (
-          <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
-            <ArticleCard
-              item={{
-                title: article.title,
-                text: article.body,
-                id: article.id,
-                approval: article.approval,
-                images: article.images[0],
-              }}
-            />
-          </div>
-        ))}
+        {articles?.map((article) =>
+          article.approval ? (
+            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+              <ArticleCard
+                item={{
+                  title: article.title,
+                  text: article.body,
+                  id: article.id,
+                  approval: article.approval,
+                  images: article.images[0],
+                }}
+              />
+            </div>
+          ) : (
+            <></>
+          )
+        )}
       </div>
       <h3 class="flex items-center text-5xl font-extrabold text-white pb-3">
         Projects
