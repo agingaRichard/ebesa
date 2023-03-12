@@ -33,45 +33,9 @@ const Profile = ({ myProfile }) => {
       });
   };
 
-  const myArticles = (arx) => {
-    const mine = [];
-    for (let i in arx) {
-      if (i.author == myProfile.id) {
-        mine.push(i);
-      }
-      return mine;
-    }
-  };
-
-  const myProjects = (prox) => {
-    const mine = [];
-    for (let i in prox) {
-      if (i.author == myProfile.id) {
-        mine.push(i);
-      }
-      return mine;
-    }
-  };
-
-  myArticles(articles);
-  myProjects(projects);
-
   useEffect(() => {
     getArticles();
     getProjects();
-    // const myarticles = [];
-    // const myprojects = [];
-
-    // for (i in articles) {
-    //   if (i.author == myProfile.id) {
-    //     myarticles.push(i);
-    //   }
-    // }
-    // for (i in projects) {
-    //   if (i.author == myProfile.id) {
-    //     myprojects.push(i);
-    //   }
-    // }
   }, []);
 
   //Getting source for user's avatar...
