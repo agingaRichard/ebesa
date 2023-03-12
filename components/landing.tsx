@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
 import Link from "next/link";
+import Image from "next/image";
 import pb from "../pages/api/pocketbase";
 import { useRouter } from "next/router";
 const Landing = () => {
@@ -13,7 +14,15 @@ const Landing = () => {
   return (
     <div class="flex justify-center">
       <ul>
-        <li>
+        <li class="w-full flex justify-between">
+          <a href="/" class="">
+            <Image
+              src="/images/mobilelogo.jpg"
+              width={120}
+              height={40}
+              alt="Ebesa icon"
+            />
+          </a>
           <div>
             <ul class="md:flex flex-wrap mb-4 justify-center text-white hidden md:visible">
               {/* <li>
@@ -46,20 +55,20 @@ const Landing = () => {
                   Contacts
                 </Link>
               </li>
-              <li>
-                {pb.authStore.isValid ? (
-                  <button
-                    type="button"
-                    onClick={logout}
-                    class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                  >
-                    <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
-                  </button>
-                ) : (
-                  <></>
-                )}
-              </li>
             </ul>
+          </div>
+          <div>
+            {pb.authStore.isValid ? (
+              <button
+                type="button"
+                onClick={logout}
+                class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              >
+                <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </li>
         <li>

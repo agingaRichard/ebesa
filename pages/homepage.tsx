@@ -46,13 +46,15 @@ export default function Homepage() {
         } else {
           //Making unapproved posts invisible to non admins
           const customRes = [];
+          let x = [];
           for (let i in res) {
             if (i.approval == false) {
-              res.pop(i);
+              const index = res.indexOf(i);
+              x = res.splice(index, 1);
             }
           }
-          console.log(customRes);
-          setProjects(res);
+          // console.log(x);
+          setProjects(customRes);
         }
       });
   };
