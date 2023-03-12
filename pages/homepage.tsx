@@ -93,7 +93,19 @@ export default function Homepage() {
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {projects?.map((project) =>
-          project.approval ? (
+          pb.authStore.isValid ? (
+            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+              <ProjectCard
+                item={{
+                  title: project.title,
+                  text: project.text,
+                  id: project.id,
+                  approval: project.approval,
+                  images: project.images[0],
+                }}
+              />
+            </div>
+          ) : project.approval ? (
             <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ProjectCard
                 item={{
