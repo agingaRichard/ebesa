@@ -18,7 +18,7 @@ export default function Homepage() {
       .then((res) => {
         //Enabling admin to see unapproved posts
         if (pb.authStore.isValid == true) {
-          console.log(res);
+          // console.log(res);
           setArticles(res);
         } else {
           //Creating a list of approved posts for non-admins to see
@@ -65,7 +65,7 @@ export default function Homepage() {
   return (
     <div class="bg-opacity-0">
       <Landing class="w-100 h-120 flex justify-center" />
-      <h3 class="flex items-center text-5xl font-extrabold dark:text-white pb-3">
+      <h3 class="flex items-center text-5xl font-extrabold text-white pb-3">
         Articles
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
@@ -83,7 +83,7 @@ export default function Homepage() {
           </div>
         ))}
       </div>
-      <h3 class="flex items-center text-5xl font-extrabold dark:text-white pb-3">
+      <h3 class="flex items-center text-5xl font-extrabold text-white pb-3">
         Projects
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
