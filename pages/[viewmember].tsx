@@ -98,36 +98,23 @@ const Profile = ({ myProfile }) => {
               <Tab>Projects</Tab>
             </TabList>
             <TabPanel>
-              <ul>
-                {articles?.map((article) => {
-                  // <div class="w-full mb-4 px-2">
-                  //   <ArticleCard
-                  //     item={{
-                  //       title: article.title,
-                  //       text: article.body,
-                  //       id: article.id,
-                  //       approval: article.approval,
-                  //       images: article.images[0],
-                  //     }}
-                  //   />
-                  // </div>;
-                  article.author === myProfile.id ? (
-                    <div class="w-full mb-4 px-2">
-                      <ArticleCard
-                        item={{
-                          title: article.title,
-                          text: article.body,
-                          id: article.id,
-                          approval: article.approval,
-                          images: article.images[0],
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <></>
-                  );
-                })}
-              </ul>
+              {articles?.map((article) => {
+                article.author === myProfile.id ? (
+                  <div class="w-full mb-4 px-2">
+                    <ArticleCard
+                      item={{
+                        title: article.title,
+                        text: article.body,
+                        id: article.id,
+                        approval: article.approval,
+                        images: article.images[0],
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <></>
+                );
+              })}
             </TabPanel>
             <TabPanel>
               {projects?.map((project) =>
