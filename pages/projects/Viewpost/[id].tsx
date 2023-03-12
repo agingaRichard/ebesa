@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import pb from "../../api/pocketbase";
 import Image from "next/image";
 import Carousel from "nuka-carousel/lib/carousel";
+import { Badge, Button } from "flowbite-react";
 
 function ViewPost({ project }) {
   const userModel = pb.authStore.model;
@@ -17,7 +18,11 @@ function ViewPost({ project }) {
     const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${project.id}/`;
     return mysrc + x;
   });
-  // console.log(mysrcs);
+  // console.log(project);
+
+  function approve() {
+    pb.collection(myCollectionId).update(project.id, { approval: true });
+  }
 
   return (
     <div>
@@ -36,15 +41,19 @@ function ViewPost({ project }) {
               );
             })}
           </Carousel>
-          <Link href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {project.title}
-            </h5>
-          </Link>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {project.title}
+          </h5>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {project.text}
           </p>
-          <p></p>
+
+          {pb.authStore.isValid && project.approval == false ? (
+            <Button onClick={approve}>Approve</Button>
+          ) : (
+            <Badge>Approved</Badge>
+          )}
+
           {/* {userModel.id != null && userModel.id == project.author.id ? (
             <ul>
               <li>

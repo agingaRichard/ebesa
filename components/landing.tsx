@@ -73,7 +73,7 @@ const Landing = () => {
         </li>
         <li className="md:flex justify-center items-center text-white">
           <img src="/images/ebesa-transparent.png" alt="My Logo" />
-          <h3 class="mx-auto">Forward unto dawn</h3>
+          <h3 class="mx-auto font">Forward unto dawn</h3>
         </li>
         <li>
           <div class="flex flex-wrap justify-center sm:hidden">
