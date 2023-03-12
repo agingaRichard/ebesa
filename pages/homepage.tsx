@@ -61,7 +61,17 @@ export default function Homepage() {
       </h3>
       <div class="flex flex-wrap justify-center -mb-4 -mx-2">
         {articles?.map((article) =>
-          article.approval ? (
+          pb.authStore.isValid ? (
+            <ArticleCard
+              item={{
+                title: article.title,
+                text: article.body,
+                id: article.id,
+                approval: article.approval,
+                images: article.images[0],
+              }}
+            />
+          ) : article.approval ? (
             <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ArticleCard
                 item={{
