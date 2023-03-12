@@ -16,14 +16,6 @@ const Profile = ({ myProfile }) => {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      //   .then((res) => {
-      //     for (let i = 0; i < res.length; i++) {
-      //       const element = res[i];
-      //       if (element.author != myProfile.id) {
-      //         res.pop(element);
-      //       }
-      //     }
-      //   })
       .then((res) => {
         setArticles(res);
         return;
@@ -41,9 +33,9 @@ const Profile = ({ myProfile }) => {
       });
   };
 
-  const myArticles = (articles: Array<Object>) => {
+  const myArticles = (arx) => {
     const mine = [];
-    for (let i in articles) {
+    for (let i in arx) {
       if (i.author == myProfile.id) {
         mine.push(i);
       }
@@ -51,18 +43,35 @@ const Profile = ({ myProfile }) => {
     }
   };
 
-  const myProjects = (projects: Array<Object>) => {
+  const myProjects = (prox) => {
     const mine = [];
-    for (let i in projects) {
+    for (let i in prox) {
       if (i.author == myProfile.id) {
         mine.push(i);
       }
       return mine;
     }
   };
+
+  myArticles(articles);
+  myProjects(projects);
+
   useEffect(() => {
     getArticles();
     getProjects();
+    // const myarticles = [];
+    // const myprojects = [];
+
+    // for (i in articles) {
+    //   if (i.author == myProfile.id) {
+    //     myarticles.push(i);
+    //   }
+    // }
+    // for (i in projects) {
+    //   if (i.author == myProfile.id) {
+    //     myprojects.push(i);
+    //   }
+    // }
   }, []);
 
   //Getting source for user's avatar...
@@ -91,34 +100,53 @@ const Profile = ({ myProfile }) => {
             <TabPanel>
               <ul>
                 {articles?.map((article) => {
-                  <div class="w-full mb-4 px-2">
-                    <ArticleCard
-                      item={{
-                        title: article.title,
-                        text: article.body,
-                        id: article.id,
-                        approval: article.approval,
-                        images: article.images[0],
-                      }}
-                    />
-                  </div>;
+                  // <div class="w-full mb-4 px-2">
+                  //   <ArticleCard
+                  //     item={{
+                  //       title: article.title,
+                  //       text: article.body,
+                  //       id: article.id,
+                  //       approval: article.approval,
+                  //       images: article.images[0],
+                  //     }}
+                  //   />
+                  // </div>;
+                  article.author === myProfile.id ? (
+                    <div class="w-full mb-4 px-2">
+                      <ArticleCard
+                        item={{
+                          title: article.title,
+                          text: article.body,
+                          id: article.id,
+                          approval: article.approval,
+                          images: article.images[0],
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  );
                 })}
               </ul>
             </TabPanel>
             <TabPanel>
-              {projects?.map((project) => (
-                <div class="w-full mb-4 px-2">
-                  <ProjectCard
-                    item={{
-                      title: project.title,
-                      text: project.text,
-                      id: project.id,
-                      approval: project.approval,
-                      images: project.images[0],
-                    }}
-                  />
-                </div>
-              ))}
+              {projects?.map((project) =>
+                project.author == myProfile.id ? (
+                  <div class="w-full mb-4 px-2">
+                    <ProjectCard
+                      item={{
+                        title: project.title,
+                        text: project.text,
+                        id: project.id,
+                        approval: project.approval,
+                        images: project.images[0],
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )
+              )}
             </TabPanel>
           </Tabs>
         </div>
