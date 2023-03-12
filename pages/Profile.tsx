@@ -2,11 +2,18 @@ import pb from "../pages/api/pocketbase";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "../components/ArticleCard";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const userModel = pb.authStore.model;
   const myAvatar = userModel?.avatar;
   const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
+  const router = useRouter();
+
+  async function logout() {
+    await pb.authStore.clear();
+    router.push("/");
+  }
 
   // const userImg = pb.collection("users").getOne(userModel?.id).then((res)=>{return(res.avatar)});
 
@@ -90,6 +97,13 @@ const Profile = () => {
           <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
             {userModel?.firstName} {userModel?.lastName}
           </h5>
+          <button
+            type="button"
+            onClick={logout}
+            class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+          </button>
           <span class="text-sm text-gray-500 dark:text-gray-400">
             {userModel?.email}
           </span>
