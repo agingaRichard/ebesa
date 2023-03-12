@@ -62,8 +62,8 @@ const Profile = ({ myProfile }) => {
               <Tab>Projects</Tab>
             </TabList>
             <TabPanel>
-              {articles?.map((article) => {
-                article.author === myProfile.id ? (
+              {articles?.map((article) =>
+                article.author == myProfile.id ? (
                   <div class="w-full mb-4 px-2">
                     <ArticleCard
                       item={{
@@ -77,8 +77,8 @@ const Profile = ({ myProfile }) => {
                   </div>
                 ) : (
                   <></>
-                );
-              })}
+                )
+              )}
             </TabPanel>
             <TabPanel>
               {projects?.map((project) =>
