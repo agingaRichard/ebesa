@@ -13,9 +13,9 @@ const Landing = () => {
 
   return (
     <div class="flex justify-center">
-      <ul>
+      <ul class="w-full h-full px-auto">
         <li class="w-full flex justify-between">
-          <a href="/" class="">
+          <a href="/">
             <Image
               src="/images/mobilelogo.jpg"
               width={120}
@@ -71,14 +71,12 @@ const Landing = () => {
             )}
           </div>
         </li>
-        <li>
+        <li className="md:flex justify-center items-center text-white">
           <img src="/images/ebesa-transparent.png" alt="My Logo" />
-        </li>
-        <li className="flex justify-center text-white">
-          <h3>Forward unto dawn</h3>
+          <h3 class="mx-auto">Forward unto dawn</h3>
         </li>
         <li>
-          <div class="flex flex-wrap mb-4 justify-center">
+          <div class="flex flex-wrap justify-center sm:hidden">
             {pb.authStore.isValid ? (
               <Link
                 href="/Create"

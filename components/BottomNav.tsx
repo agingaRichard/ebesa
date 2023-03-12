@@ -1,3 +1,5 @@
+import pb from "../pages/api/pocketbase";
+
 const BottomNav = () => {
   return (
     <footer class="p-4 fixed bottom-0 inset-x-0 z-50 bg-white sm:p-6 dark:bg-gray-900">
@@ -42,24 +44,28 @@ const BottomNav = () => {
               </svg>
             </a>
           </li>
-          <li class="p-2">
-            <a class="text-blue-500 hover:text-blue-800" href="/Create">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 mx-auto"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </a>
-          </li>
+          {pb.authStore.isValid ? (
+            <li class="p-2">
+              <a class="text-blue-500 hover:text-blue-800" href="/Create">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 mx-auto"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </a>
+            </li>
+          ) : (
+            <></>
+          )}
           <li class="p-2">
             <a class="text-blue-500 hover:text-blue-800" href="#">
               <svg
