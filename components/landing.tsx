@@ -82,7 +82,7 @@ const Landing = () => {
             {pb.authStore.isValid ? (
               <Link
                 href="/Create"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
