@@ -1,4 +1,4 @@
-import { Button } from "flowbite-react";
+import { Button, Badge } from "flowbite-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -18,12 +18,17 @@ function ViewPost({ article }) {
   // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
 
   //Create an array of links to images
-
   const mysrcs = mypic.map((x: string) => {
     const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${article.id}/`;
     return mysrc + x;
   });
   // console.log(mysrcs);
+  const router = useRouter();
+
+  function approve() {
+    pb.collection(myCollectionId).update(article.id, { approval: true });
+    router.push("/");
+  }
 
   return (
     <div>
@@ -54,7 +59,17 @@ function ViewPost({ article }) {
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
           </p>
-          {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
+
+          {pb.authStore.isValid && article.approval == false ? (
+            <>
+              <Button onClick={approve}>Approve</Button>
+            </>
+          ) : (
+            <>
+              <Badge>Approved</Badge>
+            </>
+          )}
+          {/* {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
             <ul>
               <li>
                 <Link href={`/articles/Editpost/${article.id}`}>
@@ -67,7 +82,7 @@ function ViewPost({ article }) {
             </ul>
           ) : (
             <div></div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
