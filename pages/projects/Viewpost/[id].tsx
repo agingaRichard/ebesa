@@ -49,11 +49,16 @@ function ViewPost({ project }) {
           </p>
 
           {pb.authStore.isValid && project.approval == false ? (
-            <Button onClick={approve}>Approve</Button>
+            <>
+              <p>LKAJDFSA</p>
+              <Button onClick={approve}>Approve</Button>
+            </>
           ) : (
-            <Badge>Approved</Badge>
+            <>
+              <p>BUS IS THERE</p>
+              <Badge>Approved</Badge>
+            </>
           )}
-
           {/* {userModel.id != null && userModel.id == project.author.id ? (
             <ul>
               <li>

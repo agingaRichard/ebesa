@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Card from "../components/ArticleCard";
 import { useRouter } from "next/router";
+import { Badge } from "flowbite-react";
 
 const Profile = () => {
   const userModel = pb.authStore.model;
@@ -104,31 +105,32 @@ const Profile = () => {
           >
             <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
           </button>
-          <span class="text-sm text-gray-500 dark:text-gray-400">
+          <span class="text-sm text-gray-500 dark:text-gray-400 my-2">
             {userModel?.email}
           </span>
-          <div class="flex mt-4 space-x-3 md:mt-6">
+          <Badge>{userModel?.noun}</Badge>
+          {/*<div class="flex mt-4 space-x-3 md:mt-6">
             <h3 class="">Projects</h3>
             <ul>
-              {/* {myProjects.map((proj) => {
+               {myProjects.map((proj) => {
                 <li>
                   <Link href={`/projects/Viewpost/${proj.id}`}>
                     <Card item={{ title: proj.title, text: proj.text }} />
                   </Link>
                 </li>;
-              })} */}
+              })}
             </ul>
             <h3 class="">Articles</h3>
             <ul>
-              {/* {myArticles.map((art) => {
+               {myArticles.map((art) => {
                 <li>
                   <Link href={`/articles/Viewpost/${art.id}`}>
                     <Card item={{ title: art.title, text: art.text }} />
                   </Link>
                 </li>;
-              })} */}
+              })}
             </ul>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>
