@@ -60,7 +60,7 @@ const Landing = () => {
           <div>
             {pb.authStore.isValid ? (
               <>
-                <Link href="/Profile" class="px-2">
+                <Link href="/Profile" class="px-2 text-white">
                   View Profile
                 </Link>
                 <button
@@ -68,7 +68,7 @@ const Landing = () => {
                   onClick={logout}
                   class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                 >
-                  <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+                  <span class="flex-1 whitespace-nowrap">Sign Out</span>
                 </button>
               </>
             ) : (

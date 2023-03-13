@@ -19,9 +19,11 @@ function ViewPost({ project }) {
     return mysrc + x;
   });
   // console.log(project);
+  const router = useRouter();
 
   function approve() {
     pb.collection(myCollectionId).update(project.id, { approval: true });
+    router.push("/");
   }
 
   return (
@@ -50,12 +52,10 @@ function ViewPost({ project }) {
 
           {pb.authStore.isValid && project.approval == false ? (
             <>
-              <p>LKAJDFSA</p>
               <Button onClick={approve}>Approve</Button>
             </>
           ) : (
             <>
-              <p>BUS IS THERE</p>
               <Badge>Approved</Badge>
             </>
           )}
