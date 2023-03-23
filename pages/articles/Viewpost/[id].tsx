@@ -65,9 +65,7 @@ function ViewPost({ article }) {
               <Button onClick={approve}>Approve</Button>
             </>
           ) : (
-            <>
-              <Badge>Approved</Badge>
-            </>
+            <Badge>Approved</Badge>
           )}
           {/* {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
             <ul>

@@ -12,46 +12,46 @@ const Landing = () => {
   }
 
   return (
-    <div class="flex justify-center">
-      <ul class="w-full h-full px-auto">
-        <li class="w-full flex justify-between">
-          <a href="/">
+    <div className="flex justify-center">
+      <ul className="w-full h-full px-auto">
+        <li className="w-full md:flex justify-between hidden md:visible">
+          <Link href="/">
             <Image
               src="/images/mobilelogo.jpg"
               width={120}
               height={40}
               alt="Ebesa icon"
             />
-          </a>
+          </Link>
           <div>
-            <ul class="md:flex flex-wrap mb-4 justify-center text-white hidden md:visible">
+            <ul className="md:flex flex-wrap mb-4 justify-center text-white">
               {/* <li>
-                <Link href="/Articlespage" class="px-2 text-white">
+                <Link href="/Articlespage" className="px-2 text-white">
                   Articles
                 </Link>
               </li>
               <li>
-                <Link href="/Projectspage" class="px-2 text-white">
+                <Link href="/Projectspage" className="px-2 text-white">
                   Projects
                 </Link>
               </li> */}
               <li>
-                <Link href="/galleries/Galleries" class="px-2 text-white">
+                <Link href="/galleries/Galleries" className="px-2 text-white">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="events/Events" class="px-2 text-white">
+                <Link href="events/Events" className="px-2 text-white">
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/Members" class="px-2 text-white">
+                <Link href="/Members" className="px-2 text-white">
                   Members
                 </Link>
               </li>
               <li>
-                <Link href="/Contacts" class="px-2 text-white">
+                <Link href="/Contacts" className="px-2 text-white">
                   Contacts
                 </Link>
               </li>
@@ -60,15 +60,15 @@ const Landing = () => {
           <div>
             {pb.authStore.isValid ? (
               <>
-                <Link href="/Profile" class="px-2 text-white">
+                <Link href="/Profile" className="px-2 text-white">
                   View Profile
                 </Link>
                 <button
                   type="button"
                   onClick={logout}
-                  class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                  className="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                 >
-                  <span class="flex-1 whitespace-nowrap">Sign Out</span>
+                  <span className="flex-1 whitespace-nowrap">Sign Out</span>
                 </button>
               </>
             ) : (
@@ -78,14 +78,14 @@ const Landing = () => {
         </li>
         <li className="md:flex justify-center items-center text-white">
           <img src="/images/ebesa-transparent.png" alt="My Logo" />
-          <h3 class="mx-auto font">Forward unto dawn</h3>
+          <h3 className="mx-auto font">Forward unto dawn</h3>
         </li>
         <li>
-          <div class="flex flex-wrap justify-center sm:hidden">
+          <div className="flex flex-wrap justify-center sm:hidden">
             {pb.authStore.isValid ? (
               <Link
                 href="/Create"
-                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-white"
+                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Landing = () => {
                   />
                 </svg>
 
-                <span class="flex-1 ml-3 whitespace-nowrap">
+                <span className="flex-1 ml-3 whitespace-nowrap">
                   Create new post
                 </span>
               </Link>
@@ -111,7 +111,7 @@ const Landing = () => {
                 <li>
                   <Link
                     href="/auth/Signup"
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Sign Up
                   </Link>
@@ -119,7 +119,7 @@ const Landing = () => {
                 <li>
                   <Link
                     href="/auth/Signin"
-                    class="inline-flex items-center px-3 py-2"
+                    className="inline-flex items-center px-3 py-2"
                   >
                     Sign In
                   </Link>
