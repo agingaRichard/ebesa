@@ -6,8 +6,8 @@ const TopNav = () => {
   const myAvatar = userModel?.avatar;
   const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
   return (
-    <div class="p-4 flex justify-between bg-white">
-      <a href="/" class="">
+    <div className="p-4 flex justify-between bg-white">
+      <a href="/" className="">
         <Image
           src="/images/mobilelogo.jpg"
           width={120}
@@ -21,7 +21,7 @@ const TopNav = () => {
             src={mysrc}
             width={40}
             height={40}
-            class="w-10 h-10 rounded-full"
+            className="w-10 h-10 rounded-full"
           />
           {/* <embed src={myAvatar} width="300" height="300"></embed> */}
         </a>

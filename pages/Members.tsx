@@ -23,33 +23,33 @@ const Members = ({ myMembers }) => {
 
   return (
     <div>
-      <h2 class="">EBESA members</h2>
-      <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+      <h2 className="">EBESA members</h2>
+      <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         {membersList?.map((member) => (
-          <li class="pb-3 sm:pb-4">
-            <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0">
+          <li className="pb-3 sm:pb-4">
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
                 <img
-                  class="w-8 h-8 rounded-full"
+                  className="w-8 h-8 rounded-full"
                   src={member.avatarsrc}
                   alt="avatar"
                 />
               </div>
               <Link href={`/${member.id}`}>
-                <div class="flex-1 min-w-0">
-                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
                     {member.firstName} {member.lastName}
                   </p>
-                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                     {member.email}
                   </p>
                 </div>
               </Link>
-              {/* <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              {/* <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                 {member.noun}
               </div> */}
 
-              <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 float-right">
+              <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 float-right">
                 {member.noun}
               </span>
             </div>

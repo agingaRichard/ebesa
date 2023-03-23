@@ -1,10 +1,10 @@
 const About = () => {
   return (
     <div>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Environmental and Biosystems Enigneering
       </h5>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
+      <p className="font-normal text-gray-700 dark:text-gray-400">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna
         magna, eleifend ac pretium in, tempor nec elit. In auctor tincidunt
         purus non cursus. Suspendisse tincidunt nisl sed turpis commodo, sit

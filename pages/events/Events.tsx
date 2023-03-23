@@ -37,12 +37,12 @@ export default function Events() {
 
   return (
     <div>
-      <h3 class="flex items-center text-5xl font-extrabold dark:text-white py-2">
+      <h3 className="flex items-center text-5xl font-extrabold dark:text-white py-2">
         Events
       </h3>
-      <div class="flex flex-wrap justify-center -mb-4 -mx-2">
+      <div className="flex flex-wrap justify-center -mb-4 -mx-2">
         {events?.map((event) => (
-          <div class="w-full mb-4 px-2">
+          <div className="w-full mb-4 px-2">
             <EventCard
               item={{
                 title: event.title,

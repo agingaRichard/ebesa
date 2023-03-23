@@ -42,21 +42,21 @@ const Profile = ({ myProfile }) => {
   const avatarString = `http://127.0.0.1:8090/api/files/${myProfile.collectionName}/${myProfile.id}/${myProfile.avatar}`;
 
   return (
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-      <div class="flex flex-col items-center pb-10">
+    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex flex-col items-center pb-10">
         <img
-          class="w-24 h-24 mb-3 rounded-full shadow-lg"
+          className="w-24 h-24 mb-3 rounded-full shadow-lg"
           src={avatarString}
           alt="avatar"
         />
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {myProfile?.firstName} {myProfile?.lastName}
         </h5>
-        {/* <h6 class="text-sm text-gray-500 dark:text-gray-400">
+        {/* <h6 className="text-sm text-gray-500 dark:text-gray-400">
           {myProfile?.email}
           Note: This did not work because email visibility is disabled on PocketBase.
         </h6> */}
-        <div class="flex mt-4 space-x-3 md:mt-6">
+        <div className="flex mt-4 space-x-3 md:mt-6">
           <Tabs>
             <TabList>
               <Tab>Articles</Tab>
@@ -65,7 +65,7 @@ const Profile = ({ myProfile }) => {
             <TabPanel>
               {articles?.map((article) =>
                 article.author == myProfile.id ? (
-                  <div class="w-full mb-4 px-2">
+                  <div className="w-full mb-4 px-2">
                     <ArticleCard
                       item={{
                         title: article.title,
@@ -84,7 +84,7 @@ const Profile = ({ myProfile }) => {
             <TabPanel>
               {projects?.map((project) =>
                 project.author == myProfile.id ? (
-                  <div class="w-full mb-4 px-2">
+                  <div className="w-full mb-4 px-2">
                     <ProjectCard
                       item={{
                         title: project.title,

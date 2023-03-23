@@ -28,25 +28,25 @@ function ViewPost({ project }) {
 
   return (
     <div>
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div class="p-5">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="p-5">
           <Carousel>
             {mysrcs.map((i: string) => {
               return (
                 <img
                   // width={500}
                   // height={500}
-                  class="rounded-t-lg"
+                  className="rounded-t-lg"
                   src={i}
                   alt=""
                 />
               );
             })}
           </Carousel>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {project.title}
           </h5>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {project.text}
           </p>
 

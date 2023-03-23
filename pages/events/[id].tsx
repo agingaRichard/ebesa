@@ -25,30 +25,30 @@ function ViewPost({ event }) {
 
   return (
     <div>
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="p-5">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {event.title}
           </h5>
 
-          {/* <img class="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
+          {/* <img className="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
           <Carousel>
             {mysrcs.map((i: string) => {
               return (
                 <img
                   // width={500}
                   // height={500}
-                  class="rounded-t-lg"
+                  className="rounded-t-lg"
                   src={i}
                   alt="Carousel img"
                 />
               );
             })}
           </Carousel>
-          <p class="text-xs text-gray-900 dark:text-whit">
+          <p className="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {event.text}
           </p>
           {pb.authStore.id != null && pb.authStore?.id == event.author?.id ? (

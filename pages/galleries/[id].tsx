@@ -25,15 +25,15 @@ function ViewPost({ gallery }) {
 
   return (
     <div>
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        {/* <img class="rounded-t-lg" src={mysrcs} alt="" /> */}
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        {/* <img className="rounded-t-lg" src={mysrcs} alt="" /> */}
 
-        <div class="p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div className="p-5">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {gallery.title}
           </h5>
 
-          <p class="text-xs text-gray-900 dark:text-whit">
+          <p className="text-xs text-gray-900 dark:text-whit">
             by {gallery.author?.firstName} {gallery.author?.lastName}
           </p>
           <Carousel>
@@ -42,14 +42,14 @@ function ViewPost({ gallery }) {
                 <img
                   // width={500}
                   // height={500}
-                  class="rounded-t-lg"
+                  className="rounded-t-lg"
                   src={i}
                   alt=""
                 />
               );
             })}
           </Carousel>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {gallery.text}
           </p>
         </div>

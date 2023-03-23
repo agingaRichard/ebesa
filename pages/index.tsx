@@ -4,7 +4,7 @@ import backend from "../server/index";
 
 export default function Home() {
   return (
-    <div class="w-full h-full">
+    <div className="w-full h-full">
       <Homepage />
     </div>
   );

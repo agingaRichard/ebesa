@@ -2,18 +2,18 @@ import pb from "../pages/api/pocketbase";
 
 const BottomNav = () => {
   return (
-    <footer class="p-4 fixed bottom-0 inset-x-0 z-50 bg-white sm:p-6 dark:bg-gray-900">
-      <div class="justify-center sm:flex sm:items-center sm:justify-between">
-        <ul class="flex justify-between">
-          <li class="p-2">
-            <a class="text-blue-500" href="/">
+    <footer className="p-4 fixed bottom-0 inset-x-0 z-50 bg-white sm:p-6 dark:bg-gray-900">
+      <div className="justify-center sm:flex sm:items-center sm:justify-between">
+        <ul className="flex justify-between">
+          <li className="p-2">
+            <a className="text-blue-500" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                class="w-6 h-6 mx-auto"
+                className="w-6 h-6 mx-auto"
               >
                 <path
                   strokeLinecap="round"
@@ -23,9 +23,9 @@ const BottomNav = () => {
               </svg>
             </a>
           </li>
-          <li class="p-2">
+          <li className="p-2">
             <a
-              class="text-blue-500 hover:text-blue-800"
+              className="text-blue-500 hover:text-blue-800"
               href="/galleries/Galleries.tsx"
             >
               <svg
@@ -45,8 +45,8 @@ const BottomNav = () => {
             </a>
           </li>
           {pb.authStore.isValid ? (
-            <li class="p-2">
-              <a class="text-blue-500 hover:text-blue-800" href="/Create">
+            <li className="p-2">
+              <a className="text-blue-500 hover:text-blue-800" href="/Create">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -66,8 +66,8 @@ const BottomNav = () => {
           ) : (
             <></>
           )}
-          <li class="p-2">
-            <a class="text-blue-500 hover:text-blue-800" href="#">
+          <li className="p-2">
+            <a className="text-blue-500 hover:text-blue-800" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -84,8 +84,8 @@ const BottomNav = () => {
               </svg>
             </a>
           </li>
-          <li class="p-2">
-            <a class="text-blue-500 hover:text-blue-800" href="/Members">
+          <li className="p-2">
+            <a className="text-blue-500 hover:text-blue-800" href="/Members">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

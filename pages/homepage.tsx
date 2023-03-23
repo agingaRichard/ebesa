@@ -54,15 +54,15 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div class="bg-opacity-0">
-      <Landing class="w-100 h-120 flex justify-center" />
-      <h3 class="flex items-center text-5xl font-extrabold text-white pb-3">
+    <div className="bg-opacity-0">
+      <Landing className="w-100 h-120 flex justify-center" />
+      <h3 className="flex items-center text-5xl font-extrabold text-white pb-3">
         Articles
       </h3>
-      <div class="flex flex-wrap justify-center -mb-4 -mx-2">
+      <div className="flex flex-wrap justify-center -mb-4 -mx-2">
         {articles?.map((article) =>
           pb.authStore.isValid ? (
-            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+            <div className="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ArticleCard
                 item={{
                   title: article.title,
@@ -74,7 +74,7 @@ export default function Homepage() {
               />
             </div>
           ) : article.approval ? (
-            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+            <div className="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ArticleCard
                 item={{
                   title: article.title,
@@ -90,13 +90,13 @@ export default function Homepage() {
           )
         )}
       </div>
-      <h3 class="flex items-center text-5xl font-extrabold text-white pb-3">
+      <h3 className="flex items-center text-5xl font-extrabold text-white pb-3">
         Projects
       </h3>
-      <div class="flex flex-wrap justify-center -mb-4 -mx-2">
+      <div className="flex flex-wrap justify-center -mb-4 -mx-2">
         {projects?.map((project) =>
           pb.authStore.isValid ? (
-            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+            <div className="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ProjectCard
                 item={{
                   title: project.title,
@@ -108,7 +108,7 @@ export default function Homepage() {
               />
             </div>
           ) : project.approval ? (
-            <div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+            <div className="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
               <ProjectCard
                 item={{
                   title: project.title,

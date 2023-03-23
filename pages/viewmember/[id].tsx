@@ -50,21 +50,21 @@ const Profile = ({ userProfile }) => {
 
   return (
     <div>
-      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex flex-col items-center pb-10">
+      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-col items-center pb-10">
           <img
-            class="w-24 h-24 mb-3 rounded-full shadow-lg"
+            className="w-24 h-24 mb-3 rounded-full shadow-lg"
             src={avatarString}
             alt="avatar"
           />
-          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
             {myProfile?.firstName} {myProfile?.lastName}
           </h5>
-          <span class="text-sm text-gray-500 dark:text-gray-400">
+          <span className="text-sm text-gray-500 dark:text-gray-400">
             {myProfile?.email}
           </span>
-          <div class="flex mt-4 space-x-3 md:mt-6">
-            <h3 class="">Projects</h3>
+          <div className="flex mt-4 space-x-3 md:mt-6">
+            <h3 className="">Projects</h3>
             <ul>
               {articles?.map((art) => {
                 <li>
@@ -83,7 +83,7 @@ const Profile = ({ userProfile }) => {
                 }
               })}
             </ul>
-            <h3 class="">Articles</h3>
+            <h3 className="">Articles</h3>
             <ul>
               {myArticles?.map((art) => {
                 if (art.author == myProfile.id) {

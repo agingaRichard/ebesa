@@ -21,37 +21,37 @@ export default function Drawer(): JSX.Element {
 
   return (
     <aside
-      class="transform top-0 left-0 w-64 bg-white bg-opacity-50 h-full overflow-auto ease-in-out transition-all duration-300 z-30"
+      className="transform top-0 left-0 w-64 bg-white bg-opacity-50 h-full overflow-auto ease-in-out transition-all duration-300 z-30"
       aria-label="Sidebar"
     >
-      <div class="relative py-4 px-3 bg-grey-50 h-full relative dark:bg-gray-800">
-        <div class="place-content-centre">
+      <div className="relative py-4 px-3 bg-grey-50 h-full relative dark:bg-gray-800">
+        <div className="place-content-centre">
           <Link href="/">
             <Image
               src="/images/ebesa-transparent.png"
-              class="w-full h-auto"
+              className="w-full h-auto"
               width={500}
               height={500}
               alt="home"
             />
           </Link>
         </div>
-        <div class="relative ">
+        <div className="relative ">
           {pb.authStore.isValid ? (
-            <ul class="space-y-2">
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/Profile"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <img
-                    class="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full"
                     width={50}
                     height={50}
                     src={mysrc}
                     alt="avatar"
                   />
-                  <span class="flex-1 ml-3 whitespace-nowrap">
+                  <span className="flex-1 ml-3 whitespace-nowrap">
                     Welcome, {userModel?.firstName}
                   </span>
                 </Link>
@@ -60,7 +60,7 @@ export default function Drawer(): JSX.Element {
               <li>
                 <Link
                   href="/Create"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">
+                  <span className="flex-1 ml-3 whitespace-nowrap">
                     Create new post
                   </span>
                 </Link>
@@ -86,7 +86,7 @@ export default function Drawer(): JSX.Element {
               <li>
                 <Link
                   href="/galleries/Galleries"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,14 +103,14 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">Gallery</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Gallery</span>
                 </Link>
               </li>
 
               <li>
                 <Link
                   href="/events/Events"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -127,14 +127,14 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Events</span>
                 </Link>
               </li>
 
               <li>
                 <Link
                   href="/Members"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">
+                  <span className="flex-1 ml-3 whitespace-nowrap">
                     View Members
                   </span>
                 </Link>
@@ -162,7 +162,7 @@ export default function Drawer(): JSX.Element {
               <li>
                 <Link
                   href="/Members"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +179,7 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">
+                  <span className="flex-1 ml-3 whitespace-nowrap">
                     View Members
                   </span>
                 </Link>
@@ -188,7 +188,7 @@ export default function Drawer(): JSX.Element {
               <li>
                 <Link
                   href="/galleries/Galleries"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -205,14 +205,14 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">Gallery</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Gallery</span>
                 </Link>
               </li>
 
               <li>
                 <Link
                   href="/events/Events"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -229,36 +229,38 @@ export default function Drawer(): JSX.Element {
                     />
                   </svg>
 
-                  <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Events</span>
                 </Link>
               </li>
             </ul>
           )}
         </div>
         <hr />
-        <div class="absolute inset-x-0 bottom-0">
+        <div className="absolute inset-x-0 bottom-0">
           {pb.authStore.isValid ? (
-            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <ul className="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <li>
                 <button
                   type="button"
                   onClick={logout}
-                  class="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                  className="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                 >
-                  <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">
+                    Sign Out
+                  </span>
                 </button>
               </li>
             </ul>
           ) : (
-            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <ul className="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <li>
                 <Link
                   href="/auth/Signin"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     aria-hidden="true"
-                    class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -269,17 +271,17 @@ export default function Drawer(): JSX.Element {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Sign In</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/auth/Signup"
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
                     aria-hidden="true"
-                    class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +292,7 @@ export default function Drawer(): JSX.Element {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                 </Link>
               </li>
             </ul>

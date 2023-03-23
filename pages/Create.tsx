@@ -2,15 +2,15 @@ import Link from "next/link";
 
 const Create = () => {
   return (
-    <div class="justify-center">
-      <h3 class="text-2xl font-extrabold dark:text-white w-full">
+    <div className="justify-center">
+      <h3 className="text-2xl font-extrabold dark:text-white w-full">
         Create something new...
       </h3>
-      <ul class="w-auto">
+      <ul className="w-auto">
         <li>
           <Link
             href="/articles/Newpost"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ const Create = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              class="w-6 h-6"
+              className="w-6 h-6"
             >
               <path
                 strokeLinecap="round"
@@ -27,13 +27,15 @@ const Create = () => {
               />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap">Write an article</span>
+            <span className="flex-1 ml-3 whitespace-nowrap">
+              Write an article
+            </span>
           </Link>
         </li>
         <li>
           <Link
             href="/projects/Newpost"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +52,15 @@ const Create = () => {
               />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap">Write a project</span>
+            <span className="flex-1 ml-3 whitespace-nowrap">
+              Write a project
+            </span>
           </Link>
         </li>
         <li>
           <Link
             href="/galleries/newGallery"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,13 +77,15 @@ const Create = () => {
               />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap">Upload a gallery</span>
+            <span className="flex-1 ml-3 whitespace-nowrap">
+              Upload a gallery
+            </span>
           </Link>
         </li>
         <li>
           <Link
             href="/events/newEvent"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +102,9 @@ const Create = () => {
               />
             </svg>
 
-            <span class="flex-1 ml-3 whitespace-nowrap">Publish an event</span>
+            <span className="flex-1 ml-3 whitespace-nowrap">
+              Publish an event
+            </span>
           </Link>
         </li>
       </ul>
