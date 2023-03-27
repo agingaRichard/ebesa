@@ -3,13 +3,13 @@ import BottomNav from "../components/BottomNav";
 
 import styles from "../styles/layout.module.css";
 
-export default function Layout({ children }) {
+export default function MainLayout({ children }: any) {
   return (
     <div className="h-screen overflow-auto bg-cover bg-no-repeat bg-fixed bg-center bg-[url('https://engineering.nyu.edu/sites/default/files/styles/content_header_1024_2x/public/2018-03/program-environmental-eng.jpg?h=e1d1bc8a&itok=7i1dM4rc')]">
       <div className="block fixed top-0 inset-x-0 z-50 md:hidden p-0">
         <TopNav />
       </div>
-      <div className="w-full h-full flex inline-flex gap-4">
+      <div className="w-full h-full flex gap-4">
         {/* <div className="hidden md:flex ">
           <Drawer />
         </div> */}

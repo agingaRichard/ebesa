@@ -87,7 +87,7 @@ const Profile = () => {
             </ul>
           </div> */}
         </div>
-        <div className="flex flex-col items-center pb-10">
+        <div className="flex flex-col items-center pb-10 min-w-fit">
           <img
             className="w-24 h-24 mb-3 rounded-full shadow-lg"
             src={mysrc}
@@ -95,7 +95,7 @@ const Profile = () => {
             width={50}
             alt="userimage"
           />
-          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white px-2">
             {userModel?.firstName} {userModel?.lastName}
           </h5>
           <button

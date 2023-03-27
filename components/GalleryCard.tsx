@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import pb from "../pages/api/pocketbase";
 
-const GalleryCard = (props) => {
+const GalleryCard = (props: any) => {
   let id = props.item.id;
   let title = props.item.title;
   let text = props.item.text;

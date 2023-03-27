@@ -7,16 +7,16 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-const Profile = ({ myProfile }) => {
-  const [articles, setArticles] = useState();
-  const [projects, setProjects] = useState();
+const Profile = ({ myProfile }: any) => {
+  const [articles, setArticles] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   const getArticles = () => {
     pb.collection("articles")
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      .then((res) => {
+      .then((res: any) => {
         setArticles(res);
         return;
       });
@@ -27,7 +27,7 @@ const Profile = ({ myProfile }) => {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      .then((res) => {
+      .then((res: any) => {
         setProjects(res);
         return;
       });
@@ -63,9 +63,9 @@ const Profile = ({ myProfile }) => {
               <Tab>Projects</Tab>
             </TabList>
             <TabPanel>
-              {articles?.map((article) =>
+              {articles?.map((article: any) =>
                 article.author == myProfile.id ? (
-                  <div className="w-full mb-4 px-2">
+                  <div key={article} className="w-full mb-4 px-2">
                     <ArticleCard
                       item={{
                         title: article.title,
@@ -82,9 +82,9 @@ const Profile = ({ myProfile }) => {
               )}
             </TabPanel>
             <TabPanel>
-              {projects?.map((project) =>
+              {projects?.map((project: any) =>
                 project.author == myProfile.id ? (
-                  <div className="w-full mb-4 px-2">
+                  <div key={project} className="w-full mb-4 px-2">
                     <ProjectCard
                       item={{
                         title: project.title,
@@ -108,7 +108,7 @@ const Profile = ({ myProfile }) => {
 };
 
 //This function can only return a value if its file is located in the pages/ directory.
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const memberId = await context.query.viewmember?.toString();
 
   //Fetch user profile

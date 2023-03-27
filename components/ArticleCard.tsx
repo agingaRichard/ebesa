@@ -3,7 +3,7 @@ import Image from "next/image";
 import pb from "../pages/api/pocketbase";
 import { Badge } from "flowbite-react";
 
-const ArticleCard = (props) => {
+const ArticleCard = (props: any) => {
   let id = props.item.id;
   let title = props.item.title;
   let text = props.item.text;

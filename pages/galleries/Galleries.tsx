@@ -5,7 +5,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Galleries() {
-  const [galleries, setGalleries] = useState();
+  const [galleries, setGalleries] = useState<
+    {
+      id: number;
+      text: string;
+      title: string;
+      approval: boolean;
+      images: string[];
+    }[]
+  >();
   //   const [projects, setProjects] = useState();
 
   const getgalleries = () => {
@@ -13,21 +21,8 @@ export default function Galleries() {
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      .then((res) => {
-        //Enabling admin to see unapproved posts
-        if (pb.authStore.isValid == true) {
-          setGalleries(res);
-        } else {
-          //Creating a list of approved posts for non-admins to see
-          const customRes = [];
-          for (let i in res) {
-            if (i.approval == true) {
-              customRes.push(i);
-            }
-          }
-          console.log(customRes);
-          setGalleries(customRes);
-        }
+      .then((res: any) => {
+        setGalleries(res);
       });
   };
 
@@ -37,23 +32,24 @@ export default function Galleries() {
 
   return (
     <div>
-      <h3 className="flex items-center text-5xl font-extrabold dark:text-white">
+      <h3 className="flex items-center text-5xl font-extrabold text-white">
         Galleries
       </h3>
       <div className="flex flex-wrap justify-center -mb-4 -mx-2">
-        {galleries?.map((gallery) => (
-          <div className="w-full mb-4 px-2">
-            <GalleryCard
-              item={{
-                title: gallery.title,
-                text: gallery.body,
-                id: gallery.id,
-                approval: gallery.approval,
-                images: gallery.images,
-              }}
-            />
-          </div>
-        ))}
+        {galleries &&
+          galleries?.map((gallery: any) => (
+            <div key={gallery} className="w-full mb-4 px-2">
+              <GalleryCard
+                item={{
+                  title: gallery.title,
+                  text: gallery.body,
+                  id: gallery.id,
+                  approval: gallery.approval,
+                  images: gallery.images,
+                }}
+              />
+            </div>
+          ))}
       </div>
       {/* <h3 className="flex items-center text-5xl font-extrabold dark:text-white">
         Projects

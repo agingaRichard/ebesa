@@ -11,7 +11,7 @@ import Carousel from "nuka-carousel/lib/carousel";
 //   await pb.collection('events').delete(x.id);
 // }
 
-function ViewPost({ event }) {
+function ViewPost({ event }: any) {
   //Generate links to images
   const mypic = event.images;
   const myCollectionId = pb.collection("events").collectionIdOrName;
@@ -38,6 +38,7 @@ function ViewPost({ event }) {
                 <img
                   // width={500}
                   // height={500}
+                  key={i}
                   className="rounded-t-lg"
                   src={i}
                   alt="Carousel img"
@@ -51,7 +52,9 @@ function ViewPost({ event }) {
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {event.text}
           </p>
-          {pb.authStore.id != null && pb.authStore?.id == event.author?.id ? (
+          {/* {pb.authStore &&
+          pb.authStore.id != null &&
+          pb.authStore?.id == event.author?.id ? (
             <ul>
               <li>
                 <Link href={`/events/Editpost/${event.id}`}>Edit event</Link>
@@ -62,7 +65,7 @@ function ViewPost({ event }) {
             </ul>
           ) : (
             <div></div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

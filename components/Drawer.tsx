@@ -24,7 +24,7 @@ export default function Drawer(): JSX.Element {
       className="transform top-0 left-0 w-64 bg-white bg-opacity-50 h-full overflow-auto ease-in-out transition-all duration-300 z-30"
       aria-label="Sidebar"
     >
-      <div className="relative py-4 px-3 bg-grey-50 h-full relative dark:bg-gray-800">
+      <div className="relative py-4 px-3 bg-grey-50 h-full dark:bg-gray-800">
         <div className="place-content-centre">
           <Link href="/">
             <Image

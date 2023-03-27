@@ -1,7 +1,7 @@
 const { connectToDatabase } = require("../../lib/mongodb");
 //const ObjectId = require("mongodb").ObjectId;
 
-export default async function handler(req, res) {
+export default async function handler(req: any, res: any) {
   // switch the methods
   switch (req.method) {
     case "GET": {
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function getPosts(req, res) {
+async function getPosts(req: any, res: any) {
   try {
     // connect to the database
     let { db } = await connectToDatabase();
@@ -37,7 +37,7 @@ async function getPosts(req, res) {
       message: JSON.parse(JSON.stringify(posts)),
       success: true,
     });
-  } catch (error) {
+  } catch (error: any) {
     // return the error
     return res.json({
       message: new Error(error).message,
@@ -46,7 +46,7 @@ async function getPosts(req, res) {
   }
 }
 
-async function addPost(req, res) {
+async function addPost(req: any, res: any) {
   try {
     // connect to the database
     let { db } = await connectToDatabase();
@@ -57,7 +57,7 @@ async function addPost(req, res) {
       message: "Post added successfully",
       success: true,
     });
-  } catch (error) {
+  } catch (error: any) {
     return res.json({
       message: new Error(error).message,
       success: false,
@@ -65,25 +65,25 @@ async function addPost(req, res) {
   }
 }
 
-async function updatePost(req, res) {
+async function updatePost(req: any, res: any) {
   try {
     // connect to the database
     let { db } = await connectToDatabase();
 
     // update the published status of the post
-    await db.collection("posts").updateOne(
-      {
-        _id: new ObjectId(req.body),
-      },
-      { $set: { published: true } }
-    );
+    // await db.collection("posts").updateOne(
+    //   {
+    //     _id: new ObjectId(req.body),
+    //   },
+    //   { $set: { published: true } }
+    // );
 
     // return a message
     return res.json({
       message: "Post updated successfully",
       success: true,
     });
-  } catch (error) {
+  } catch (error: any) {
     // return an error
     return res.json({
       message: new Error(error).message,
@@ -92,22 +92,22 @@ async function updatePost(req, res) {
   }
 }
 
-async function deletePost(req, res) {
+async function deletePost(req: any, res: any) {
   try {
     // Connecting to the database
     let { db } = await connectToDatabase();
 
     // Deleting the post
-    await db.collection("posts").deleteOne({
-      _id: new ObjectId(req.body),
-    });
+    // await db.collection("posts").deleteOne({
+    //   _id: new ObjectId(req.body),
+    // });
 
     // returning a message
     return res.json({
       message: "Post deleted successfully",
       success: true,
     });
-  } catch (error) {
+  } catch (error: any) {
     // returning an error
     return res.json({
       message: new Error(error).message,

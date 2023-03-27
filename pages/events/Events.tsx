@@ -5,29 +5,23 @@ import pb from "../api/pocketbase";
 import { useEffect, useState } from "react";
 
 export default function Events() {
-  const [events, setEvents] = useState();
-  //   const [projects, setProjects] = useState();
+  const [events, setEvents] = useState<
+    {
+      id: number;
+      title: string;
+      text: string;
+      approval: boolean;
+      images: string[];
+    }[]
+  >([]);
 
   const getevents = () => {
     pb.collection("events")
       .getFullList(200 /* batch size */, {
         sort: "-created",
       })
-      .then((res) => {
-        //Enabling admin to see unapproved posts
-        if (pb.authStore.isValid == true) {
-          setEvents(res);
-        } else {
-          //Creating a list of approved posts for non-admins to see
-          const customRes = [];
-          for (let i in res) {
-            if (i.approval == true) {
-              customRes.push(i);
-            }
-          }
-          console.log(customRes);
-          setEvents(customRes);
-        }
+      .then((res: any) => {
+        setEvents(res);
       });
   };
 
@@ -37,23 +31,24 @@ export default function Events() {
 
   return (
     <div>
-      <h3 className="flex items-center text-5xl font-extrabold dark:text-white py-2">
+      <h3 className="flex items-center text-5xl font-extrabold text-white py-2">
         Events
       </h3>
       <div className="flex flex-wrap justify-center -mb-4 -mx-2">
-        {events?.map((event) => (
-          <div className="w-full mb-4 px-2">
-            <EventCard
-              item={{
-                title: event.title,
-                text: event.body,
-                id: event.id,
-                approval: event.approval,
-                images: event.images,
-              }}
-            />
-          </div>
-        ))}
+        {events &&
+          events?.map((event) => (
+            <div key={event.id} className="w-full mb-4 px-2">
+              <EventCard
+                item={{
+                  title: event.title,
+                  text: event.text,
+                  id: event.id,
+                  approval: event.approval,
+                  images: event.images,
+                }}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

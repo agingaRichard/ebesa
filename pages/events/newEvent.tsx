@@ -1,8 +1,8 @@
 import pb from "../api/pocketbase";
 import { useFormik } from "formik";
-import DateSelector from "../../components/Dateselector";
+// import DateSelector from "../../components/Dateselector";
 
-const newEvent = () => {
+const NewEvent = () => {
   const userModel = pb.authStore.model;
   const formik = useFormik({
     initialValues: {
@@ -12,13 +12,22 @@ const newEvent = () => {
       author: userModel?.id,
     },
 
-    onSubmit: async (values) => {
+    onSubmit: async (values: any) => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("text", values.text);
-      formData.append("images", document.getElementById("images").files[0]);
-      formData.append("starttime", document.getElementById("starttime").value);
-      formData.append("endtime", document.getElementById("endtime").value);
+      formData.append(
+        "images",
+        (document.getElementById("images") as HTMLInputElement).files![0]
+      );
+      formData.append(
+        "starttime",
+        (document.getElementById("starttime") as HTMLInputElement).value
+      );
+      formData.append(
+        "endtime",
+        (document.getElementById("endtime") as HTMLInputElement).value
+      );
       try {
         await pb.collection("events").create(formData);
         await alert(formData.values);
@@ -31,7 +40,9 @@ const newEvent = () => {
   });
 
   const checkDate = () => {
-    console.log(document.getElementById("starttime").date);
+    console.log(
+      (document.getElementById("starttime") as HTMLInputElement).value
+    );
     // alert(document.getElementById("startdate").date);
   };
 
@@ -76,10 +87,8 @@ const newEvent = () => {
           <textarea
             id="text"
             name="text"
-            type="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            rows="8"
             className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a description..."
             required
@@ -107,4 +116,4 @@ const newEvent = () => {
   );
 };
 
-export default newEvent;
+export default NewEvent;

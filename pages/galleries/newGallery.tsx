@@ -1,7 +1,7 @@
 import pb from "../api/pocketbase";
 import { useFormik } from "formik";
 
-const newGallery = () => {
+const NewGallery = () => {
   const userModel = pb.authStore.model;
   const formik = useFormik({
     initialValues: {
@@ -15,8 +15,11 @@ const newGallery = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("text", values.text);
-      formData.append("images", document.getElementById("images").files[0]);
-      formData.append("author", values.author);
+      formData.append(
+        "images",
+        (document.getElementById("images") as HTMLInputElement).files![0]
+      );
+      formData.append("author", userModel!.id);
       try {
         await pb.collection("gallery").create(formData);
         await alert("Project posted.");
@@ -46,10 +49,8 @@ const newGallery = () => {
           <textarea
             id="text"
             name="text"
-            type="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            rows="4"
             className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a description..."
             required
@@ -77,4 +78,4 @@ const newGallery = () => {
   );
 };
 
-export default newGallery;
+export default NewGallery;

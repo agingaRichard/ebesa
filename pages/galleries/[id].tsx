@@ -11,7 +11,7 @@ import Carousel from "nuka-carousel";
 //   await pb.collection('articles').delete(x.id);
 // }
 
-function ViewPost({ gallery }) {
+function ViewPost({ gallery }: any) {
   //Generate links to images
   const mypic = gallery.images;
   // const myCollectionId = pb.collection("gallery").collectionIdOrName;
@@ -40,6 +40,7 @@ function ViewPost({ gallery }) {
             {mysrcs.map((i: string) => {
               return (
                 <img
+                  key={i}
                   // width={500}
                   // height={500}
                   className="rounded-t-lg"
@@ -58,7 +59,7 @@ function ViewPost({ gallery }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const galleryId = await context.query.id?.toString();
   const gallery = await pb
     .collection("gallery")

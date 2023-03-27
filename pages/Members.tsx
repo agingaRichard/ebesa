@@ -1,12 +1,19 @@
 import Link from "next/link";
 import pb from "./api/pocketbase";
 
-const Members = ({ myMembers }) => {
-  // const myCollectionId = pb.collection("users").collectionIdOrName;
-  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${myMembers.id}/`;
+const Members = ({ myMembers }: any) => {
+  //Generating an interface to aviod type errors:
+  interface Member {
+    id: number;
+    avatar: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    noun: string;
+  }
 
   //Generate  an array that stores user data and maps it onto a list
-  const membersList = myMembers.map((myMembers: Array<string>) => {
+  const membersList = myMembers.map((myMembers: Member) => {
     const myCollectionId = pb.collection("users").collectionIdOrName;
 
     return {
@@ -25,8 +32,8 @@ const Members = ({ myMembers }) => {
     <div>
       <h2 className="">EBESA members</h2>
       <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-        {membersList?.map((member) => (
-          <li className="pb-3 sm:pb-4">
+        {membersList?.map((member: any) => (
+          <li key={member} className="pb-3 sm:pb-4">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
                 <img
@@ -60,7 +67,7 @@ const Members = ({ myMembers }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const myMembers = await pb
     .collection("users")
     .getFullList(200, {

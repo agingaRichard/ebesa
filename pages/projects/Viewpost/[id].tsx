@@ -6,7 +6,7 @@ import Image from "next/image";
 import Carousel from "nuka-carousel/lib/carousel";
 import { Badge, Button } from "flowbite-react";
 
-function ViewPost({ project }) {
+function ViewPost({ project }: any) {
   const userModel = pb.authStore.model;
   //Generate links to images
   const mypic = project.images;
@@ -36,6 +36,7 @@ function ViewPost({ project }) {
                 <img
                   // width={500}
                   // height={500}
+                  key={i}
                   className="rounded-t-lg"
                   src={i}
                   alt=""
@@ -77,7 +78,7 @@ function ViewPost({ project }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const projectId = await context.query.id?.toString();
   const project = await pb
     .collection("projects")

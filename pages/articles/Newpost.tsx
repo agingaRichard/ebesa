@@ -16,7 +16,10 @@ const Newpost = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("body", values.body);
-      formData.append("images", document.getElementById("images")?.files[0]);
+      formData.append(
+        "images",
+        (document.getElementById("images") as HTMLInputElement).files![0]
+      );
       formData.append("author", userModel?.author);
       try {
         await pb.collection("articles").create(formData);
@@ -47,10 +50,8 @@ const Newpost = () => {
           <textarea
             id="body"
             name="body"
-            type="text"
             onChange={formik.handleChange}
             value={formik.values.body}
-            rows="12"
             className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write an article..."
             required
@@ -61,8 +62,6 @@ const Newpost = () => {
           <textarea
             id="caption"
             name="caption"
-            type="text"
-            rows="3"
             className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a caption..."
           ></textarea>

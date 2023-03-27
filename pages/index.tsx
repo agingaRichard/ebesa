@@ -1,6 +1,5 @@
 import Homepage from "./homepage";
-import App from "./_app.tsx";
-import backend from "../server/index";
+import App from "./_app";
 
 export default function Home() {
   return (
@@ -10,7 +9,7 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps(ctx: any) {
   // get the current environment
   let dev = process.env.NODE_ENV !== "production";
   let { DEV_URL, PROD_URL } = process.env;

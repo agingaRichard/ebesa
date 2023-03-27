@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { useState } from "react";
+import { useFormik } from "formik";
+import pb from "../../api/pocketbase";
 
 const Editpost = () => {
   const [files, setFiles] = useState<FileList | null>(null);
-  const updateState = (variable) => {
+  const updateState = (variable: any) => {
     setFiles(variable);
   };
 
@@ -18,8 +21,7 @@ const Editpost = () => {
       try {
         const newPost = await JSON.stringify(values);
         alert(newPost);
-        const pb = new PocketBase("http://127.0.0.1:8090");
-        await pb.collection("projects").update("RECORD_ID", data);
+        await pb.collection("projects").update("RECORD_ID", values);
 
         //await create(values);
       } catch (err) {
@@ -30,19 +32,19 @@ const Editpost = () => {
     },
   });
 
-  const updateFormik = (mydata) => {
-    let initfiles = formik.values.files;
+  const updateFormik = (mydata: any) => {
+    // let initfiles = formik.values.files;
     return formik.setFieldValue("files", mydata);
   };
 
-  const fileList = files ? [...files] : [];
+  // const fileList = files ? [...files] : [];
 
   return (
     <div>
       <form>
         <div>
           <label
-            for="title"
+            htmlFor="title"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Edit title
@@ -56,7 +58,7 @@ const Editpost = () => {
         </div>
         <div className="mb-6">
           <label
-            for="body"
+            htmlFor="body"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Edit body

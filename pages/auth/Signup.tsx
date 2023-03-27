@@ -18,7 +18,7 @@ const Signup = () => {
     },
 
     //validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values: any) => {
       try {
         //Create a form with the user's data
         const formData = new FormData();
@@ -28,7 +28,10 @@ const Signup = () => {
         formData.append("noun", values.noun);
         formData.append("password", values.password);
         formData.append("passwordConfirm", values.passwordConfirm);
-        formData.append("avatar", document.getElementById("avatar").files[0]);
+        formData.append(
+          "avatar",
+          (document.getElementById("avatar") as HTMLInputElement).files![0]
+        );
 
         //Save the user on the server
         const record = await pb.collection("users").create(formData);
@@ -51,7 +54,7 @@ const Signup = () => {
         </h5>
         <div>
           <label
-            for="firstName"
+            htmlFor="firstName"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             First name
@@ -67,7 +70,7 @@ const Signup = () => {
             required
           />
           <label
-            for="lastName"
+            htmlFor="lastName"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Last name
@@ -86,7 +89,7 @@ const Signup = () => {
 
         <div>
           <label
-            for="email"
+            htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Email
@@ -105,7 +108,7 @@ const Signup = () => {
 
         <div>
           <label
-            for="noun"
+            htmlFor="noun"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Role/noun
@@ -124,7 +127,7 @@ const Signup = () => {
 
         <div>
           <label
-            for="password"
+            htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Password
@@ -133,7 +136,6 @@ const Signup = () => {
             type="password"
             name="password"
             id="password"
-            label="password"
             placeholder="••••••••"
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -143,7 +145,7 @@ const Signup = () => {
         </div>
         <div>
           <label
-            for="passwordConfirm"
+            htmlFor="passwordConfirm"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Confirm Password
@@ -152,7 +154,6 @@ const Signup = () => {
             type="password"
             name="passwordConfirm"
             id="passwordConfirm"
-            label="passwordConfirm"
             placeholder="••••••••"
             onChange={formik.handleChange}
             value={formik.values.passwordConfirm}
@@ -163,7 +164,7 @@ const Signup = () => {
         <div>
           <label
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            for="file_input"
+            htmlFor="file_input"
           >
             Upload photo
           </label>

@@ -3,14 +3,14 @@ import Link from "next/link";
 const Create = () => {
   return (
     <div className="justify-center">
-      <h3 className="text-2xl font-extrabold dark:text-white w-full">
+      <h3 className="text-2xl font-extrabold text-white w-full">
         Create something new...
       </h3>
       <ul className="w-auto">
         <li>
           <Link
             href="/articles/Newpost"
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal rounded-lg text-white dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ const Create = () => {
         <li>
           <Link
             href="/projects/Newpost"
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center p-2 text-base font-normal rounded-lg text-white dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -59,8 +59,8 @@ const Create = () => {
         </li>
         <li>
           <Link
-            href="/galleries/newGallery"
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            href="/galleries/NewGallery"
+            className="flex items-center p-2 text-base font-normal rounded-lg text-white dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +84,8 @@ const Create = () => {
         </li>
         <li>
           <Link
-            href="/events/newEvent"
-            className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            href="/events/NewEvent"
+            className="flex items-center p-2 text-base font-normal rounded-lg text-white dark:hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
