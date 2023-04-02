@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "concurrently npm:anza-*",
     "anza-next": "next dev",
+    "anza-db": "pocketbase serve",
     "build": "concurrently npm:jenga-*",
     "jenga-next": "next build",
+    "jenga-install-db": "npm i pocketbase",
     "jenga-db": "./pocketbase serve",
     "start": "next start",
     "lint": "next lint"
