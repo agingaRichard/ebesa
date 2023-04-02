@@ -8,7 +8,7 @@
     "anza-db": "pocketbase serve",
     "build": "concurrently npm:jenga-*",
     "jenga-next": "next build",
-    "jenga-db": "./pocketbase serve",
+    "jenga-db": "start pocketbase serve",
     "start": "next start",
     "lint": "next lint"
   },
