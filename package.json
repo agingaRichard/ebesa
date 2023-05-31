@@ -3,13 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently npm:anza-*",
-    "anza-next": "next dev",
-    "anza-db": "pocketbase serve",
-    "build": "concurrently npm:jenga-*",
-    "jenga-next": "next build",
-    "jenga-install-db": "npm i pocketbase",
-    "jenga-db": "./pocketbase serve",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
