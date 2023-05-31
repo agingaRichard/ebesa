@@ -15,15 +15,14 @@ export async function getServerSideProps(ctx: any) {
   let { DEV_URL, PROD_URL } = process.env;
 
   // request posts from api
-  let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/posts`);
+  //let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/posts`);
   // extract the data
-  let data = await response.json();
+  //let data = await response.json();
 
-  //get initial UnityShop server
   //backend();
   return {
     props: {
-      posts: data["message"],
+      //posts: data["message"],
     },
   };
 }
