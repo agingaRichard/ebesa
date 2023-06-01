@@ -19,7 +19,7 @@ function ViewPost({ article }: any) {
 
   //Create an array of links to images
   const mysrcs = mypic.map((x: string) => {
-    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${article.id}/`;
+    const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${article.id}/`;
     return mysrc + x;
   });
   // console.log(mysrcs);
@@ -106,7 +106,7 @@ export async function getServerSideProps(context: any) {
       console.log("Pocketbase error: " + err);
     });
 
-  const myAuthor = await pb
+ /* const myAuthor = await pb
     .collection("users")
     .getOne(article.author, {
       expand: "relField1,relField2.subRelField",
@@ -116,7 +116,7 @@ export async function getServerSideProps(context: any) {
       const mydata = await JSON.parse(myres);
       // console.log(myres);
       return myres;
-    });
+    });*/
   // article.assign(myAuthor, myAuthor);
   // article["myAuthor"] = myAuthor;
   return { props: { article } };

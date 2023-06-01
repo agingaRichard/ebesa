@@ -31,7 +31,7 @@ const Members = ({ myMembers }: any) => {
 
   return (
     <div>
-      <h2 className="">EBESA members</h2>
+      <h2 className="text-sm font-medium text-white truncate dark:text-white">EBESA members</h2>
       <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         {membersList?.map((member: any) => (
           <li key={member} className="pb-3 sm:pb-4">
