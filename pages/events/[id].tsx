@@ -15,11 +15,11 @@ function ViewPost({ event }: any) {
   //Generate links to images
   const mypic = event.images;
   const myCollectionId = pb.collection("events").collectionIdOrName;
-  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
+  // const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${gallery.id}/`;
 
   //Create an array of links to images
   const mysrcs = mypic.map((x: string) => {
-    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${event.id}/`;
+    const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${event.id}/`;
     return mysrc + x;
   });
 

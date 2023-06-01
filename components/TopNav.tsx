@@ -5,7 +5,7 @@ import Link from "next/link";
 const TopNav = () => {
   const userModel = pb.authStore.model;
   const myAvatar = userModel?.avatar;
-  const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
+  const mysrc = `https://sweet-optician.pockethost.io/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
   return (
     <div className="p-4 flex justify-between bg-white">
       <Link href="/" className="">

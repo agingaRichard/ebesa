@@ -8,7 +8,7 @@ export default function Drawer(): JSX.Element {
   const router = useRouter();
   const userModel = pb.authStore.model;
   const myAvatar = userModel?.avatar;
-  const mysrc = `http://127.0.0.1:8090/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
+  const mysrc = `https://sweet-optician.pockethost.io/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
 
   async function logout() {
     await pb.authStore.clear();

@@ -12,7 +12,7 @@ const GalleryCard = (props: any) => {
   //Generate links to images
   const myCollectionId = pb.collection("gallery").collectionIdOrName;
   const mysrc =
-    `http://127.0.0.1:8090/api/files/${myCollectionId}/${id}/` + images;
+    `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${id}/` + images;
 
   return (
     <div className="max-w-sm flex flex-col rounded-lg overflow-hidden bg-white shadow">

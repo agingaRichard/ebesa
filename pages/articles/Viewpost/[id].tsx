@@ -15,7 +15,7 @@ function ViewPost({ article }: any) {
   //Generate links to images
   const mypic = article.images;
   const myCollectionId = pb.collection("articles").collectionIdOrName;
-  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${gallery.id}/`;
+  // const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${gallery.id}/`;
 
   //Create an array of links to images
   const mysrcs = mypic.map((x: string) => {

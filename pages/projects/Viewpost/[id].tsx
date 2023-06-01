@@ -11,11 +11,11 @@ function ViewPost({ project }: any) {
   //Generate links to images
   const mypic = project.images;
   const myCollectionId = pb.collection("projects").collectionIdOrName;
-  // const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${project.id}/`;
+  // const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${project.id}/`;
 
   //Create an array of links to images
   const mysrcs = mypic.map((x: string) => {
-    const mysrc = `http://127.0.0.1:8090/api/files/${myCollectionId}/${project.id}/`;
+    const mysrc = `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${project.id}/`;
     return mysrc + x;
   });
   // console.log(project);

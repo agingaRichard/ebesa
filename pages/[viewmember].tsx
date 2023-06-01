@@ -39,7 +39,7 @@ const Profile = ({ myProfile }: any) => {
   }, []);
 
   //Getting source for user's avatar...
-  const avatarString = `http://127.0.0.1:8090/api/files/${myProfile.collectionName}/${myProfile.id}/${myProfile.avatar}`;
+  const avatarString = `https://sweet-optician.pockethost.io/api/files/${myProfile.collectionName}/${myProfile.id}/${myProfile.avatar}`;
 
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
