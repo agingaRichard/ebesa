@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import pb from "./api/pocketbase";
 
 const Members = ({ myMembers }: any) => {
@@ -18,7 +19,7 @@ const Members = ({ myMembers }: any) => {
 
     return {
       avatarsrc:
-        `http://127.0.0.1:8090/api/files/${myCollectionId}/${myMembers.id}/` +
+        `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${myMembers.id}/` +
         myMembers.avatar,
       id: myMembers.id,
       firstName: myMembers.firstName,
@@ -44,7 +45,7 @@ const Members = ({ myMembers }: any) => {
               </div>
               <Link href={`/${member.id}`}>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                  <p className="text-sm font-medium text-white truncate dark:text-white">
                     {member.firstName} {member.lastName}
                   </p>
                   <p className="text-sm text-gray-500 truncate dark:text-gray-400">
