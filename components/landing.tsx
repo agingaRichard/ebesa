@@ -15,6 +15,7 @@ const Landing = () => {
     <div className="flex justify-center">
       <ul className="w-full h-full px-auto">
         <li className="w-full md:flex justify-between hidden md:visible">
+          {/* Desktop navbar */}
           <Link href="/">
             <Image
               src="/images/mobilelogo.jpg"
@@ -76,12 +77,15 @@ const Landing = () => {
             )}
           </div>
         </li>
-        <li className="md:flex justify-center items-center text-white">
+        <li className="md:flex justify-center items-center text-white hidden md:visible">
           <img src="/images/ebesa-white.png" alt="My Logo" />
           <h3 className="flex items-center text-5xl font-extrabold text-white pb-3">Forward unto dawn</h3>
         </li>
-        <li>
-          <div className="flex flex-wrap justify-center sm:hidden">
+        <li className="visible md:hidden text-white h-screen">
+          {/* Mobile landing component */}
+          <div><ul className=""><li>Welcome to EBESA!</li>
+        <li>a safe haven for free thinkers</li>
+        <li className="flex flex-wrap items-center justify-center mt-6">
             {pb.authStore.isValid ? (
               <Link
                 href="/Create"
@@ -107,7 +111,7 @@ const Landing = () => {
                 </span>
               </Link>
             ) : (
-              <ul>
+              <ul className="bg-white flex flex-wrap rounded p-1">
                 <li>
                   <Link
                     href="/auth/Signup"
@@ -126,8 +130,8 @@ const Landing = () => {
                 </li>
               </ul>
             )}
-          </div>
-        </li>
+          </li></ul></div></li>
+       
       </ul>
     </div>
   );

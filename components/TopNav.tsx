@@ -7,10 +7,10 @@ const TopNav = () => {
   const myAvatar = userModel?.avatar;
   const mysrc = `https://sweet-optician.pockethost.io/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
   return (
-    <div className="p-4 flex justify-between bg-white">
+    <div className="p-4 flex justify-between transparent">
       <Link href="/" className="">
         <Image
-          src="/images/mobilelogo.jpg"
+          src="/images/my-EBESA.png"
           width={120}
           height={40}
           alt="Ebesa icon"
