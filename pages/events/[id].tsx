@@ -6,12 +6,25 @@ import { useState, useContext, useEffect } from "react";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 import pb from "../api/pocketbase";
 import Carousel from "nuka-carousel/lib/carousel";
+import Modal from "../../components/Modal"
 
 // const delete = (x)=>{
 //   await pb.collection('events').delete(x.id);
 // }
 
 function ViewPost({ event }: any) {
+  //Modal state and functions
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
   //Generate links to images
   const mypic = event.images;
   const myCollectionId = pb.collection("events").collectionIdOrName;
@@ -25,27 +38,36 @@ function ViewPost({ event }: any) {
 
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="p-5">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {event.title}
           </h5>
-
+          <img
+            // width={500}
+            // height={500}
+            onClick={openModal}
+            className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
+            src={mysrcs[0]}
+            alt=""
+          />
           {/* <img className="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
-          <Carousel>
-            {mysrcs.map((i: string) => {
-              return (
-                <img
-                  // width={500}
-                  // height={500}
-                  key={i}
-                  className="rounded-t-lg"
-                  src={i}
-                  alt="Carousel img"
-                />
-              );
-            })}
-          </Carousel>
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <Carousel className="max-h-96">
+              {mysrcs.map((i: string) => {
+                return (
+                  <img
+                    // width={500}
+                    // height={500}
+                    key={i}
+                    className="mx-auto my-auto max-h-80"
+                    src={i}
+                    alt="Carousel img"
+                  />
+                );
+              })}
+            </Carousel>
+          </Modal>
           <p className="text-xs text-gray-900 dark:text-whit">
             by {event.author?.firstName} {event.author?.lastName}
           </p>

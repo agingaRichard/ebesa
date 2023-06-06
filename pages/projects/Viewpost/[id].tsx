@@ -5,8 +5,22 @@ import pb from "../../api/pocketbase";
 import Image from "next/image";
 import Carousel from "nuka-carousel/lib/carousel";
 import { Badge, Button } from "flowbite-react";
+import Modal from "../../../components/Modal";
 
 function ViewPost({ project }: any) {
+  //Modal state and functions
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+
   const userModel = pb.authStore.model;
   //Generate links to images
   const mypic = project.images;
@@ -28,8 +42,16 @@ function ViewPost({ project }: any) {
 
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div className="p-5">
+      <div className="max-w-sm bg-white border overflow-hidden border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <img
+          // width={500}
+          // height={500}
+          onClick={openModal}
+          className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
+          src={mysrcs[0]}
+          alt=""
+        />
+        <Modal isOpen={isModalOpen} onClose={closeModal} >
           <Carousel>
             {mysrcs.map((i: string) => {
               return (
@@ -37,13 +59,16 @@ function ViewPost({ project }: any) {
                   // width={500}
                   // height={500}
                   key={i}
-                  className="rounded-t-lg"
+                  className="mx-auto my-auto max-h-80"
                   src={i}
                   alt=""
                 />
               );
             })}
           </Carousel>
+        </Modal>
+
+        <div className="p-5">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {project.title}
           </h5>
