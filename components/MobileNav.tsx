@@ -2,12 +2,12 @@ import Image from "next/image";
 import pb from "../pages/api/pocketbase";
 import Link from "next/link";
 
-const TopNav = () => {
+const MobileNav = () => {
   const userModel = pb.authStore.model;
   const myAvatar = userModel?.avatar;
   const mysrc = `https://sweet-optician.pockethost.io/api/files/_pb_users_auth_/${userModel?.id}/${myAvatar}?thumb=100x100`;
   return (
-    <div className="p-4 flex justify-between transparent">
+    <div className="p-4 flex justify-between">
       <Link href="/" className="">
         <Image
           src="/images/my-EBESA.png"
@@ -25,7 +25,6 @@ const TopNav = () => {
             className="w-10 h-10 rounded-full"
             alt="Myimg"
           />
-          {/* <embed src={myAvatar} width="300" height="300"></embed> */}
         </Link>
       ) : (
         <Link href="/auth/Signin">
@@ -49,4 +48,4 @@ const TopNav = () => {
   );
 };
 
-export default TopNav;
+export default MobileNav;
