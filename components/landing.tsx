@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import pb from "../pages/api/pocketbase";
 import { useRouter } from "next/router";
+
 const Landing = () => {
   const router = useRouter();
 

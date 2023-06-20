@@ -16,10 +16,10 @@ const ArticleCard = (props: any) => {
     `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${id}/` + images;
 
   return (
-    <div className="max-w-sm flex flex-col rounded-lg overflow-hidden bg-white shadow">
+    <div className="max-w-sm flex flex-col rounded-lg relative overflow-hidden bg-cover bg-no-repeat bg-white shadow">
       {/* <!-- card cover --> */}
       <img
-        className="h-56 w-full object-cover"
+        className="h-auto w-full object-cover "
         src={mysrc}
         width={40}
         height={40}

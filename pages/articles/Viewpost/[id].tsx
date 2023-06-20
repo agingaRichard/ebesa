@@ -45,7 +45,7 @@ function ViewPost({ article }: any) {
 
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 px-auto w-auto">
         <img
           // width={500}
           // height={500}
@@ -74,14 +74,10 @@ function ViewPost({ article }: any) {
         </Modal>
 
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 mx-10 md:text-2xl text-lg font-bold tracking-tight text-gray-900 dark:text-white">
             {article.title}
           </h5>
-
-          <p className="text-xs text-gray-900 dark:text-whit">
-            {/* by {myAuthor?.firstName} {myAuthor?.lastName} */}
-          </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 px-20 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
           </p>
 

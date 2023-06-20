@@ -8,7 +8,7 @@ export default function LandingPage() {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 md:mr-4">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
-              Welcome to the College Students' Association
+              Welcome to the College Students Association
             </h1>
             <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-600">
               We are a group of students who are passionate about learning,

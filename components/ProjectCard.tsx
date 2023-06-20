@@ -15,7 +15,7 @@ const ProjectCard = (props: any) => {
     `https://sweet-optician.pockethost.io/api/files/${myCollectionId}/${id}/` + images;
 
   return (
-    <div className="max-w-sm flex flex-col rounded-lg overflow-hidden bg-white shadow">
+    <div className="flex flex-col rounded-lg overflow-hidden bg-white shadow">
       {/* <!-- card cover --> */}
       <img
         className="h-56 w-full object-cover"

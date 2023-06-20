@@ -13,6 +13,8 @@ const Modal = ({ isOpen, onClose, children }: any) => {
             Close
           </button>
         </div>
+
+
       </div>
     </div>
   );

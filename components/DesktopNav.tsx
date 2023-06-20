@@ -17,7 +17,7 @@ const DesktopNav = () => {
     }
 
     return (
-        <div className="w-full md:flex justify-between hidden md:visible py-4 bg-white px-4">
+        <div className="w-full md:flex justify-between hidden md:visible py-4 bg-white px-6">
 
             <Link href="/">
                 <Image
@@ -40,7 +40,7 @@ const DesktopNav = () => {
                         </Link>
                     </li> */}
                     <li>
-                        <Link href="/galleries/Galleries" className="px-2">
+                        <Link href="/galleries/Galleries" className="px-2 text-black">
                             Gallery
                         </Link>
                     </li>
