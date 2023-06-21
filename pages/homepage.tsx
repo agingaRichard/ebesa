@@ -54,7 +54,7 @@ export default function Homepage() {
   return (
     <div className="bg-opacity-0">
       <Landing />
-      <h3 className="flex items-center text-5xl font-extrabold text-white pb-3">
+      <h3 className="flex items-center md:text-5xl  text-3xl font-extrabold text-white py-3">
         Articles
       </h3>
       <div className="flex flex-wrap justify-center -mb-4 -mx-2">
@@ -92,7 +92,7 @@ export default function Homepage() {
             )
           )}
       </div>
-      <h3 className="flex items-center text-5xl font-extrabold text-white pb-3">
+      <h3 className="flex items-center md:text-5xl text-3xl font-extrabold text-white py-3">
         Projects
       </h3>
       <div className="flex flex-wrap justify-center -mb-4 -mx-2">
