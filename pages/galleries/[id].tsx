@@ -38,21 +38,38 @@ function ViewPost({ gallery }: any) {
 
   return (
     <div>
-      <div className="max-w-sm bg-white border overflow-hidden border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-10 px-auto w-auto">
         {/* <img className="rounded-t-lg" src={mysrcs} alt="" /> */}
 
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 md:mx-10 md:text-2xl text-lg font-bold tracking-tight text-gray-900 dark:text-white">
             {gallery.title}
           </h5>
-          <img
+          {/* <img 
             // width={500}
             // height={500}
             onClick={openModal}
             className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
             src={mysrcs[0]}
             alt=""
-          />
+  />*/}
+
+          {/* <Modal isOpen={isModalOpen} onClose={closeModal}> */}
+            <Carousel className="inline-block min-content">
+              {mysrcs.map((i: string) => {
+                return (
+                  <img
+                    key={i}
+                    // width={500}
+                    // height={500}
+                    className="mx-auto"
+                    src={i}
+                    alt=""
+                  />
+                );
+              })}
+            </Carousel>
+            {/* </Modal> */}
           <p className="text-xs text-gray-900 dark:text-whit">
             by {gallery.author?.firstName} {gallery.author?.lastName}
           </p>
