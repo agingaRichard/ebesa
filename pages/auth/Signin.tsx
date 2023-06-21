@@ -33,7 +33,7 @@ const Signin = () => {
   });
 
   return (
-    <div>
+    <div className="max-w-md mx-auto">
       <form onSubmit={formik.handleSubmit}>
         <h5 className="text-xl font-medium text-white">Sign in</h5>
         <div>

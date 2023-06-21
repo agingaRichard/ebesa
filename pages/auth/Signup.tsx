@@ -47,15 +47,16 @@ const Signup = () => {
   });
 
   return (
-    <div className="space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    // <div className="space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div  className="max-w-md mx-auto">
       <form onSubmit={formik.handleSubmit}>
-        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+        <h5 className="text-xl font-medium text-white">
           Sign up!
         </h5>
         <div>
           <label
             htmlFor="firstName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             First name
           </label>
@@ -71,7 +72,7 @@ const Signup = () => {
           />
           <label
             htmlFor="lastName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             Last name
           </label>
@@ -90,7 +91,7 @@ const Signup = () => {
         <div>
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             Email
           </label>
@@ -109,7 +110,7 @@ const Signup = () => {
         <div>
           <label
             htmlFor="noun"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             Role/noun
           </label>
@@ -128,7 +129,7 @@ const Signup = () => {
         <div>
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             Password
           </label>
@@ -146,7 +147,7 @@ const Signup = () => {
         <div>
           <label
             htmlFor="passwordConfirm"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
           >
             Confirm Password
           </label>
@@ -163,7 +164,7 @@ const Signup = () => {
         </div>
         <div>
           <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-white"
             htmlFor="file_input"
           >
             Upload photo

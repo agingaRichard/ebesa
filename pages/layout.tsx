@@ -30,8 +30,8 @@ export default function MainLayout({ children }: any) {
       </div>
       <div className="block fixed bottom-0 inset-x-0 z-50 md:hidden">
         <BottomNav />
-      </div>
-      <Footer/>
+      </div><div className="inset-x-0 bottom-0">
+      <Footer/></div>
     </div>
   );
 }
