@@ -21,7 +21,7 @@ export default function MainLayout({ children }: any) {
           <Drawer />
         </div> */}
       {/* <div className="w-full h-auto overflow-auto grid place-content-center pt-20 pb-20 md:pt-0 md:pb-0"> */}
-      <div className="justify-center p-6 overflow-auto">
+      <div className="justify-center md:p-6 overflow-auto">
         <div className="block p-6 bg-stone-800 bg-opacity-50 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 md:mt-20">
           {children}
         </div>
