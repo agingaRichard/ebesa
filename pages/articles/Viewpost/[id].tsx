@@ -45,7 +45,7 @@ function ViewPost({ article }: any) {
 
   return (
     <div>
-      <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 px-auto w-auto">
+      <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-10 px-auto w-auto">
         <img
           onClick={openModal}
           className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
@@ -69,10 +69,10 @@ function ViewPost({ article }: any) {
         </Modal>
 
         <div className="p-5">
-          <h5 className="mb-2 mx-10 md:text-2xl text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 md:mx-10 md:text-2xl text-lg font-bold tracking-tight text-gray-900 dark:text-white">
             {article.title}
           </h5>
-          <p className="mb-3 px-20 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 md:px-20 font-normal text-gray-700 dark:text-gray-400">
             {article.body}
           </p>
 
