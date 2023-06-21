@@ -1,8 +1,10 @@
 import MobileNav from "../components/MobileNav";
 import DesktopNav from "../components/DesktopNav";
 import BottomNav from "../components/BottomNav";
+import Footer from "../components/Footer";
 
 import styles from "../styles/layout.module.css";
+// import { Footer } from "flowbite-react";
 
 export default function MainLayout({ children }: any) {
 
@@ -29,6 +31,7 @@ export default function MainLayout({ children }: any) {
       <div className="block fixed bottom-0 inset-x-0 z-50 md:hidden">
         <BottomNav />
       </div>
+      <Footer/>
     </div>
   );
 }
