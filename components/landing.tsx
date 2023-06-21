@@ -15,73 +15,11 @@ const Landing = () => {
   return (
     <div className="flex justify-center">
       <ul className="w-full h-full px-auto">
-        {/* <li className="w-full md:flex justify-between hidden md:visible">
-          
-          <Link href="/">
-            <Image
-              src="/images/mobilelogo.jpg"
-              width={120}
-              height={40}
-              alt="Ebesa icon"
-            />
-          </Link>
-          <div>
-            <ul className="md:flex flex-wrap mb-4 justify-center text-white">
-              <li>
-                <Link href="/Articlespage" className="px-2 text-white">
-                  Articles
-                </Link>
-              </li>
-              <li>
-                <Link href="/Projectspage" className="px-2 text-white">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/galleries/Galleries" className="px-2 text-white">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link href="events/Events" className="px-2 text-white">
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link href="/Members" className="px-2 text-white">
-                  Members
-                </Link>
-              </li>
-              <li>
-                <Link href="/Contacts" className="px-2 text-white">
-                  Contacts
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            {pb.authStore.isValid ? (
-              <>
-                <Link href="/Profile" className="px-2 text-white">
-                  View Profile
-                </Link>
-                <button
-                  type="button"
-                  onClick={logout}
-                  className="focus:outline-none text-white bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                >
-                  <span className="flex-1 whitespace-nowrap">Sign Out</span>
-                </button>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-        </li> */}
         <li className="md:flex justify-center items-center text-white hidden md:visible">
           <img src="/images/ebesa-white.png" alt="My Logo" />
-          <ul><li><h3 className="flex items-center text-5xl font-extrabold text-white pb-3">Forward unto dawn</h3> </li>
-          <li className="flex flex-wrap items-center justify-center mt-6">
+            <ul>
+              <li><h3 className="text-5xl font-extrabold text-white pb-3">Forward unto dawn</h3></li>
+              <li className="flex flex-wrap items-center justify-center mt-6">
               {pb.authStore.isValid ? (
                 <Link
                   href="/Create"
@@ -128,13 +66,15 @@ const Landing = () => {
                   </li>
                 </ul>
               )}
-            </li></ul>
+              </li>
+            </ul>
         </li>
         <li className="visible md:hidden text-white h-screen">
           {/* Mobile landing component */}
-          <div><ul className=""><li>Welcome to EBESA!</li>
-            <li>a safe haven for free thinkers</li>
-            <li className="flex flex-wrap items-center justify-center mt-6">
+          <div>
+            <ul className=""><li className="text-xl font-extrabold my-6">Find your intellectual edge</li>
+              <li className="text-lg font-mono my-6">a space to think and make think</li>
+              <li className="flex flex-wrap items-center justify-center mt-10">
               {pb.authStore.isValid ? (
                 <Link
                   href="/Create"
@@ -164,11 +104,13 @@ const Landing = () => {
                   <li>
                     <Link
                       href="/auth/Signup"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      
+                      className="inline-flex items-center px-3 py-2"
                     >
                       Sign Up
                     </Link>
                   </li>
+                  <li><p>|</p></li>
                   <li>
                     <Link
                       href="/auth/Signin"
@@ -179,7 +121,10 @@ const Landing = () => {
                   </li>
                 </ul>
               )}
-            </li></ul></div></li>
+              </li>
+            </ul>
+          </div>
+        </li>
 
       </ul>
     </div>

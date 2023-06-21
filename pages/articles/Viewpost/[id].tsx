@@ -47,22 +47,17 @@ function ViewPost({ article }: any) {
     <div>
       <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 px-auto w-auto">
         <img
-          // width={500}
-          // height={500}
           onClick={openModal}
           className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
           src={mysrcs[0]}
           alt="click to view"
         />
-
-        {/* <div className="bg-[avatar.images]"></div> */}
+        
         <Modal isOpen={isModalOpen} onClose={closeModal} className="inset-0 ">
           <Carousel>
             {mysrcs.map((i: string) => {
               return (
                 <img
-                  // width={500}
-                  // height={500}
                   className="mx-auto my-auto max-h-80"
                   key={i}
                   src={i}
@@ -88,20 +83,6 @@ function ViewPost({ article }: any) {
           ) : (
             <Badge>Approved</Badge>
           )}
-          {/* {pb.authStore.id != null && pb.authStore?.id == article.author?.id ? (
-            <ul>
-              <li>
-                <Link href={`/articles/Editpost/${article.id}`}>
-                  Edit Article
-                </Link>
-              </li>
-              <li>
-                <Button>Delete Article</Button>
-              </li>
-            </ul>
-          ) : (
-            <div></div>
-          )} */}
 
         </div>
       </div>
@@ -120,7 +101,6 @@ export async function getServerSideProps(context: any) {
     .then(async (res) => {
       const myResponse = await JSON.stringify(res);
       const data = await JSON.parse(myResponse);
-      // console.log(data);
       return data;
     })
     .catch((err) => {
