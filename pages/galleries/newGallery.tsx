@@ -15,14 +15,22 @@ const NewGallery = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("text", values.text);
-      formData.append(
-        "images",
-        (document.getElementById("images") as HTMLInputElement).files![0]
-      );
+      
+      for(let k=0; k<(document.getElementById("images") as HTMLInputElement).files!.length; k++) {
+        formData.append("images", (document.getElementById("images") as HTMLInputElement).files![k]);
+      }
+      
+      
+      
+      // formData.append(
+      //   "images",
+      //   (document.getElementById("images") as HTMLInputElement).files![0]
+      // );
+      
       formData.append("author", userModel!.id);
       try {
         await pb.collection("gallery").create(formData);
-        await alert("Project posted.");
+        await alert("Gallery posted.");
       } catch (err) {
         alert("Formik error: " + err);
       }
