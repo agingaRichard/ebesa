@@ -30,7 +30,7 @@ const NewEvent = () => {
       );
       try {
         await pb.collection("events").create(formData);
-        await alert(formData.values);
+        await alert("Event posted.");
       } catch (err) {
         alert("Formik error: " + err);
       }
