@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const Create = () => {
   return (
-    <div className="justify-center">
-      <h3 className="text-2xl font-extrabold text-white w-full">
+    <div className="max-w-md mx-auto">
+      <h3 className="text-2xl font-extrabold text-white w-full pt-8 md:pt-0">
         Create something new...
       </h3>
       <ul className="w-auto">

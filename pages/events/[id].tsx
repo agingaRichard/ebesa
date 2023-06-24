@@ -40,9 +40,9 @@ function ViewPost({ event }: any) {
     <div>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 md:mx-10 md:text-2xl text-lg font-bold tracking-tight text-gray-900 dark:text-white">
             {event.title}
-          </h5>
+          </h5><div className="overflow-hidden">
           <img
             // width={500}
             // height={500}
@@ -50,7 +50,7 @@ function ViewPost({ event }: any) {
             className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
             src={mysrcs[0]}
             alt=""
-          />
+          /></div>
           {/* <img className="rounded-t-lg" src={mysrc} alt="Event poster" /> */}
           <Modal isOpen={isModalOpen} onClose={closeModal}>
             <Carousel className="max-h-96">
@@ -68,10 +68,7 @@ function ViewPost({ event }: any) {
               })}
             </Carousel>
           </Modal>
-          <p className="text-xs text-gray-900 dark:text-whit">
-            by {event.author?.firstName} {event.author?.lastName}
-          </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 md:px-20 font-normal text-gray-700 dark:text-gray-400">
             {event.text}
           </p>
           {/* {pb.authStore &&

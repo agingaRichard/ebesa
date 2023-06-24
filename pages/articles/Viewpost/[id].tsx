@@ -48,7 +48,7 @@ function ViewPost({ article }: any) {
       <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-10 px-auto w-auto">
         <img
           onClick={openModal}
-          className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
+          className="rounded-t-lg mx-auto"
           src={mysrcs[0]}
           alt="click to view"
         />

@@ -43,11 +43,11 @@ function ViewPost({ project }: any) {
   return (
     <div>
       <div className="bg-white border border-gray-200 overflow-hidden rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-10 px-auto w-auto">
-         <img
+        <img
           // width={500}
           // height={500}
           onClick={openModal}
-          className="rounded-t-lg mx-auto transition duration-300 ease-in-out hover:scale-110"
+          className="rounded-t-lg mx-auto"
           src={mysrcs[0]}
           alt=""
         />
