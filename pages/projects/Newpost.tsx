@@ -15,10 +15,9 @@ const Newpost = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("text", values.text);
-      formData.append(
-        "images",
-        (document.getElementById("images") as HTMLInputElement).files![0]
-      );
+     for(let k=0; k<(document.getElementById("images") as HTMLInputElement).files!.length; k++) {
+        formData.append("images", (document.getElementById("images") as HTMLInputElement).files![k]);
+      }
       formData.append("author", userModel!.id);
       try {
         await pb.collection("projects").create(formData);
@@ -34,7 +33,7 @@ const Newpost = () => {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
+        <div className="px-4 pt-10 md:py-2 rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
           <input
             name="title"
             onChange={formik.handleChange}
@@ -51,26 +50,29 @@ const Newpost = () => {
             name="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            className="block w-full rounded-lg px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:placeholder-gray-400"
+            rows={16}
             placeholder="Write a project..."
             required
           ></textarea>
 
           <input id="images" name="images" type="file" multiple />
 
-          <textarea
+          {/* <textarea
             id="caption"
             name="caption"
             className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write a caption..."
-          ></textarea>
-        </div>
-        <button
+          ></textarea> */}
+
+          <button
           type="submit"
           className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
         >
           Publish
         </button>
+        </div>
+        
       </form>
     </div>
   );
