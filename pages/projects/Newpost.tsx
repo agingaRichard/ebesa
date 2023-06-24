@@ -31,7 +31,7 @@ const Newpost = () => {
   });
 
   return (
-    <div>
+    <div className="pb-20">
       <form onSubmit={formik.handleSubmit}>
         <div className="px-4 pt-10 md:py-2 rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
           <input
@@ -56,7 +56,7 @@ const Newpost = () => {
             required
           ></textarea>
 
-          <input id="images" name="images" type="file" multiple />
+          <input id="images" name="images" type="file" multiple className="bg-white"/>
 
           {/* <textarea
             id="caption"
@@ -65,14 +65,14 @@ const Newpost = () => {
             placeholder="Write a caption..."
           ></textarea> */}
 
-          <button
+          
+        </div>
+        <button
           type="submit"
-          className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+          className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
         >
           Publish
         </button>
-        </div>
-        
       </form>
     </div>
   );

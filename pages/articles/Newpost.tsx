@@ -16,10 +16,10 @@ const Newpost = () => {
       const formData = new FormData();
       formData.append("title", values.title);
       formData.append("body", values.body);
-      formData.append(
-        "images",
-        (document.getElementById("images") as HTMLInputElement).files![0]
-      );
+      
+      for(let k=0; k<(document.getElementById("images") as HTMLInputElement).files!.length; k++) {
+        formData.append("images", (document.getElementById("images") as HTMLInputElement).files![k]);
+      };
       formData.append("author", userModel?.author);
       try {
         await pb.collection("articles").create(formData);
@@ -33,7 +33,7 @@ const Newpost = () => {
   });
 
   return (
-    <div>
+    <div className="pb-20">
       <form onSubmit={formik.handleSubmit}>
         <div className="px-4 pt-10 md:py-2 rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
           <input
@@ -58,7 +58,7 @@ const Newpost = () => {
           ></textarea>
 
 
-          <input id="images" name="images" type="file" />
+          <input id="images" name="images" type="file" className="bg-white"/>
 
           {/* <textarea
             id="caption"
@@ -67,7 +67,7 @@ const Newpost = () => {
             placeholder="Write a caption..."
           ></textarea> */}
         </div>
-        <button className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+        <button className=" mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
           Publish
         </button>
       </form>

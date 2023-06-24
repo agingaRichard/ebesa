@@ -20,13 +20,6 @@ const NewGallery = () => {
         formData.append("images", (document.getElementById("images") as HTMLInputElement).files![k]);
       }
       
-      
-      
-      // formData.append(
-      //   "images",
-      //   (document.getElementById("images") as HTMLInputElement).files![0]
-      // );
-      
       formData.append("author", userModel!.id);
       try {
         await pb.collection("gallery").create(formData);
@@ -40,9 +33,9 @@ const NewGallery = () => {
   });
 
   return (
-    <div>
+    <div className="pb-20">
       <form onSubmit={formik.handleSubmit}>
-        <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
+        <div className="px-4 pt-10 md:py-2 rounded-b-lg dark:bg-gray-800 space-x-4 space-y-4">
           <input
             name="title"
             onChange={formik.handleChange}
@@ -59,12 +52,13 @@ const NewGallery = () => {
             name="text"
             onChange={formik.handleChange}
             value={formik.values.text}
-            className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            className="block w-full px-0 rounded-lg text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            rows={10}
             placeholder="Write a description..."
             required
           ></textarea>
 
-          <input id="images" name="images" type="file" multiple />
+          <input id="images" name="images" type="file" multiple className="bg-white"/>
 
           {/* <textarea
             id="caption"
@@ -77,7 +71,7 @@ const NewGallery = () => {
         </div>
         <button
           type="submit"
-          className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+          className="inline-flex mt-4 items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
         >
           Publish
         </button>
