@@ -20,7 +20,7 @@ const ArticleCard = (props: any) => {
       {/* <!-- card cover --> */}
       <img
         className="h-auto w-full object-cover "
-        src={mysrc}
+        src={mysrc +"?thumb=100*100"}
         width={40}
         height={40}
         alt="Card Cover"

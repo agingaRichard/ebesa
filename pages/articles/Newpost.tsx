@@ -20,7 +20,7 @@ const Newpost = () => {
       for(let k=0; k<(document.getElementById("images") as HTMLInputElement).files!.length; k++) {
         formData.append("images", (document.getElementById("images") as HTMLInputElement).files![k]);
       };
-      formData.append("author", userModel?.author);
+      formData.append("author", userModel!.id);
       try {
         await pb.collection("articles").create(formData);
         await alert("Article posted.");
