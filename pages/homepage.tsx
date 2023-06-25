@@ -88,7 +88,7 @@ export default function Homepage() {
                 />
               </div>
             ) : (
-              <p>No articles found.</p>
+              <p></p>
             )
           )}
       </div>
@@ -125,7 +125,7 @@ export default function Homepage() {
               />
             </div>
           ) : (
-            <p>No project found.</p>
+            <p></p>
           )
         )}
       </div>
