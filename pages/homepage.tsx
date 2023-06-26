@@ -52,7 +52,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div className="bg-opacity-0">
+    <div className="bg-opacity-0 mb-20">
       <Landing />
       <h3 className="flex items-center md:text-5xl  text-3xl font-extrabold text-white py-3">
         Articles

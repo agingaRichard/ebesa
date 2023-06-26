@@ -132,7 +132,7 @@ const Landing = () => {
         </li>
         <li className="visible md:hidden text-white h-screen">
           {/* Mobile landing component */}
-          <div>
+          <div className="pb-20">
             <ul>
               <li className="font-extrabold text-lg mt-8">Welcome to EBESA!</li>
               <li className="text-lg mt-4">a safe haven for free thinkers</li>
