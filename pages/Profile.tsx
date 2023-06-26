@@ -52,7 +52,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full mt-10 mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="flex justify-end px-4 pt-4">
           {/*<!-- Dropdown menu -->*/}
           {/* <div

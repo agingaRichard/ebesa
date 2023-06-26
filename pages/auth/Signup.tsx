@@ -48,7 +48,7 @@ const Signup = () => {
 
   return (
     // <div className="space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <div  className="max-w-md mx-auto">
+      <div  className="max-w-md mx-auto mt-10">
       <form onSubmit={formik.handleSubmit}>
         <h5 className="text-xl font-medium text-white">
           Sign up!
