@@ -21,7 +21,7 @@ const DesktopNav = () => {
 
             <Link href="/">
                 <Image
-                    src="/images/mobilelogo.jpg"
+                    src="/images/ebesa-g-modified.png"
                     width={120}
                     height={40}
                     alt="Ebesa icon"
