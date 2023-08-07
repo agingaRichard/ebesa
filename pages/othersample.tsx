@@ -1,42 +1,99 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import * as yup from "yup";
-import pb from './api/pocketbase';
+import * as Yup from 'yup';
+import { useDropzone } from 'react-dropzone';
 
-const BlogForm = ({ onSubmit }: any) => {
+const validationSchema = Yup.object().shape({
+  title: Yup.string().required('Title is required'),
+  content: Yup.array()
+    .of(
+      Yup.object().shape({
+        type: Yup.string().oneOf(['text', 'image']),
+        text: Yup.string().when('type', {
+          is: 'text',
+          then: Yup.string().required('Text is required'),
+        }),
+        image: Yup.mixed().when('type', {
+          is: 'image',
+          then: Yup.mixed().required('Image is required'),
+        }),
+      })
+    )
+    .required('Content is required'),
+});
+
+const BlogForm = ({ onSubmit }) => {
   const initialValues = {
     title: '',
     content: [{ type: 'text', text: '' }],
   };
 
-  const handleSubmit = async (values: any) => {
-    // Perform any custom validation here
-    // Call the onSubmit function if the form is valid
+  const handleDrop = useCallback(
+    (acceptedFiles, index, setFieldValue) => {
+      // Process the uploaded file
+      const file = acceptedFiles[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setFieldValue(`content.${index}.image`, reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    []
+  );
 
-    const formData = new FormData();
-    formData.append("formData", JSON.stringify(values));
+  const handleRemove = useCallback(
+    (index, setFieldValue) => {
+      setFieldValue(`content.${index}.image`, '');
+    },
+    []
+  );
 
-    //alert(values);
-    alert(JSON.stringify(values));
-    try {
-      await pb.collection("sampleblogposts").create(formData);
-      alert("Article posted.");
-    } catch (error) {
-        alert("Error posting article: " + error);
-    }
+  const Dropzone = ({ onDrop }) => {
+    const onDropCallback = useCallback(
+      (acceptedFiles) => {
+        if (onDrop) {
+          onDrop(acceptedFiles);
+        }
+      },
+      [onDrop]
+    );
+
+    const { getRootProps, getInputProps } = useDropzone({ onDrop: onDropCallback, accept: 'image/*' });
+
+    return (
+      <div {...getRootProps()} className="border border-dashed rounded p-4">
+        <input {...getInputProps()} />
+        <p className="text-center text-white">Drag and drop an image here, or click to select a file.</p>
+      </div>
+    );
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ values }) => (
+    <Formik initialValues={initialValues} validationSchema={validationSchema} /*onSubmit={onSubmit}*/
+    onSubmit={(values, actions) => {
+        // Call the onSubmit function and show success message
+        onSubmit(values);
+        alert("bamako");
+       // setSuccessMessage('Blog post submitted successfully!');
+       // actions.resetForm();
+      }}
+    >
+      {({ values, setFieldValue }) => (
         <Form className="max-w-xl mx-auto">
           <div className="mb-6">
+            <label htmlFor="title" className="block mb-2 font-bold text-white">Title</label>
             <Field
               type="text"
               id="title"
-              name="title"
+              name="title"onSubmit={(values, actions) => {
+        // Call the onSubmit function and show success message
+        onSubmit(values);
+        setSuccessMessage('Blog post submitted successfully!');
+        actions.resetForm();
+      }}
               className="block w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-              placeholder="Enter title"
             />
             <ErrorMessage name="title" component="div" className="text-red-500" />
           </div>
@@ -74,51 +131,23 @@ const BlogForm = ({ onSubmit }: any) => {
 
                     {item.type === 'image' && (
                       <div className="mt-4">
-                        <label htmlFor={'image'} className="block mb-2 font-bold text-white">Image</label>
-                        {/* <Field
-                          type="file"
-                          name={`content.${index}.image`}
-                          className="block w-full"
-                    /> */}
-
-                    <input id="images" name="images" type="file" onChange={(event) => {
-                    setFieldValue(`context.${index}.image`, event.currentTarget.files[0]);
-                  }} className="bg-white"/>
-
-{/* Miguel Cunha */}
- {/* <div className="container">
-        <Formik 
-          initialValues={{ file: null }}
-          onSubmit={(values) => {
-            alert(
-              JSON.stringify(
-                { 
-                  fileName: values.file.name, 
-                  type: values.file.type,
-                  size: `${values.file.size} bytes`
-                },
-                null,
-                2
-              )
-            );
-          }} 
-          
-          render={({ values, handleSubmit, setFieldValue }) => {
-            return (
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label for="file">File upload</label>
-                  <input id="file" name="file" type="file" onChange={(event) => {
-                    setFieldValue("file", event.currentTarget.files[0]);
-                  }} className="form-control" />
-                  <image file={values.file} />
-                </div>
-                <button type="submit" className="btn btn-primary">submit</button>
-              </form>
-            );
-          }} />
-      </div> */}
-   {/* Miguel Cunha */}
+                        <label htmlFor={`content.${index}.image`} className="block mb-2 font-bold text-white">Image</label>
+                        {item.image ? (
+                          <div className="relative">
+                            <img src={item.image} alt={`Image ${index + 1}`} className="max-w-full h-auto" />
+                            <button
+                              type="button"
+                              onClick={() => handleRemove(index, setFieldValue)}
+                              className="absolute top-0 right-0 mt-1 mr-1 px-2 py-1 text-xs text-white bg-red-500 rounded-full focus:outline-none focus:bg-red-600"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ) : (
+                          <Dropzone
+                            onDrop={(acceptedFiles) => handleDrop(acceptedFiles, index, setFieldValue)}
+                          />
+                        )}
                         <ErrorMessage
                           name={`content.${index}.image`}
                           component="div"
